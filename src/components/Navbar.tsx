@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,17 +45,17 @@ const Navbar = () => {
                 <span>Home</span>
               </button>
             </div> */}
-            <a href="/" className="text-white hover:text-orange-300 transition-colors font-medium">Home</a>
-            <a href="/menu" className="text-white hover:text-orange-300 transition-colors font-medium">Menu</a>
+            <Link href="/" className="text-white hover:text-orange-300 transition-colors font-medium">Home</Link>
+            <Link href="/menu" className="text-white hover:text-orange-300 transition-colors font-medium">Menu</Link>
             {/* <a href="/about" className="text-white hover:text-orange-300 transition-colors font-medium">About</a> */}
-            <a href="/contact" className="text-white hover:text-orange-300 transition-colors font-medium">Contact</a>
+            <Link href="/contact" className="text-white hover:text-orange-300 transition-colors font-medium">Contact</Link>
           </div>
 
           {/* Desktop Right Side Icons */}
           <div className="hidden md:flex justify-end items-center space-x-3 lg:space-x-4">
-            <a href="tel:+1656860844" className="hover:text-[#A63C4D] bg-[#F0A429] text-white px-4 py-2 rounded-md transition-colors">
+            <Link href="tel:+1656860844" className="hover:text-[#A63C4D] bg-[#F0A429] text-white px-4 py-2 rounded-md transition-colors">
               Order Now
-            </a>
+            </Link>
             {/* <button className="text-white hover:text-orange-300 transition-colors p-2">
               <svg className="w-5 h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -138,21 +139,21 @@ const Navbar = () => {
                     <span>Home</span>
                   </button>
                 </div> */}
-                  <a
+                  <Link
                     href="/"
                     className="block text-white hover:text-orange-300 transition-colors font-medium text-lg py-2"
                     onClick={toggleMobileMenu}
                   >
                     Home
-                  </a>
+                  </Link>
 
-                  <a
+                  <Link
                     href="/menu"
                     className="block text-white hover:text-orange-300 transition-colors font-medium text-lg py-2"
                     onClick={toggleMobileMenu}
                   >
                     Menu
-                  </a>
+                  </Link>
 
                   {/*<a
                     href="/about"
@@ -162,13 +163,13 @@ const Navbar = () => {
                     About
                   </a> */}
 
-                  <a
+                  <Link
                     href="/contact"
                     className="block text-white hover:text-orange-300 transition-colors font-medium text-lg py-2"
                     onClick={toggleMobileMenu}
                   >
                     Contact
-                  </a>
+                  </Link>
                 </div>
               </div>
 

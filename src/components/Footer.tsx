@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -35,9 +35,9 @@ const Footer = () => {
             <div>
               <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2">
-                <li><a href="/" className="text-gray-300 hover:text-orange-300 transition-colors">Home</a></li>
-                <li><a href="/menu" className="text-gray-300 hover:text-orange-300 transition-colors">Menu</a></li>
-                <li><a href="/contact" className="text-gray-300 hover:text-orange-300 transition-colors">Contact</a></li>
+                <li><Link href="/" className="text-gray-300 hover:text-orange-300 transition-colors">Home</Link></li>
+                <li><Link href="/menu" className="text-gray-300 hover:text-orange-300 transition-colors">Menu</Link></li>
+                <li><Link href="/contact" className="text-gray-300 hover:text-orange-300 transition-colors">Contact</Link></li>
               </ul>
             </div>
 

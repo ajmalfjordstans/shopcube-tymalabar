@@ -76,7 +76,7 @@ const HomePage = () => {
                 className="w-16 h-16 rounded-lg mx-auto mb-4 flex items-center justify-center"
               />
               <h3 className="text-xl font-semibold mb-2 text-gray-800">Authentic Flavors</h3>
-              <p className="text-gray-600">Kerala's traditional dishes await</p>
+              <p className="text-gray-600">Kerala&apos;s traditional dishes await</p>
             </div>
 
             {/* Fast Delivery */}

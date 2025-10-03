@@ -1,6 +1,5 @@
 'use client';
 import Image from 'next/image';
-import { useState } from 'react';
 import { Product } from './types';
 
 type Props = {
@@ -12,11 +11,11 @@ type Props = {
   onAdd?: (id: string) => void;
 };
 
-export default function ProductCard({ product, onAdd }: Props) {
-  const sizes = product.portionSizes ?? [];
-  const varieties = product.varieties ?? [];
-  const [size, setSize] = useState<string>(sizes[0] ?? '');
-  const [variety, setVariety] = useState<string>(varieties[0] ?? '');
+export default function ProductCard({ product }: Props) { //, onAdd
+  // const sizes = product.portionSizes ?? [];
+  // const varieties = product.varieties ?? [];
+  // const [size, setSize] = useState<string>(sizes[0] ?? '');
+  // const [variety, setVariety] = useState<string>(varieties[0] ?? '');
 
   const hasImage = Boolean(product.image);
   const hasPrice = typeof product.price === 'number' && !Number.isNaN(product.price);

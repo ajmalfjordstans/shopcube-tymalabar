@@ -7,9 +7,17 @@ import ProductGrid from '@/components/menu/ProductGrid';
 import Pagination from '@/components/menu/Pagination';
 import { categories, products, findCategoryById, collectDescendantIds } from '@/components/menu/data';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useRef } from 'react';
+import { Suspense, useEffect, useRef } from 'react';
 
 export default function MenuPage() {
+  return (
+    <Suspense fallback={<div className="min-h-[30vh] flex items-center justify-center text-[#601131]">Loading menu...</div>}>
+      <MenuPageContent />
+    </Suspense>
+  );
+}
+
+function MenuPageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -28,7 +36,6 @@ export default function MenuPage() {
     router.replace(`${pathname}?${sp.toString()}`, { scroll: false });
   };
 
-  // Smooth scroll to #menu when category changes
   const firstScroll = useRef(true);
   useEffect(() => {
     if (firstScroll.current) {
@@ -39,7 +46,6 @@ export default function MenuPage() {
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, [category, sort, q]);
 
-  // Filter products by selected category subtree
   const categoryFilterIds = category ? new Set([category, ...collectDescendantIds(category)]) : null;
   let filtered = products.filter((p) => (categoryFilterIds ? categoryFilterIds.has(p.categoryId) : true));
 
@@ -80,7 +86,7 @@ export default function MenuPage() {
   return (
     <main className="font-poppins relative">
       <MenuHero />
-      <div className='' id="menu"></div>
+      <div className="" id="menu"></div>
 
       <div className="bg-[#F5F5DC] pt-20 pb-16">
         <SortBar
@@ -92,7 +98,7 @@ export default function MenuPage() {
 
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 relative">
           {/* Products */}
-          <div >
+          <div>
             <h3 className="text-[#601131] font-bold text-lg mb-4">
               {findCategoryById(category || '')?.name || 'All Products'}
             </h3>
@@ -105,7 +111,7 @@ export default function MenuPage() {
           </div>
 
           {/* Sidebar */}
-          <div className=''>
+          <div className="">
             <CategoryList
               title="All Menu"
               tree={categories}
