@@ -7,7 +7,7 @@ import ProductGrid from '@/components/menu/ProductGrid';
 import Pagination from '@/components/menu/Pagination';
 import { categories, products, findCategoryById, collectDescendantIds } from '@/components/menu/data';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useRef } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 
 export default function MenuPage() {
   return (
@@ -83,18 +83,32 @@ function MenuPageContent() {
 
   const showingText = `Showing ${paged.length} of ${sorted.length} results`;
 
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+
   return (
     <main className="font-poppins relative">
       <MenuHero />
       <div className="" id="menu"></div>
 
-      <div className="bg-[#F5F5DC] pt-20 pb-16">
+      <div className="bg-[#F5F5DC] md:pt-20 pb-16">
         <SortBar
           showingText={showingText}
           onSortChange={(value) => updateParams({ sort: value, page: '1' })}
           searchText={q}
           onSearchChange={(value) => updateParams({ q: value, page: '1' })}
         />
+
+        {/* Mobile: open drawer button */}
+        <div className="px-6 lg:hidden mb-4">
+          <button
+            type="button"
+            onClick={() => setIsCategoryOpen(true)}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-[#EDE7C5] text-[#601131] hover:bg-[#e5dfb3] transition"
+          >
+            <span className="inline-block w-4">☰</span>
+            Categories
+          </button>
+        </div>
 
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 relative">
           {/* Products */}
@@ -110,8 +124,8 @@ function MenuPageContent() {
             />
           </div>
 
-          {/* Sidebar */}
-          <div className="">
+          {/* Sidebar (desktop only) */}
+          <div className="hidden lg:block">
             <CategoryList
               title="All Menu"
               tree={categories}
@@ -122,6 +136,46 @@ function MenuPageContent() {
           </div>
         </div>
       </div>
+
+      {/* Drawer for mobile */}
+      {isCategoryOpen && (
+        <div className='relative z-100'>
+          {/* Backdrop */}
+          <button
+            aria-label="Close category drawer"
+            className="fixed inset-0 z-40 bg-black/40"
+            onClick={() => setIsCategoryOpen(false)}
+          />
+          {/* Panel */}
+          <div className="fixed inset-y-0 left-0 z-50 w-[85%] max-w-sm bg-[#F1EED0] shadow-xl rounded-tr-xl rounded-br-xl">
+            <div className="p-4 flex items-center justify-between border-b border-[#D7CDA7]">
+              <h4 className="font-semibold text-[#601131]">Categories</h4>
+              <button
+                type="button"
+                onClick={() => setIsCategoryOpen(false)}
+                className="px-3 py-1 rounded-md bg-[#EDE7C5] text-[#601131] hover:bg-[#e5dfb3] transition"
+              >
+                Close
+              </button>
+            </div>
+            <div className="p-4">
+              <CategoryList
+                title="All Menu"
+                tree={categories}
+                selectedId={category}
+                onSelect={(id) => {
+                  updateParams({ category: id, page: '1' });
+                  setIsCategoryOpen(false);
+                }}
+                onClear={() => {
+                  updateParams({ category: null, page: '1' });
+                  setIsCategoryOpen(false);
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
