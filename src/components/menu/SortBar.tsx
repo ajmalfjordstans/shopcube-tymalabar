@@ -25,7 +25,8 @@ export default function SortBar({ showingText, onSortChange, searchText = '', on
       </div>
 
       {/* Sort dropdown */}
-      <div className="md:col-span-1">
+      <div className="md:col-span-1 flex justify-end">
+
         <div className="inline-flex items-center gap-2 bg-[#F1EED0] rounded-md px-3 py-2">
           <span className="text-sm text-[#601131]">Sort by</span>
           <select
@@ -37,6 +38,18 @@ export default function SortBar({ showingText, onSortChange, searchText = '', on
             <option value="price-desc">Price: High to Low</option>
             <option value="name">Name</option>
           </select>
+        </div>
+
+        {/* View PDF Menu button */}
+        <div className="max-w-7xl mx-auto px-6  flex justify-end">
+          <a
+            href="/menu.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#F0A429] text-[#601131] hover:bg-[#e5dfb3] transition"
+          >
+            View Menu
+          </a>
         </div>
       </div>
 

@@ -1,12 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Footer = () => {
   return (
     <footer className="bg-[#601131] text-white relative">
       {/* Torn paper effect at top */}
       <div className="absolute top-0 left-0 right-0 h-8 bg-[#F5F5DC] transform -skew-y-1 origin-top-left"></div>
-      
+
       <div className="pt-16 pb-8 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -14,21 +15,13 @@ const Footer = () => {
             <div className="md:col-span-1">
               <div className="flex items-center mb-4">
                 <div className="text-white font-bold text-xl">
-                  <span className="text-orange-400">Ty</span>
-                  <br />
-                  <span className="text-sm">MALABAR</span>
+                  <Image src="/logo/tymalabar.png" alt="Logo" width={120} height={50} />
                 </div>
               </div>
-              <h3 className="text-lg font-semibold mb-4">Connect with Ty Malabar</h3>
               <p className="text-sm text-gray-300 mb-4">
                 Delicious Indian cuisine delivered fresh to your doorstep. Explore our menu and order online for a seamless experience.
               </p>
-              <div className="mb-4">
-                <p className="text-sm text-gray-300">Powered by</p>
-                <div className="flex items-center mt-2">
-                  <span className="text-blue-400 font-semibold">ShopCube</span>
-                </div>
-              </div>
+
             </div>
 
             {/* Quick Links */}
@@ -42,7 +35,7 @@ const Footer = () => {
             </div>
 
             {/* Best Menu */}
-            <div>
+            {/* <div>
               <h3 className="text-lg font-semibold mb-4">Best Menu</h3>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
@@ -66,7 +59,7 @@ const Footer = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Contact Us */}
             <div>
@@ -86,6 +79,19 @@ const Footer = () => {
                   className="w-full px-3 py-2 bg-transparent border border-gray-400 rounded text-white placeholder-gray-400 focus:outline-none focus:border-orange-400"
                 />
               </div> */}
+            </div>
+
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold mb-4">Powered By</h3>
+              <div className="flex items-center mt-2">
+                {/* <span className="text-blue-400 font-semibold">ShopCube</span> */}
+                <Image
+                  src="/logo/shopcube.svg"
+                  alt="ShopCube Logo"
+                  width={200}
+                  height={140}
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -85,6 +85,19 @@ function MenuPageContent() {
 
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
 
+  useEffect(() => {
+    if (isCategoryOpen) {
+      document.body.style.overflow = "hidden"; // disable scrolling
+    } else {
+      document.body.style.overflow = "auto"; // enable scrolling
+    }
+
+    return () => {
+      document.body.style.overflow = "auto"; // cleanup when component unmounts
+    };
+  }, [isCategoryOpen]);
+
+
   return (
     <main className="font-poppins relative">
       <MenuHero />
