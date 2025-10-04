@@ -201,21 +201,21 @@ const HomePage = () => {
             {/* Left Menu Items */}
             <div className="space-y-8">
               {[
-                { name: "Pilav Rice", desc: "Contains Dairy, veg", rating: 5 },
-                { name: "Onion Bhoji", desc: "Homemade crunchy snack", rating: 4 },
-                { name: "Malabar Beef Curry", desc: "Mustard beef, Malabar spices", rating: 4 },
+                { name: "Laal Chauk Murg", desc: "Chicken Tikka cooked to perfection in onion tomato masala", rating: 5 },
+                { name: "Malabar Beef Curry", desc: "Tender Beef braised in caramelised onions, tomatoes, ground Malabar spices", rating: 4 },
+                { name: "Saag Murg", desc: "Chicken morsels simmered in medium spiced masala", rating: 4 },
               ].map((dish, i) => (
                 <div
                   key={i}
                   className="flex items-center space-x-4 bg-white p-5 rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition transform duration-300 cursor-pointer"
                 >
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-400 rounded-full flex items-center justify-center text-white font-bold">
+                  {/* <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-400 rounded-full flex items-center justify-center text-white font-bold">
                     🍲
-                  </div>
-                  <div className="text-left">
+                  </div> */}
+                  <div className="text-center">
                     <h3 className="font-semibold text-gray-800">{dish.name}</h3>
                     <p className="text-sm text-gray-600">{dish.desc}</p>
-                    <div className="flex text-orange-500 text-sm">
+                    <div className="flex text-orange-500 text-sm justify-center">
                       {"★".repeat(dish.rating)}{"☆".repeat(5 - dish.rating)}
                     </div>
                   </div>
@@ -240,21 +240,21 @@ const HomePage = () => {
             {/* Right Menu Items */}
             <div className="space-y-8">
               {[
-                { name: "Prawn Allepy Curry", desc: "Prawn in mango-coconut gravy", rating: 5 },
-                { name: "Chicken Makhani", desc: "Creamy chicken in tomato gravy", rating: 4 },
-                { name: "Bombay Aloo Side", desc: "Cumin-turmeric spiced potatoes", rating: 4 },
+                { name: "Lamb Rogan", desc: "An aromatic Kashmiri braised lamb preparation", rating: 5 },
+                { name: "Saag Gosht", desc: "Succulent lamb cooked in onion, tomatoes and cardamom, etc", rating: 4 },
+                { name: "Chutty Curry", desc: "Authentic preparation of yummy traditional Kerala style chicken curry", rating: 4 },
               ].map((dish, i) => (
                 <div
                   key={i}
                   className="flex items-center space-x-4 bg-white p-5 rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition transform duration-300 cursor-pointer"
                 >
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-400 rounded-full flex items-center justify-center text-white font-bold">
+                  {/* <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-400 rounded-full flex items-center justify-center text-white font-bold">
                     🍛
-                  </div>
-                  <div className="text-left">
+                  </div> */}
+                  <div className="text-center">
                     <h3 className="font-semibold text-gray-800">{dish.name}</h3>
                     <p className="text-sm text-gray-600">{dish.desc}</p>
-                    <div className="flex text-orange-500 text-sm">
+                    <div className="flex text-orange-500 text-sm justify-center">
                       {"★".repeat(dish.rating)}{"☆".repeat(5 - dish.rating)}
                     </div>
                   </div>

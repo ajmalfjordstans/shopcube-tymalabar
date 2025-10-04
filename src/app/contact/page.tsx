@@ -43,12 +43,12 @@ export default function ContactPage() {
             <h3 className="text-2xl md:text-3xl font-bold text-[#101010] mb-6">
               Get in touch with our lovely Team
             </h3>
-            <p className="text-sm text-gray-700 mb-6">
+            {/* <p className="text-sm text-gray-700 mb-6">
               Lorem ipsum dolor sit amet, consec tetur adipiscing elit sed do eiusmod tempor
               incid idunt ut labore et dolore magna aliqua. Ut enim ad mi veniam, quis nostrud
               exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla.
-            </p>
+            </p> */}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
@@ -68,7 +68,7 @@ export default function ContactPage() {
               <div>
                 <h4 className="font-semibold text-[#101010] mb-2">Mail Address</h4>
                 <p className="text-sm text-gray-700">
-                  Lorem ipsum dolor sit amet, consec tetur adipiscing elit sed do eiusmod tempor inci
+                  tymalabar@gmail.com
                 </p>
               </div>
             </div>
