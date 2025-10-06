@@ -34,7 +34,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center">
             <div className="text-white font-bold text-lg sm:text-xl">
-              <Image src="/logo/tymalabar.png" alt="Logo" width={100} height={50} />
+              <Image src="/logo/tymalabar.png" alt="Logo" width={200} height={80} />
             </div>
           </div>
 

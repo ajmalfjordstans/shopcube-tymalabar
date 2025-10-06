@@ -15,7 +15,7 @@ const Footer = () => {
             <div className="md:col-span-1">
               <div className="flex items-center mb-4">
                 <div className="text-white font-bold text-xl">
-                  <Image src="/logo/tymalabar.png" alt="Logo" width={120} height={50} />
+                  <Image src="/logo/tymalabar.png" alt="Logo" width={280} height={80} />
                 </div>
               </div>
               <p className="text-sm text-gray-300 mb-4">
