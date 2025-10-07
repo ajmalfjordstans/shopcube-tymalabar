@@ -56,7 +56,7 @@ const HomePage = () => {
                 height={300}
                 className="object-contain object-center rounded-full w-[450px]"
               />
-              <div className="absolute top-40 left-10 w-64 h-64 z-10">
+              {/* <div className="absolute top-40 left-10 w-64 h-64 z-10">
                 <div className="w-full h-full bg-gradient-to-br from-orange-400 via-orange-500 to-red-500 rounded-full flex flex-col items-center justify-center shadow-[0_0_30px_rgba(249,115,22,0.6)] animate-pulse">
                   <p className="text-white text-xl font-semibold tracking-wide mb-1 opacity-90">
                     🚀 Launching Today
@@ -65,7 +65,7 @@ const HomePage = () => {
                     @ 3:45 PM
                   </p>
                 </div>
-              </div>
+              </div> */}
 
             </div>
           </div>
