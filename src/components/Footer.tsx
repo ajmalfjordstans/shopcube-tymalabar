@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import JobModal from './JobModal';
 
 const Footer = () => {
   return (
@@ -31,6 +32,7 @@ const Footer = () => {
                 <li><Link href="/" className="text-gray-300 hover:text-orange-300 transition-colors">Home</Link></li>
                 <li><Link href="/menu" className="text-gray-300 hover:text-orange-300 transition-colors">Menu</Link></li>
                 <li><Link href="/contact" className="text-gray-300 hover:text-orange-300 transition-colors">Contact</Link></li>
+                <li><JobModal /></li>
               </ul>
             </div>
 
