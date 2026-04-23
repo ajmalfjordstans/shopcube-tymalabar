@@ -72,7 +72,7 @@ export default function JobModal() {
                 </ul>
                 <p className="font-semibold mb-1">Team Leadership</p>
                 <ul className="list-disc list-inside space-y-1 text-gray-600 mb-3">
-                  <li>Recruit, train, and mentor front-of-house staff to deliver exceptional "Malabar-style" hospitality.</li>
+                  <li>Recruit, train, and mentor front-of-house staff to deliver exceptional &ldquo;Malabar-style&rdquo; hospitality.</li>
                   <li>Create efficient staff rotas and foster a positive, high-energy work culture.</li>
                 </ul>
                 <p className="font-semibold mb-1">Marketing &amp; Growth (Mandatory)</p>
