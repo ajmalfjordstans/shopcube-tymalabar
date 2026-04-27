@@ -71,7 +71,7 @@ export default function JobModal() {
                 <p className="font-semibold mb-1">Social Media & Content</p>
                 <ul className="list-disc list-inside space-y-1 text-gray-600 mb-3">
                   <li>Manage and grow all social media channels (Instagram, Facebook, etc.) with a strong local focus.</li>
-                  <li>Oversee content creation that captures the "Authentic Flavours and Rich Heritage" of TY Malabar.</li>
+                  <li>Oversee content creation that captures the &quot;Authentic Flavours and Rich Heritage&quot; of TY Malabar.</li>
                 </ul>
                 <p className="font-semibold mb-1">Strategy & Audience</p>
                 <ul className="list-disc list-inside space-y-1 text-gray-600">
@@ -88,7 +88,7 @@ export default function JobModal() {
                   <li>Strong skills in campaign planning, content creation, and promotions.</li>
                   <li>Proven ability to manage and grow social media channels and local presence.</li>
                   <li>Deep understanding of Indian cuisine and audience appeal.</li>
-                  <li>Ready to bring your creativity to the table and "Own the story."</li>
+                  <li>Ready to bring your creativity to the table and &quot;Own the story.&quot;</li>
                 </ul>
               </div>
 
