@@ -45,7 +45,7 @@ export default function JobModal() {
                 </div>
                 <div className="bg-orange-50 rounded-lg p-3">
                   <p className="text-xs text-gray-500 uppercase font-semibold">Salary</p>
-                  <p className="mt-0.5">Competitive based on experience</p>
+                  <p className="mt-0.5">£35,000 – £42,000 / year</p>
                 </div>
                 <div className="bg-orange-50 rounded-lg p-3">
                   <p className="text-xs text-gray-500 uppercase font-semibold">Type</p>
@@ -63,20 +63,23 @@ export default function JobModal() {
 
               {/* Responsibilities */}
               <div>
-                <p className="font-semibold mb-1">Marketing & Brand Growth</p>
+                <h3 className="font-bold text-[#601131] mb-2">Key Responsibilities</h3>
+                <p className="font-semibold mb-1">Operational &amp; Financial Excellence</p>
                 <ul className="list-disc list-inside space-y-1 text-gray-600 mb-3">
-                  <li>Lead digital marketing initiatives to drive brand growth and increase customer engagement.</li>
-                  <li>Develop and execute creative campaign strategies and promotional events.</li>
+                  <li>Oversee daily operations to ensure impeccable food quality, hygiene, and service standards.</li>
+                  <li>Manage budgets, labor costs, and inventory to maximize profitability.</li>
+                  <li>Ensure full compliance with UK Health &amp; Safety and Food Hygiene regulations.</li>
                 </ul>
-                <p className="font-semibold mb-1">Social Media & Content</p>
+                <p className="font-semibold mb-1">Team Leadership</p>
                 <ul className="list-disc list-inside space-y-1 text-gray-600 mb-3">
-                  <li>Manage and grow all social media channels (Instagram, Facebook, etc.) with a strong local focus.</li>
-                  <li>Oversee content creation that captures the &quot;Authentic Flavours and Rich Heritage&quot; of TY Malabar.</li>
+                  <li>Recruit, train, and mentor front-of-house staff to deliver exceptional &ldquo;Malabar-style&rdquo; hospitality.</li>
+                  <li>Create efficient staff rotas and foster a positive, high-energy work culture.</li>
                 </ul>
-                <p className="font-semibold mb-1">Strategy & Audience</p>
+                <p className="font-semibold mb-1">Marketing &amp; Growth (Mandatory)</p>
                 <ul className="list-disc list-inside space-y-1 text-gray-600">
-                  <li>Plan and execute integrated marketing campaigns across multiple platforms.</li>
-                  <li>Utilize deep understanding of Indian cuisine to create content with high audience appeal.</li>
+                  <li>Develop and execute local marketing initiatives to increase footfall and brand awareness.</li>
+                  <li>Manage social media platforms and oversee delivery partner relations (Deliveroo/UberEats).</li>
+                  <li>Lead marketing and logistics for Indian festivals (Diwali, Onam, Vishu) and outdoor catering inquiries.</li>
                 </ul>
               </div>
 
@@ -84,11 +87,11 @@ export default function JobModal() {
               <div>
                 <h3 className="font-bold text-[#601131] mb-2">Mandatory Requirements</h3>
                 <ul className="list-disc list-inside space-y-1 text-gray-600">
-                  <li>3+ years of experience in digital marketing and brand growth.</li>
-                  <li>Strong skills in campaign planning, content creation, and promotions.</li>
-                  <li>Proven ability to manage and grow social media channels and local presence.</li>
-                  <li>Deep understanding of Indian cuisine and audience appeal.</li>
-                  <li>Ready to bring your creativity to the table and &quot;Own the story.&quot;</li>
+                  <li>Deep knowledge of South Indian cuisine, ingredients, and traditional dining etiquette.</li>
+                  <li>Proven ability to manage restaurant promotions, social media content, and local community outreach.</li>
+                  <li>Minimum 3 years in restaurant management with at least 2 years in a supervisory role.</li>
+                  <li>Strong communication skills; ability to handle high-pressure shifts and resolve customer feedback diplomatically.</li>
+                  <li>Fluency in English essential. Proficiency in Malayalam, Tamil, or Hindi highly preferred.</li>
                 </ul>
               </div>
 
@@ -116,7 +119,7 @@ export default function JobModal() {
                 >
                   Apply Now – tymalabar@gmail.com
                 </a>
-                <p className="text-xs text-gray-500 mt-2">Subject line: Marketing Manager Application – [Your Name]</p>
+                <p className="text-xs text-gray-500 mt-2">Subject line: Restaurant Marketing Application – [Your Name]</p>
               </div>
             </div>
           </div>
