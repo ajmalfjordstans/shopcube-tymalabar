@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export const metadata = {
   title: 'Rewards - Ty Malabar',
-  description: 'Earn points and unlock exclusive rewards with every order at Ty Malabar. Coming soon.',
+  description: 'Earn points and unlock exclusive rewards with every order at Ty Malabar.',
 };
 
 export default function RewardsPage() {
@@ -50,11 +50,6 @@ export default function RewardsPage() {
               <path d="M2 19h20v2H2v-2zM2 5l5 7 5-7 5 7 5-7v12H2V5z" />
             </svg>
           </div>
-
-          {/* Coming soon badge */}
-          <span className="inline-block bg-[#F0A429]/20 border border-[#F0A429]/50 text-[#F0A429] text-xs font-semibold px-5 py-1.5 rounded-full mb-6 tracking-widest uppercase">
-            Coming Soon
-          </span>
 
           {/* Heading */}
           <h1 className="text-5xl lg:text-6xl font-bold text-white mb-3 leading-tight">
