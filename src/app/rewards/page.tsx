@@ -107,10 +107,10 @@ export default function RewardsPage() {
             </Link>
           </div>
 
-          {/* Review CTA */}
+          {/* Rewards sign-up CTA */}
           <div className="mt-12 border-t border-white/10 pt-10">
             <p className="text-gray-300 text-sm mb-4">
-              Enjoyed your meal? Let us know — your review helps us grow!
+              Ready to start earning? Sign up for our rewards programme today!
             </p>
             <a
               href="https://forms.gle/H3BC1QNzVuXiveWg8"
@@ -121,7 +121,7 @@ export default function RewardsPage() {
               <svg className="w-5 h-5 text-[#F0A429]" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" />
               </svg>
-              Leave a Review
+              Join Rewards
             </a>
           </div>
         </div>
