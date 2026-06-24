@@ -111,6 +111,24 @@ export default function RewardsPage() {
               Explore Menu
             </Link>
           </div>
+
+          {/* Review CTA */}
+          <div className="mt-12 border-t border-white/10 pt-10">
+            <p className="text-gray-300 text-sm mb-4">
+              Enjoyed your meal? Let us know — your review helps us grow!
+            </p>
+            <a
+              href="https://forms.gle/H3BC1QNzVuXiveWg8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-white text-[#601131] hover:bg-[#F1EED0] font-semibold px-8 py-3 rounded-lg transition-colors shadow-lg"
+            >
+              <svg className="w-5 h-5 text-[#F0A429]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" />
+              </svg>
+              Leave a Review
+            </a>
+          </div>
         </div>
       </section>
     </div>

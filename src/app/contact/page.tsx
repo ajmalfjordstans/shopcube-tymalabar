@@ -104,68 +104,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Google Form Section */}
-      <section className="bg-[#F1EED0] py-16 relative overflow-hidden">
-        {/* Subtle mandala decorations */}
-        <div className="absolute top-8 right-8 w-40 h-40 opacity-10 pointer-events-none">
-          <div className="w-full h-full border-4 border-[#601131] rounded-full flex items-center justify-center">
-            <div className="w-28 h-28 border-2 border-[#601131] rounded-full flex items-center justify-center">
-              <div className="w-16 h-16 border-2 border-[#601131] rounded-full" />
-            </div>
-          </div>
-        </div>
-        <div className="absolute bottom-8 left-8 w-28 h-28 opacity-10 pointer-events-none">
-          <div className="w-full h-full border-4 border-[#601131] rounded-full flex items-center justify-center">
-            <div className="w-16 h-16 border-2 border-[#601131] rounded-full" />
-          </div>
-        </div>
-
-        <div className="max-w-3xl mx-auto px-6 relative z-10">
-          {/* Section heading */}
-          <div className="text-center mb-10">
-            <p className="text-orange-500 font-semibold tracking-wide uppercase text-sm mb-2">
-              We&apos;d Love to Hear From You
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#101010]">
-              Share Your Feedback
-            </h2>
-            <div className="flex items-center justify-center gap-3 mt-4">
-              <div className="h-px w-16 bg-[#601131]/30" />
-              <svg className="w-3 h-3 text-orange-400" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" />
-              </svg>
-              <div className="h-px w-16 bg-[#601131]/30" />
-            </div>
-            <p className="text-gray-600 mt-4 text-sm max-w-md mx-auto">
-              Your experience matters to us. Fill in the form below and help us serve you better.
-            </p>
-          </div>
-
-          {/* Form card */}
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-orange-100">
-            {/* Card top bar */}
-            <div className="bg-gradient-to-r from-[#601131] to-[#A63C4D] px-6 py-4 flex items-center gap-3">
-              <svg className="w-5 h-5 text-white opacity-80" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-              </svg>
-              <span className="text-white font-semibold text-sm tracking-wide">Ty Malabar — Customer Feedback Form</span>
-            </div>
-
-            <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLScgs1SvsuKQFZ5xppy4u6Miz9vMIK2PNxoGDdxpXXXA5qgpFA/viewform?embedded=true"
-              width="100%"
-              height="1260"
-              frameBorder={0}
-              marginHeight={0}
-              marginWidth={0}
-              title="Customer Feedback Form"
-              className="block"
-            >
-              Loading…
-            </iframe>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }
