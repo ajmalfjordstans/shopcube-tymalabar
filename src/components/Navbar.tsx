@@ -47,7 +47,7 @@ const Navbar = () => {
             </div> */}
             <Link href="/" className="text-white hover:text-orange-300 transition-colors font-medium">Home</Link>
             <Link href="/menu" className="text-white hover:text-orange-300 transition-colors font-medium">Menu</Link>
-            {/* <a href="/about" className="text-white hover:text-orange-300 transition-colors font-medium">About</a> */}
+            <Link href="/rewards" className="text-white hover:text-orange-300 transition-colors font-medium">Rewards</Link>
             <Link href="/contact" className="text-white hover:text-orange-300 transition-colors font-medium">Contact</Link>
           </div>
 
@@ -147,7 +147,15 @@ const Navbar = () => {
                     Menu
                   </Link>
 
-                  {/*<a
+                  <Link
+                    href="/rewards"
+                    className="block text-white hover:text-orange-300 transition-colors font-medium text-lg py-2"
+                    onClick={toggleMobileMenu}
+                  >
+                    Rewards
+                  </Link>
+
+                  {/*<
                     href="/about"
                     className="block text-white hover:text-orange-300 transition-colors font-medium text-lg py-2"
                     onClick={toggleMobileMenu}
