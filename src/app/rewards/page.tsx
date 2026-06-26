@@ -68,6 +68,19 @@ export default function RewardsPage() {
             <div className="h-px w-16 bg-orange-300/40" />
           </div>
 
+          {/* Primary CTA */}
+          <a
+            href="https://forms.gle/H3BC1QNzVuXiveWg8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-white text-[#601131] hover:bg-[#F1EED0] font-semibold px-10 py-4 rounded-lg transition-colors shadow-lg text-lg mb-10"
+          >
+            <svg className="w-5 h-5 text-[#F0A429]" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" />
+            </svg>
+            Join Rewards
+          </a>
+
           {/* Description */}
           <p className="text-gray-200 text-lg leading-relaxed mb-10 max-w-lg mx-auto">
             We&apos;re crafting something special for our loyal customers. Earn points, unlock exclusive offers, and enjoy rewards with every order.
@@ -90,22 +103,6 @@ export default function RewardsPage() {
               </span>
             ))}
           </div>
-
-          {/* Primary CTA */}
-          <p className="text-gray-300 text-sm mb-6">
-            Ready to start earning? Sign up for our rewards programme today!
-          </p>
-          <a
-            href="https://forms.gle/H3BC1QNzVuXiveWg8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-white text-[#601131] hover:bg-[#F1EED0] font-semibold px-10 py-4 rounded-lg transition-colors shadow-lg text-lg"
-          >
-            <svg className="w-5 h-5 text-[#F0A429]" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" />
-            </svg>
-            Join Rewards
-          </a>
 
           {/* Secondary nav links */}
           <div className="mt-10 flex items-center justify-center gap-6 text-sm text-white/50">
