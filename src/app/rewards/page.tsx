@@ -91,38 +91,31 @@ export default function RewardsPage() {
             ))}
           </div>
 
-          {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/"
-              className="bg-[#F0A429] hover:bg-orange-500 text-white font-semibold px-8 py-3 rounded-lg transition-colors"
-            >
+          {/* Primary CTA */}
+          <p className="text-gray-300 text-sm mb-6">
+            Ready to start earning? Sign up for our rewards programme today!
+          </p>
+          <a
+            href="https://forms.gle/H3BC1QNzVuXiveWg8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-white text-[#601131] hover:bg-[#F1EED0] font-semibold px-10 py-4 rounded-lg transition-colors shadow-lg text-lg"
+          >
+            <svg className="w-5 h-5 text-[#F0A429]" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" />
+            </svg>
+            Join Rewards
+          </a>
+
+          {/* Secondary nav links */}
+          <div className="mt-10 flex items-center justify-center gap-6 text-sm text-white/50">
+            <Link href="/" className="hover:text-white/80 transition-colors">
               Back to Home
             </Link>
-            <Link
-              href="/menu"
-              className="bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-8 py-3 rounded-lg transition-colors"
-            >
+            <span>·</span>
+            <Link href="/menu" className="hover:text-white/80 transition-colors">
               Explore Menu
             </Link>
-          </div>
-
-          {/* Rewards sign-up CTA */}
-          <div className="mt-12 border-t border-white/10 pt-10">
-            <p className="text-gray-300 text-sm mb-4">
-              Ready to start earning? Sign up for our rewards programme today!
-            </p>
-            <a
-              href="https://forms.gle/H3BC1QNzVuXiveWg8"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white text-[#601131] hover:bg-[#F1EED0] font-semibold px-8 py-3 rounded-lg transition-colors shadow-lg"
-            >
-              <svg className="w-5 h-5 text-[#F0A429]" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" />
-              </svg>
-              Join Rewards
-            </a>
           </div>
         </div>
       </section>
