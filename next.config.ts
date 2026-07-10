@@ -4,8 +4,8 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/:path*",
-        destination: "https://tymalabaronline.com/:path*",
+        source: "/menu",
+        destination: "https://tymalabaronline.com/menu",
         permanent: false,
       },
     ];
