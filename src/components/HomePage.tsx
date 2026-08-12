@@ -49,7 +49,7 @@ const HomePage = () => {
             {/* Right Content - Food Image */}
             <div className="flex justify-end relative">
               <Image
-                src="/images/food/menu/malabar-biryani/special-biryani.jpg"
+                src="/images/home/biryani-hero.jpg"
                 alt="Delicious food"
                 width={300}
                 height={300}
