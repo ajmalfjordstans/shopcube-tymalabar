@@ -46,7 +46,7 @@ const Navbar = () => {
               </button>
             </div> */}
             <Link href="/" className="text-white hover:text-orange-300 transition-colors font-medium">Home</Link>
-            <Link href="/menu" className="text-white hover:text-orange-300 transition-colors font-medium">Menu</Link>
+            <a href="https://order.tymalabar.co.uk" target="_blank" rel="noopener noreferrer" className="text-white hover:text-orange-300 transition-colors font-medium">Menu</a>
             <Link href="/rewards" className="text-white hover:text-orange-300 transition-colors font-medium">Rewards</Link>
             <Link href="/contact" className="text-white hover:text-orange-300 transition-colors font-medium">Contact</Link>
           </div>
@@ -139,13 +139,15 @@ const Navbar = () => {
                     Home
                   </Link>
 
-                  <Link
-                    href="/menu"
+                  <a
+                    href="https://order.tymalabar.co.uk"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="block text-white hover:text-orange-300 transition-colors font-medium text-lg py-2"
                     onClick={toggleMobileMenu}
                   >
                     Menu
-                  </Link>
+                  </a>
 
                   <Link
                     href="/rewards"
@@ -175,9 +177,14 @@ const Navbar = () => {
 
               {/* Mobile Action Buttons */}
               <div className="mt-8 space-y-4">
-                <button className="w-full bg-orange-400 hover:bg-orange-500 text-black font-semibold py-3 px-6 rounded-lg transition-colors">
+                <a
+                  href="https://order.tymalabar.co.uk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full text-center bg-orange-400 hover:bg-orange-500 text-black font-semibold py-3 px-6 rounded-lg transition-colors"
+                >
                   Order Now
-                </button>
+                </a>
 
                 {/* Mobile Icons */}
                 <div className="flex justify-center space-x-6 pt-4">

@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 const HomePage = () => {
   return (
@@ -40,17 +39,17 @@ const HomePage = () => {
                 Here at Ty Malabar, we are constantly striving to improve our service and quality
                 in order to give our customers the very best experience
               </p>
-              <Link href="/menu">
+              <a href="https://order.tymalabar.co.uk" target="_blank" rel="noopener noreferrer">
                 <button className="bg-[#F1EED0] hover:bg-orange-500 hover:cursor-pointer text-black font-semibold px-8 py-3 rounded-lg transition-colors">
                   Explore Menu
                 </button>
-              </Link>
+              </a>
             </div>
 
             {/* Right Content - Food Image */}
             <div className="flex justify-end relative">
               <Image
-                src="/images/home/biriyani.png"
+                src="/images/food/menu/malabar-biryani/special-biryani.jpg"
                 alt="Delicious food"
                 width={300}
                 height={300}
@@ -212,9 +211,9 @@ const HomePage = () => {
             {/* Left Menu Items */}
             <div className="space-y-8">
               {[
-                { name: "Laal Chauk Murg", desc: "Chicken Tikka cooked to perfection in onion tomato masala", rating: 5 },
-                { name: "Malabar Beef Curry", desc: "Tender Beef braised in caramelised onions, tomatoes, ground Malabar spices", rating: 4 },
-                { name: "Saag Murg", desc: "Chicken morsels simmered in medium spiced masala", rating: 4 },
+                { name: "Laal Chauk Murg", desc: "Chicken Tikka cooked to perfection in onion tomato masala" },
+                { name: "Malabar Beef Curry", desc: "Tender Beef braised in caramelised onions, tomatoes, ground Malabar spices" },
+                { name: "Saag Murg", desc: "Chicken morsels simmered in medium spiced masala" },
               ].map((dish, i) => (
                 <div
                   key={i}
@@ -226,9 +225,6 @@ const HomePage = () => {
                   <div className="text-center">
                     <h3 className="font-semibold text-gray-800">{dish.name}</h3>
                     <p className="text-sm text-gray-600">{dish.desc}</p>
-                    <div className="flex text-orange-500 text-sm justify-center">
-                      {"★".repeat(dish.rating)}{"☆".repeat(5 - dish.rating)}
-                    </div>
                   </div>
                 </div>
               ))}
@@ -251,9 +247,9 @@ const HomePage = () => {
             {/* Right Menu Items */}
             <div className="space-y-8">
               {[
-                { name: "Lamb Rogan", desc: "An aromatic Kashmiri braised lamb preparation", rating: 5 },
-                { name: "Saag Gosht", desc: "Succulent lamb cooked in onion, tomatoes and cardamom, etc", rating: 4 },
-                { name: "Chutty Curry", desc: "Authentic preparation of yummy traditional Kerala style chicken curry", rating: 4 },
+                { name: "Lamb Rogan", desc: "An aromatic Kashmiri braised lamb preparation" },
+                { name: "Saag Gosht", desc: "Succulent lamb cooked in onion, tomatoes and cardamom, etc" },
+                { name: "Chutty Curry", desc: "Authentic preparation of yummy traditional Kerala style chicken curry" },
               ].map((dish, i) => (
                 <div
                   key={i}
@@ -265,9 +261,6 @@ const HomePage = () => {
                   <div className="text-center">
                     <h3 className="font-semibold text-gray-800">{dish.name}</h3>
                     <p className="text-sm text-gray-600">{dish.desc}</p>
-                    <div className="flex text-orange-500 text-sm justify-center">
-                      {"★".repeat(dish.rating)}{"☆".repeat(5 - dish.rating)}
-                    </div>
                   </div>
                 </div>
               ))}
@@ -282,11 +275,11 @@ const HomePage = () => {
             <p className="text-xl font-semibold">
               Each dish is a perfect blend of tradition and taste.
             </p>
-            <Link href="/menu">
+            <a href="https://order.tymalabar.co.uk" target="_blank" rel="noopener noreferrer">
               <button className="mt-6 bg-white text-[#601131] font-semibold px-6 py-3 rounded-full hover:bg-gray-100 transition">
                 Explore Full Menu
               </button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -309,7 +302,7 @@ const HomePage = () => {
               <p className="text-gray-600 mb-8 leading-relaxed">
                 Enjoy authentic Indian dishes at Ty Malabar. Order, pay online, and get fresh food delivery.
               </p>
-              <a href="tel:01656860844" className="bg-orange-400 hover:bg-orange-500 text-white font-semibold px-6 py-3 rounded-lg transition-colors">
+              <a href="https://order.tymalabar.co.uk" target="_blank" rel="noopener noreferrer" className="bg-orange-400 hover:bg-orange-500 text-white font-semibold px-6 py-3 rounded-lg transition-colors">
                 Order Now
               </a>
               {/* <button className="bg-orange-400 hover:bg-orange-500 text-white font-semibold px-6 py-3 rounded-lg transition-colors">
