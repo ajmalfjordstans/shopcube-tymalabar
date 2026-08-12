@@ -93,11 +93,11 @@ export default function AnimatedHomePage() {
             <Reveal delay={200} direction="scale" className="flex justify-end">
               <div className="animate-float">
                 <Image
-                  src="/images/home/biryani-hero.jpg"
+                  src="/images/food/biriyani-circle.png"
                   alt="Delicious food"
                   width={300}
                   height={300}
-                  className="w-[450px] rounded-full object-contain object-center shadow-2xl"
+                  className="w-[450px] object-contain object-center"
                 />
               </div>
             </Reveal>
@@ -110,8 +110,8 @@ export default function AnimatedHomePage() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
             {FEATURES.map((f, i) => (
-              <Reveal key={f.title} delay={i * 120}>
-                <div className={`rounded-2xl px-6 py-8 text-center ${glassCard}`}>
+              <Reveal key={f.title} delay={i * 120} className="h-full">
+                <div className={`flex h-full flex-col items-center justify-center rounded-2xl px-6 py-8 text-center ${glassCard}`}>
                   <Image
                     src={f.icon}
                     alt={f.alt}
