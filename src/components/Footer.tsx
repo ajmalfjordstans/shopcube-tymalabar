@@ -30,7 +30,7 @@ const Footer = () => {
               <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2">
                 <li><Link href="/" className="text-gray-300 hover:text-orange-300 transition-colors">Home</Link></li>
-                <li><a href="https://order.tymalabar.co.uk" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-orange-300 transition-colors">Menu</a></li>
+                <li><Link href="/menu" className="text-gray-300 hover:text-orange-300 transition-colors">Menu</Link></li>
                 <li><Link href="/contact" className="text-gray-300 hover:text-orange-300 transition-colors">Contact</Link></li>
                 <li><Link href="/rewards" className="text-gray-300 hover:text-orange-300 transition-colors">Rewards</Link></li>
                 <li><JobModal /></li>

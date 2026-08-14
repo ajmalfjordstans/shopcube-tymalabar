@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/menu",
-        destination: "https://order.tymalabar.co.uk/menu",
+        destination: "https://tymalabaronline.com/menu",
         permanent: false,
       },
     ];

@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const HomePage = () => {
   return (
@@ -39,11 +40,11 @@ const HomePage = () => {
                 Here at Ty Malabar, we are constantly striving to improve our service and quality
                 in order to give our customers the very best experience
               </p>
-              <a href="https://order.tymalabar.co.uk" target="_blank" rel="noopener noreferrer">
+              <Link href="/menu">
                 <button className="bg-[#F1EED0] hover:bg-orange-500 hover:cursor-pointer text-black font-semibold px-8 py-3 rounded-lg transition-colors">
                   Explore Menu
                 </button>
-              </a>
+              </Link>
             </div>
 
             {/* Right Content - Food Image */}
@@ -275,11 +276,11 @@ const HomePage = () => {
             <p className="text-xl font-semibold">
               Each dish is a perfect blend of tradition and taste.
             </p>
-            <a href="https://order.tymalabar.co.uk" target="_blank" rel="noopener noreferrer">
+            <Link href="/menu">
               <button className="mt-6 bg-white text-[#601131] font-semibold px-6 py-3 rounded-full hover:bg-gray-100 transition">
                 Explore Full Menu
               </button>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -302,7 +303,7 @@ const HomePage = () => {
               <p className="text-gray-600 mb-8 leading-relaxed">
                 Enjoy authentic Indian dishes at Ty Malabar. Order, pay online, and get fresh food delivery.
               </p>
-              <a href="https://order.tymalabar.co.uk" target="_blank" rel="noopener noreferrer" className="bg-orange-400 hover:bg-orange-500 text-white font-semibold px-6 py-3 rounded-lg transition-colors">
+              <a href="tel:01656860844" className="bg-orange-400 hover:bg-orange-500 text-white font-semibold px-6 py-3 rounded-lg transition-colors">
                 Order Now
               </a>
               {/* <button className="bg-orange-400 hover:bg-orange-500 text-white font-semibold px-6 py-3 rounded-lg transition-colors">

@@ -110,9 +110,9 @@ export default function RewardsPage() {
               Back to Home
             </Link>
             <span>·</span>
-            <a href="https://order.tymalabar.co.uk" target="_blank" rel="noopener noreferrer" className="hover:text-white/80 transition-colors">
+            <Link href="/menu" className="hover:text-white/80 transition-colors">
               Explore Menu
-            </a>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import ParticleBackdrop from './ParticleBackdrop';
 import Reveal from './Reveal';
 
@@ -82,11 +83,11 @@ export default function AnimatedHomePage() {
                 </p>
               </Reveal>
               <Reveal delay={360}>
-                <a href="https://order.tymalabar.co.uk" target="_blank" rel="noopener noreferrer">
+                <Link href="/menu">
                   <button className="rounded-lg bg-[#F1EED0] px-8 py-3 font-semibold text-black transition-colors hover:cursor-pointer hover:bg-orange-500">
                     Explore Menu
                   </button>
-                </a>
+                </Link>
               </Reveal>
             </div>
 
@@ -239,11 +240,11 @@ export default function AnimatedHomePage() {
             <div className="mx-auto mt-16 max-w-3xl rounded-2xl bg-gradient-to-r from-[#601131] to-[#A63C4D] px-8 py-10 text-white shadow-lg">
               <p className="mb-3 text-lg">Discover the rich flavors that our customers rave about.</p>
               <p className="text-xl font-semibold">Each dish is a perfect blend of tradition and taste.</p>
-              <a href="https://order.tymalabar.co.uk" target="_blank" rel="noopener noreferrer">
+              <Link href="/menu">
                 <button className="mt-6 rounded-full bg-white px-6 py-3 font-semibold text-[#601131] transition hover:bg-gray-100">
                   Explore Full Menu
                 </button>
-              </a>
+              </Link>
             </div>
           </Reveal>
         </div>
@@ -271,9 +272,7 @@ export default function AnimatedHomePage() {
               </Reveal>
               <Reveal delay={300}>
                 <a
-                  href="https://order.tymalabar.co.uk"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="tel:01656860844"
                   className="rounded-lg bg-orange-400 px-6 py-3 font-semibold text-white transition-colors hover:bg-orange-500"
                 >
                   Order Now
