@@ -50,11 +50,11 @@ const HomePage = () => {
             {/* Right Content - Food Image */}
             <div className="flex justify-end relative">
               <Image
-                src="/images/home/biryani-hero.jpg"
+                src="/images/food/biriyani-circle.png"
                 alt="Delicious food"
                 width={300}
                 height={300}
-                className="object-contain object-center rounded-full w-[450px]"
+                className="object-contain object-center w-[450px]"
               />
               {/* <div className="absolute top-40 left-10 w-64 h-64 z-10">
                 <div className="w-full h-full bg-gradient-to-br from-orange-400 via-orange-500 to-red-500 rounded-full flex flex-col items-center justify-center shadow-[0_0_30px_rgba(249,115,22,0.6)] animate-pulse">
