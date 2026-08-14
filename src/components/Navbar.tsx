@@ -175,9 +175,14 @@ const Navbar = () => {
 
               {/* Mobile Action Buttons */}
               <div className="mt-8 space-y-4">
-                <button className="w-full bg-orange-400 hover:bg-orange-500 text-black font-semibold py-3 px-6 rounded-lg transition-colors">
+                <a
+                  href="https://tymalabaronline.com/menu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full text-center bg-orange-400 hover:bg-orange-500 text-black font-semibold py-3 px-6 rounded-lg transition-colors"
+                >
                   Order Now
-                </button>
+                </a>
 
                 {/* Mobile Icons */}
                 <div className="flex justify-center space-x-6 pt-4">

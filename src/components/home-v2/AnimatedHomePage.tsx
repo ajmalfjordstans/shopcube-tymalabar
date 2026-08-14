@@ -272,7 +272,9 @@ export default function AnimatedHomePage() {
               </Reveal>
               <Reveal delay={300}>
                 <a
-                  href="tel:01656860844"
+                  href="https://tymalabaronline.com/menu"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="rounded-lg bg-orange-400 px-6 py-3 font-semibold text-white transition-colors hover:bg-orange-500"
                 >
                   Order Now

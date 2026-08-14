@@ -303,7 +303,7 @@ const HomePage = () => {
               <p className="text-gray-600 mb-8 leading-relaxed">
                 Enjoy authentic Indian dishes at Ty Malabar. Order, pay online, and get fresh food delivery.
               </p>
-              <a href="tel:01656860844" className="bg-orange-400 hover:bg-orange-500 text-white font-semibold px-6 py-3 rounded-lg transition-colors">
+              <a href="https://tymalabaronline.com/menu" target="_blank" rel="noopener noreferrer" className="bg-orange-400 hover:bg-orange-500 text-white font-semibold px-6 py-3 rounded-lg transition-colors">
                 Order Now
               </a>
               {/* <button className="bg-orange-400 hover:bg-orange-500 text-white font-semibold px-6 py-3 rounded-lg transition-colors">
