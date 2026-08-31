@@ -23,7 +23,7 @@ export default function OrderHeader() {
   const giftCardEnabled = data?.data?.giftCardEnabled !== false;
 
   return (
-    <header className="sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm font-poppins">
+    <header className="relative z-10 bg-white border-b border-gray-200 shadow-sm font-poppins">
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
         <Link href="/order" className="font-bold text-lg text-[#601131] truncate">
           {storeName} — Order Online

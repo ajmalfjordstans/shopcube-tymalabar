@@ -27,7 +27,7 @@ export default async function OrderLayout({ children }: { children: React.ReactN
   return (
     <OrderProviders>
       <OrderCartProvider storeId={STORE_SLUG}>
-        <div className="bg-[#F5F5DC] min-h-screen pt-20 pb-24 md:pb-0 font-poppins">
+        <div className="bg-[#F5F5DC] min-h-screen pt-[130px] pb-24 md:pb-0 font-poppins">
           <OrderHeader />
           <div className="max-w-6xl mx-auto px-4 py-6">
             {children}
