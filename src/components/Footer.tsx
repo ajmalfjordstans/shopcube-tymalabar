@@ -1,9 +1,14 @@
+'use client';
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import JobModal from './JobModal';
 
 const Footer = () => {
+  const pathname = usePathname();
+  if (pathname?.startsWith('/order')) return null;
+
   return (
     <footer className="bg-[#601131] text-white relative">
       {/* Torn paper effect at top */}

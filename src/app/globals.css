@@ -11,6 +11,14 @@
   --font-sans: var(--font-poppins);
   --font-display: var(--font-poppins);
   --font-poppins: var(--font-poppins);
+
+  /* Ordering system brand scale — mirrors the site's existing orange/maroon palette */
+  --color-brand-50: #FDF3E4;
+  --color-brand-100: #FBE7C9;
+  --color-brand-400: #F3B65C;
+  --color-brand-500: #F0A429;
+  --color-brand-600: #D48E20;
+  --color-brand-700: #B87814;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -128,4 +136,24 @@ html {
 
 .slide-in-right {
   animation: slideInRight 0.3s ease-out;
+}
+
+/* Ordering system utilities */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes bump {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+.animate-bump {
+  animation: bump 0.32s ease-out;
 }
