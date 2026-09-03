@@ -100,18 +100,18 @@ export default function OrdersPage() {
 
   if (loading) {
     return (
-      <div className="max-w-2xl mx-auto">
-        <Link href="/order" className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 mb-6 transition-colors">
+      <div className="max-w-2xl mx-auto font-poppins">
+        <Link href="/order" className="inline-flex items-center gap-1.5 text-sm text-[#601131]/60 hover:text-[#601131] mb-6 transition-colors">
           <ArrowLeft size={16} />
           Back to menu
         </Link>
         <div className="flex items-center gap-2 mb-6">
-          <Clock size={20} className="text-brand-500" />
-          <h1 className="text-xl font-bold text-gray-900">My Orders</h1>
+          <Clock size={20} className="text-[#F0A429]" />
+          <h1 className="text-xl font-bold text-[#601131]">My Orders</h1>
         </div>
         <div className="space-y-4">
           {[1, 2, 3].map(i => (
-            <div key={i} className="bg-white rounded-2xl border border-gray-100 h-36 animate-pulse" />
+            <div key={i} className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] h-36 animate-pulse" />
           ))}
         </div>
       </div>
@@ -119,22 +119,22 @@ export default function OrdersPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto font-poppins">
       <Link
         href="/order"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 mb-6 transition-colors"
+        className="inline-flex items-center gap-1.5 text-sm text-[#601131]/60 hover:text-[#601131] mb-6 transition-colors"
       >
         <ArrowLeft size={16} />
         Back to menu
       </Link>
 
       <div className="flex items-center gap-2 mb-6">
-        <Clock size={20} className="text-brand-500" />
-        <h1 className="text-xl font-bold text-gray-900">My Orders</h1>
+        <Clock size={20} className="text-[#F0A429]" />
+        <h1 className="text-xl font-bold text-[#601131]">My Orders</h1>
       </div>
 
       {orders.length === 0 ? (
-        <div className="text-center py-16 text-gray-400">
+        <div className="text-center py-16 text-[#601131]/40">
           <Package size={48} className="mx-auto mb-3 opacity-40" />
           <p className="font-medium">No orders yet</p>
           <p className="text-sm mt-1">Your past orders will appear here.</p>
@@ -148,33 +148,33 @@ export default function OrdersPage() {
             return (
               <div
                 key={order.id}
-                className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden"
+                className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] shadow-sm overflow-hidden"
               >
-                <div className="px-5 py-4 flex items-start justify-between gap-3 border-b border-gray-50">
+                <div className="px-5 py-4 flex items-start justify-between gap-3 border-b border-[#D7CDA7]/60">
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-bold text-gray-900 text-sm">Order #{order.id.slice(-6).toUpperCase()}</span>
+                      <span className="font-bold text-[#601131] text-sm">Order #{order.id.slice(-6).toUpperCase()}</span>
                       <span className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full ${status.color}`}>
                         <status.Icon size={11} />
                         {status.label}
                       </span>
                     </div>
                     <div className="flex items-center gap-3 mt-1">
-                      <span className="text-xs text-gray-400 flex items-center gap-1">
+                      <span className="text-xs text-[#601131]/50 flex items-center gap-1">
                         <type.Icon size={11} />
                         {type.label}
                       </span>
-                      <span className="text-xs text-gray-400">
+                      <span className="text-xs text-[#601131]/50">
                         {new Date(order.createdAt).toLocaleDateString('en-GB', {
                           day: 'numeric', month: 'short', year: 'numeric',
                         })}
                       </span>
                     </div>
                     {order.deliveryAddress && (
-                      <p className="text-xs text-gray-400 mt-0.5 truncate">{order.deliveryAddress}</p>
+                      <p className="text-xs text-[#601131]/40 mt-0.5 truncate">{order.deliveryAddress}</p>
                     )}
                   </div>
-                  <span className="font-bold text-gray-900 text-base flex-shrink-0">
+                  <span className="font-bold text-[#601131] text-base flex-shrink-0">
                     £{parseFloat(String(order.total)).toFixed(2)}
                   </span>
                 </div>
@@ -184,25 +184,25 @@ export default function OrdersPage() {
                     <div key={idx} className="flex items-baseline justify-between gap-2">
                       <div className="min-w-0">
                         <span className="text-sm text-gray-700">
-                          <span className="font-medium text-gray-900">{item.quantity}×</span> {item.name}
+                          <span className="font-medium text-[#601131]">{item.quantity}×</span> {item.name}
                         </span>
                         {item.modifiers.length > 0 && (
-                          <span className="text-xs text-gray-400 ml-1">
+                          <span className="text-xs text-[#601131]/40 ml-1">
                             ({item.modifiers.map(m => m.modifierName).join(', ')})
                           </span>
                         )}
                       </div>
-                      <span className="text-sm text-gray-500 flex-shrink-0 tabular-nums">
+                      <span className="text-sm text-[#601131]/60 flex-shrink-0 tabular-nums">
                         £{(item.price * item.quantity).toFixed(2)}
                       </span>
                     </div>
                   ))}
                 </div>
 
-                <div className="px-5 py-3 border-t border-gray-50 flex justify-end">
+                <div className="px-5 py-3 border-t border-[#D7CDA7]/60 flex justify-end">
                   <Link
                     href={`/order/orders/${order.id}`}
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-500 hover:text-brand-600 transition-colors"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#F0A429] hover:text-[#B87814] transition-colors"
                   >
                     <ExternalLink size={14} />
                     Track order

@@ -78,25 +78,25 @@ export default function LoginPage({ next }: { next?: string }) {
   }
 
   return (
-    <div className="max-w-sm mx-auto">
+    <div className="max-w-sm mx-auto font-poppins">
       <Link
         href="/order"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 transition-colors mb-6"
+        className="inline-flex items-center gap-1.5 text-sm text-[#601131]/60 hover:text-[#601131] transition-colors mb-6"
       >
         <ArrowLeft size={16} />
         Back to menu
       </Link>
 
-      <h1 className="text-2xl font-black text-gray-900 mb-1">Welcome</h1>
-      <p className="text-sm text-gray-400 mb-6">Sign in to track orders and save your details.</p>
+      <h1 className="text-2xl font-bold text-[#601131] mb-1">Welcome</h1>
+      <p className="text-sm text-[#601131]/50 mb-6">Sign in to track orders and save your details.</p>
 
-      <div className="flex bg-white rounded-2xl p-1 mb-6 border border-gray-100" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
+      <div className="flex bg-[#F1EED0] rounded-2xl p-1 mb-6 border border-[#D7CDA7]">
         {(['login', 'register'] as Tab[]).map(t => (
           <button
             key={t}
             onClick={() => setTab(t)}
             className={`flex-1 py-2.5 text-sm font-bold rounded-xl transition-all ${
-              tab === t ? 'text-white shadow-sm bg-brand-500' : 'text-gray-400 hover:text-gray-600'
+              tab === t ? 'text-white shadow-sm bg-[#F0A429]' : 'text-[#601131]/50 hover:text-[#601131]'
             }`}
           >
             {t === 'login' ? 'Sign In' : 'Create Account'}
@@ -107,18 +107,18 @@ export default function LoginPage({ next }: { next?: string }) {
       {tab === 'login' ? (
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <label className="block text-sm font-medium text-[#601131] mb-1">Email</label>
             <input
               type="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder="you@example.com"
               autoComplete="email"
-              className="w-full border border-gray-200 bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+              className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 text-[#601131]"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <label className="block text-sm font-medium text-[#601131] mb-1">Password</label>
             <div className="relative">
               <input
                 type={showPassword ? 'text' : 'password'}
@@ -126,12 +126,12 @@ export default function LoginPage({ next }: { next?: string }) {
                 onChange={e => setPassword(e.target.value)}
                 placeholder="••••••••"
                 autoComplete="current-password"
-                className="w-full border border-gray-200 bg-white rounded-xl px-3 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 text-[#601131]"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(v => !v)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#601131]/40 hover:text-[#601131] transition-colors"
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
                 {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -140,7 +140,7 @@ export default function LoginPage({ next }: { next?: string }) {
           </div>
 
           <div className="flex justify-end">
-            <Link href="/order/forgot-password" className="text-xs text-brand-500 hover:text-brand-700 font-medium">
+            <Link href="/order/forgot-password" className="text-xs text-[#F0A429] hover:text-[#B87814] font-medium">
               Forgot password?
             </Link>
           </div>
@@ -148,14 +148,14 @@ export default function LoginPage({ next }: { next?: string }) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full disabled:opacity-60 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600"
+            className="w-full disabled:opacity-60 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 bg-[#F0A429] hover:bg-[#e79b26]"
           >
             {loading ? <Loader2 size={18} className="animate-spin" /> : 'Sign In'}
           </button>
 
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-[#601131]/60">
             No account?{' '}
-            <button type="button" onClick={() => setTab('register')} className="text-brand-500 font-medium hover:underline">
+            <button type="button" onClick={() => setTab('register')} className="text-[#F0A429] font-medium hover:underline">
               Create one
             </button>
           </p>
@@ -163,29 +163,29 @@ export default function LoginPage({ next }: { next?: string }) {
       ) : (
         <form onSubmit={handleRegister} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Full name *</label>
+            <label className="block text-sm font-medium text-[#601131] mb-1">Full name *</label>
             <input
               type="text"
               value={regName}
               onChange={e => setRegName(e.target.value)}
               placeholder="Jane Smith"
               autoComplete="name"
-              className="w-full border border-gray-200 bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+              className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 text-[#601131]"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+            <label className="block text-sm font-medium text-[#601131] mb-1">Email *</label>
             <input
               type="email"
               value={regEmail}
               onChange={e => setRegEmail(e.target.value)}
               placeholder="you@example.com"
               autoComplete="email"
-              className="w-full border border-gray-200 bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+              className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 text-[#601131]"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password *</label>
+            <label className="block text-sm font-medium text-[#601131] mb-1">Password *</label>
             <div className="relative">
               <input
                 type={showRegPassword ? 'text' : 'password'}
@@ -193,12 +193,12 @@ export default function LoginPage({ next }: { next?: string }) {
                 onChange={e => setRegPassword(e.target.value)}
                 placeholder="Minimum 8 characters"
                 autoComplete="new-password"
-                className="w-full border border-gray-200 bg-white rounded-xl px-3 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 text-[#601131]"
               />
               <button
                 type="button"
                 onClick={() => setShowRegPassword(v => !v)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#601131]/40 hover:text-[#601131] transition-colors"
                 aria-label={showRegPassword ? 'Hide password' : 'Show password'}
               >
                 {showRegPassword ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -206,37 +206,37 @@ export default function LoginPage({ next }: { next?: string }) {
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+            <label className="block text-sm font-medium text-[#601131] mb-1">Phone</label>
             <input
               type="tel"
               value={regPhone}
               onChange={e => setRegPhone(e.target.value)}
               placeholder="07700 900000"
               autoComplete="tel"
-              className="w-full border border-gray-200 bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+              className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 text-[#601131]"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full disabled:opacity-60 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600"
+            className="w-full disabled:opacity-60 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 bg-[#F0A429] hover:bg-[#e79b26]"
           >
             {loading ? <Loader2 size={18} className="animate-spin" /> : 'Create Account'}
           </button>
 
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-[#601131]/60">
             Already have one?{' '}
-            <button type="button" onClick={() => setTab('login')} className="text-brand-500 font-medium hover:underline">
+            <button type="button" onClick={() => setTab('login')} className="text-[#F0A429] font-medium hover:underline">
               Sign in
             </button>
           </p>
         </form>
       )}
 
-      <div className="mt-6 pt-6 border-t border-gray-100 text-center">
-        <p className="text-xs text-gray-400 mb-2">Or continue without an account</p>
-        <Link href={redirect} className="text-sm text-brand-500 hover:text-brand-700 font-semibold">
+      <div className="mt-6 pt-6 border-t border-[#D7CDA7] text-center">
+        <p className="text-xs text-[#601131]/40 mb-2">Or continue without an account</p>
+        <Link href={redirect} className="text-sm text-[#F0A429] hover:text-[#B87814] font-semibold">
           Continue as guest →
         </Link>
       </div>

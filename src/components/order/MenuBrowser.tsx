@@ -19,8 +19,8 @@ import { useAuth } from '@/context/OrderAuthContext';
 import { useCart } from '@/context/OrderCartContext';
 
 const ACCENT_COLORS = [
-  '#601131', '#F0A429', '#8b5cf6', '#06b6d4', '#10b981',
-  '#ef4444', '#3b82f6', '#ec4899',
+  '#601131', '#F0A429', '#8b6b2f', '#4a7c6b', '#8b3a3a',
+  '#3a5a8b', '#7a4a8b', '#8b4a6b',
 ];
 
 const ORDER_TYPE_TABS: { value: OrderType; label: string }[] = [
@@ -50,7 +50,6 @@ export default function MenuBrowser() {
   const [autoChecked, setAutoChecked] = useState(false);
   const categoryRefs = useRef<Record<string, HTMLElement | null>>({});
   const navRef = useRef<HTMLDivElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const postcodeAbortRef = useRef<AbortController | null>(null);
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -173,9 +172,9 @@ export default function MenuBrowser() {
     }
   }, [categories, activeCategoryId]);
 
+  // Tracks which category section is in view as the page scrolls (root: viewport).
   useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container || categories.length === 0) return;
+    if (categories.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -188,7 +187,7 @@ export default function MenuBrowser() {
           }
         }
       },
-      { root: container, rootMargin: '-12px 0px -50% 0px', threshold: 0 },
+      { rootMargin: '-140px 0px -60% 0px', threshold: 0 },
     );
 
     Object.values(categoryRefs.current).forEach(el => { if (el) observer.observe(el); });
@@ -225,15 +224,7 @@ export default function MenuBrowser() {
 
   function scrollToCategory(id: string) {
     setActiveCategoryId(id);
-    const container = scrollContainerRef.current;
-    const el = categoryRefs.current[id];
-    if (el && container) {
-      const top =
-        el.getBoundingClientRect().top -
-        container.getBoundingClientRect().top +
-        container.scrollTop - 12;
-      container.scrollTo({ top, behavior: 'smooth' });
-    }
+    categoryRefs.current[id]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   async function checkDelivery() {
@@ -274,14 +265,14 @@ export default function MenuBrowser() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-24">
-        <Loader2 className="animate-spin text-brand-500" size={32} />
+        <Loader2 className="animate-spin text-[#F0A429]" size={32} />
       </div>
     );
   }
 
   if (error || (!storeLoading && !storeId)) {
     return (
-      <div className="flex flex-col items-center justify-center py-24 gap-3 text-gray-500 px-4">
+      <div className="flex flex-col items-center justify-center py-24 gap-3 text-[#601131]/60 px-4">
         <AlertCircle size={36} className="text-red-400" />
         <p className="text-center text-sm">
           {!storeId ? 'This store could not be found.' : 'Failed to load the menu. Please try again.'}
@@ -292,19 +283,18 @@ export default function MenuBrowser() {
 
   if (categories.length === 0) {
     return (
-      <div className="flex items-center justify-center py-24 text-gray-400 text-sm">
+      <div className="flex items-center justify-center py-24 text-[#601131]/50 text-sm">
         No menu items available right now.
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col bg-[#f5f5f5] rounded-2xl overflow-hidden border border-[#D7CDA7] shadow-sm">
-
+    <div className="font-poppins">
       {/* Status strip */}
-      <div className="flex-shrink-0 bg-white border-b border-gray-100 px-4 md:px-6 py-3 flex items-center gap-3 flex-wrap">
+      <div className="bg-[#F1EED0] rounded-xl border border-[#D7CDA7] px-4 md:px-6 py-3 mb-4 flex items-center gap-3 flex-wrap">
         {storeData?.data?.address && (
-          <p className="text-xs text-gray-400 hidden md:flex items-center gap-1">
+          <p className="text-xs text-[#601131]/60 hidden md:flex items-center gap-1">
             <MapPin size={10} />
             {storeData.data.address}{storeData.data.city ? `, ${storeData.data.city}` : ''}
           </p>
@@ -320,14 +310,14 @@ export default function MenuBrowser() {
           </span>
         )}
         {storeStatus && !storeStatus.open && (
-          <span className={`inline-flex items-center text-xs font-semibold px-1.5 py-0.5 rounded-full ${preOrderEnabled ? 'bg-blue-50 text-blue-700' : 'bg-gray-100 text-gray-500'}`}>
+          <span className={`inline-flex items-center text-xs font-semibold px-1.5 py-0.5 rounded-full ${preOrderEnabled ? 'bg-blue-50 text-blue-700' : 'bg-[#F5F5DC] text-[#601131]/60'}`}>
             {preOrderEnabled ? 'Pre-order available' : 'Pre-order unavailable'}
           </span>
         )}
         {storeData?.data?.phone && (
           <a
             href={`tel:${storeData.data.phone.replace(/\s/g, '')}`}
-            className="ml-auto flex-shrink-0 flex items-center gap-2 text-sm text-white font-bold bg-brand-500 hover:bg-brand-600 px-4 py-2 rounded-full transition-all"
+            className="ml-auto flex-shrink-0 flex items-center gap-2 text-sm text-white font-bold bg-[#F0A429] hover:bg-[#e79b26] px-4 py-2 rounded-full transition-all"
           >
             <Phone size={14} />
             <span className="hidden md:inline">{storeData.data.phone}</span>
@@ -336,293 +326,287 @@ export default function MenuBrowser() {
         )}
       </div>
 
-      {/* 2-COLUMN LAYOUT */}
-      <div className="flex flex-1 min-h-0">
-
-        {/* CENTER */}
-        <div className="flex-1 flex flex-col min-w-0">
-          <div className="flex-shrink-0 bg-white/90 backdrop-blur-sm border-b border-gray-100 z-10">
-
-            <div className="flex items-center gap-2 px-4 md:px-6 pt-3 pb-2">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
-                <input
-                  type="text"
-                  placeholder="Search menu…"
-                  value={searchQuery}
-                  onChange={e => setSearchQuery(e.target.value)}
-                  className="w-full pl-9 pr-8 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 bg-white placeholder-gray-400"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-500 transition-colors"
-                  >
-                    <X className="w-3.5 h-3.5" />
-                  </button>
-                )}
-              </div>
-
-              <div className="relative flex-shrink-0">
-                <button
-                  onClick={() => setShowFilters(v => !v)}
-                  className={`flex items-center gap-1.5 text-sm font-semibold px-3 py-2 rounded-xl border transition-all ${
-                    showFilters || activeFilterCount > 0
-                      ? 'bg-brand-50 border-brand-200 text-brand-600'
-                      : 'bg-white border-gray-200 text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                  }`}
-                >
-                  <SlidersHorizontal className="w-4 h-4" />
-                  <span className="hidden sm:inline">Filters</span>
-                  {activeFilterCount > 0 && (
-                    <span className="bg-brand-500 text-white text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center leading-none">
-                      {activeFilterCount}
-                    </span>
-                  )}
-                </button>
-
-                {showFilters && (
-                  <>
-                    <div className="fixed inset-0 z-10" onClick={() => setShowFilters(false)} />
-                    <div className="absolute right-0 top-full mt-2 z-20 w-72 bg-white rounded-2xl border border-gray-100 space-y-4 p-4"
-                      style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}>
-                      <div>
-                        <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wide mb-2.5">Sort by</p>
-                        <div className="flex flex-wrap gap-1.5">
-                          {SORT_OPTIONS.map(opt => (
-                            <button
-                              key={opt.value}
-                              onClick={() => setSortBy(opt.value)}
-                              className={`text-xs px-3 py-1.5 rounded-full border font-semibold transition-all ${
-                                sortBy === opt.value
-                                  ? 'bg-brand-500 text-white border-brand-500 shadow-sm'
-                                  : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300 hover:text-gray-800'
-                              }`}
-                            >
-                              {opt.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="border-t border-gray-100" />
-
-                      <div>
-                        <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wide mb-2.5">Price range</p>
-                        <div className="flex items-center gap-2">
-                          <div className="relative flex-1">
-                            <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-gray-400 pointer-events-none">£</span>
-                            <input
-                              type="number"
-                              placeholder="Min"
-                              value={minPrice}
-                              min={0}
-                              onChange={e => setMinPrice(e.target.value)}
-                              className="w-full pl-6 pr-2 py-1.5 text-xs border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-400 bg-white"
-                            />
-                          </div>
-                          <span className="text-xs text-gray-400">to</span>
-                          <div className="relative flex-1">
-                            <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-gray-400 pointer-events-none">£</span>
-                            <input
-                              type="number"
-                              placeholder="Max"
-                              value={maxPrice}
-                              min={0}
-                              onChange={e => setMaxPrice(e.target.value)}
-                              className="w-full pl-6 pr-2 py-1.5 text-xs border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-400 bg-white"
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="border-t border-gray-100" />
-
-                      <div>
-                        <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wide mb-2.5">Availability</p>
-                        <button
-                          onClick={() => setHideUnavailable(v => !v)}
-                          className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border transition-all ${
-                            hideUnavailable
-                              ? 'bg-brand-500 text-white border-brand-500 shadow-sm'
-                              : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300'
-                          }`}
-                        >
-                          {hideUnavailable && <Check className="w-3 h-3" />}
-                          Available only
-                        </button>
-                      </div>
-
-                      {activeFilterCount > 0 && (
-                        <>
-                          <div className="border-t border-gray-100" />
-                          <button
-                            onClick={() => { setSortBy('default'); setMinPrice(''); setMaxPrice(''); setHideUnavailable(true); setShowFilters(false); }}
-                            className="w-full text-xs font-semibold text-gray-400 hover:text-red-500 transition-colors py-0.5"
-                          >
-                            Clear all filters
-                          </button>
-                        </>
-                      )}
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
-
-            {!isSearchMode && (
-              <div ref={navRef} className="flex gap-1.5 px-4 md:px-6 py-2 overflow-x-auto hide-scrollbar">
-                {categories.map(cat => (
-                  <button
-                    key={cat.id}
-                    data-cat={cat.id}
-                    onClick={() => scrollToCategory(cat.id)}
-                    className={`flex-shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
-                      activeCategoryId === cat.id
-                        ? 'bg-brand-500 text-white shadow-sm'
-                        : 'text-gray-500 hover:text-gray-800 hover:bg-white'
-                    }`}
-                  >
-                    {cat.name}
-                  </button>
-                ))}
-              </div>
+      {/* Search + filters + category pills */}
+      <div className="bg-[#F1EED0] rounded-xl border border-[#D7CDA7] mb-6">
+        <div className="flex items-center gap-2 px-4 md:px-6 pt-3 pb-2">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#601131]/40 w-4 h-4 pointer-events-none" />
+            <input
+              type="text"
+              placeholder="Search menu…"
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              className="w-full pl-9 pr-8 py-2 rounded-xl border border-[#D7CDA7] text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white placeholder-[#601131]/40 text-[#601131]"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#601131]/30 hover:text-[#601131] transition-colors"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
             )}
           </div>
 
-          {allAllergens.length > 0 && (
-            <div className="flex-shrink-0 border-b border-gray-100 bg-white px-4 md:px-6 py-2">
-              <div className="flex items-center gap-1.5 overflow-x-auto hide-scrollbar">
-                <span className="text-xs text-gray-400 font-semibold flex-shrink-0 mr-1">Hide:</span>
-                {allAllergens.map(a => {
-                  const active = hiddenAllergens.has(a.id);
-                  return (
-                    <button
-                      key={a.id}
-                      onClick={() => toggleAllergen(a.id)}
-                      className={`flex-shrink-0 flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full border transition-all ${
-                        active
-                          ? 'bg-red-100 border-red-300 text-red-700'
-                          : 'bg-gray-50 border-gray-200 text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                      }`}
-                    >
-                      {a.icon && <span>{a.icon}</span>}
-                      {a.name}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          )}
+          <div className="relative flex-shrink-0">
+            <button
+              onClick={() => setShowFilters(v => !v)}
+              className={`flex items-center gap-1.5 text-sm font-semibold px-3 py-2 rounded-xl border transition-all ${
+                showFilters || activeFilterCount > 0
+                  ? 'bg-[#F0A429]/10 border-[#F0A429]/40 text-[#B87814]'
+                  : 'bg-white border-[#D7CDA7] text-[#601131]/60 hover:border-[#601131]/30 hover:text-[#601131]'
+              }`}
+            >
+              <SlidersHorizontal className="w-4 h-4" />
+              <span className="hidden sm:inline">Filters</span>
+              {activeFilterCount > 0 && (
+                <span className="bg-[#F0A429] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center leading-none">
+                  {activeFilterCount}
+                </span>
+              )}
+            </button>
 
-          <div ref={scrollContainerRef} className="flex-1 overflow-y-auto" style={{ maxHeight: '75vh' }}>
-            <div className="p-4 md:p-6 space-y-10">
-
-              {isSearchMode ? (
-                filteredItems.length === 0 ? (
-                  <div className="text-center py-16 text-gray-400">
-                    <Search className="w-10 h-10 mx-auto mb-3 opacity-30" />
-                    <p className="font-semibold text-gray-500">No items found</p>
-                    <p className="text-sm mt-1">Try a different search or adjust the filters</p>
-                    <button
-                      onClick={() => { setSearchQuery(''); setMinPrice(''); setMaxPrice(''); setSortBy('default'); }}
-                      className="mt-4 text-sm text-brand-500 hover:underline"
-                    >
-                      Clear all filters
-                    </button>
-                  </div>
-                ) : (
-                  <>
-                    <p className="text-xs font-semibold text-gray-400 -mb-6">
-                      {filteredItems.length} {filteredItems.length === 1 ? 'item' : 'items'}
-                    </p>
-                    <div className="space-y-1.5">
-                      {filteredItems.map(item => (
-                        <MenuItemRow
-                          key={item.id}
-                          item={item}
-                          accent={itemAccentMap.get(item.id) ?? ACCENT_COLORS[0]}
-                          onClick={() => setSelectedItem(item)}
-                        />
+            {showFilters && (
+              <>
+                <div className="fixed inset-0 z-10" onClick={() => setShowFilters(false)} />
+                <div className="absolute right-0 top-full mt-2 z-20 w-72 bg-white rounded-2xl border border-[#D7CDA7] space-y-4 p-4"
+                  style={{ boxShadow: '0 8px 32px rgba(96,17,49,0.14)' }}>
+                  <div>
+                    <p className="text-[11px] font-semibold text-[#601131]/50 uppercase tracking-wide mb-2.5">Sort by</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {SORT_OPTIONS.map(opt => (
+                        <button
+                          key={opt.value}
+                          onClick={() => setSortBy(opt.value)}
+                          className={`text-xs px-3 py-1.5 rounded-full border font-semibold transition-all ${
+                            sortBy === opt.value
+                              ? 'bg-[#F0A429] text-white border-[#F0A429] shadow-sm'
+                              : 'bg-white text-[#601131]/70 border-[#D7CDA7] hover:border-[#601131]/30 hover:text-[#601131]'
+                          }`}
+                        >
+                          {opt.label}
+                        </button>
                       ))}
                     </div>
-                  </>
-                )
-              ) : (
-                categories.map((cat, catIdx) => {
-                  const accent = cat.colorCode ?? ACCENT_COLORS[catIdx % ACCENT_COLORS.length];
-                  const visibleSubs = cat.subcategories
-                    .map(sub => ({ ...sub, menuItems: sub.menuItems.filter(item => visibleIds.has(item.id)) }))
-                    .filter(sub => sub.menuItems.length > 0);
+                  </div>
 
-                  if (visibleSubs.length === 0) return null;
+                  <div className="border-t border-[#D7CDA7]" />
 
-                  const totalItems = visibleSubs.reduce((s, sub) => s + sub.menuItems.length, 0);
-
-                  return (
-                    <section
-                      key={cat.id}
-                      id={cat.id}
-                      ref={el => { categoryRefs.current[cat.id] = el; }}
-                    >
-                      <div className="flex items-center gap-2.5 mb-5">
-                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full" style={{ backgroundColor: `${accent}18` }}>
-                          <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: accent }} />
-                          <h2 className="text-sm font-black tracking-wide" style={{ color: accent }}>{cat.name}</h2>
-                        </div>
-                        <span className="text-xs font-semibold text-gray-400 bg-white px-2 py-0.5 rounded-full border border-gray-100">{totalItems} items</span>
+                  <div>
+                    <p className="text-[11px] font-semibold text-[#601131]/50 uppercase tracking-wide mb-2.5">Price range</p>
+                    <div className="flex items-center gap-2">
+                      <div className="relative flex-1">
+                        <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-[#601131]/40 pointer-events-none">£</span>
+                        <input
+                          type="number"
+                          placeholder="Min"
+                          value={minPrice}
+                          min={0}
+                          onChange={e => setMinPrice(e.target.value)}
+                          className="w-full pl-6 pr-2 py-1.5 text-xs border border-[#D7CDA7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
+                        />
                       </div>
+                      <span className="text-xs text-[#601131]/40">to</span>
+                      <div className="relative flex-1">
+                        <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-[#601131]/40 pointer-events-none">£</span>
+                        <input
+                          type="number"
+                          placeholder="Max"
+                          value={maxPrice}
+                          min={0}
+                          onChange={e => setMaxPrice(e.target.value)}
+                          className="w-full pl-6 pr-2 py-1.5 text-xs border border-[#D7CDA7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
+                        />
+                      </div>
+                    </div>
+                  </div>
 
-                      {visibleSubs.map(sub => (
-                        <div key={sub.id ?? 'uncat'} className="mb-5">
-                          {sub.name !== 'Uncategorized' && (
-                            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3 pl-4">
-                              {sub.name}
-                            </p>
-                          )}
-                          <div className="space-y-1.5">
-                            {sub.menuItems.map(item => (
-                              <MenuItemRow
-                                key={item.id}
-                                item={item}
-                                accent={accent}
-                                onClick={() => setSelectedItem(item)}
-                              />
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </section>
-                  );
-                })
-              )}
+                  <div className="border-t border-[#D7CDA7]" />
 
-              <div className="h-6" />
-            </div>
+                  <div>
+                    <p className="text-[11px] font-semibold text-[#601131]/50 uppercase tracking-wide mb-2.5">Availability</p>
+                    <button
+                      onClick={() => setHideUnavailable(v => !v)}
+                      className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border transition-all ${
+                        hideUnavailable
+                          ? 'bg-[#F0A429] text-white border-[#F0A429] shadow-sm'
+                          : 'bg-white text-[#601131]/70 border-[#D7CDA7] hover:border-[#601131]/30'
+                      }`}
+                    >
+                      {hideUnavailable && <Check className="w-3 h-3" />}
+                      Available only
+                    </button>
+                  </div>
+
+                  {activeFilterCount > 0 && (
+                    <>
+                      <div className="border-t border-[#D7CDA7]" />
+                      <button
+                        onClick={() => { setSortBy('default'); setMinPrice(''); setMaxPrice(''); setHideUnavailable(true); setShowFilters(false); }}
+                        className="w-full text-xs font-semibold text-[#601131]/50 hover:text-red-500 transition-colors py-0.5"
+                      >
+                        Clear all filters
+                      </button>
+                    </>
+                  )}
+                </div>
+              </>
+            )}
           </div>
         </div>
 
-        {/* RIGHT CART PANEL (desktop) */}
-        <aside className="w-72 flex-shrink-0 bg-white border-l border-gray-100/60 hidden md:flex flex-col">
-          <div className="px-4 pt-4 pb-3 border-b border-gray-100 space-y-3">
+        {!isSearchMode && (
+          <div ref={navRef} className="flex gap-1.5 px-4 md:px-6 py-2 overflow-x-auto hide-scrollbar">
+            {categories.map(cat => (
+              <button
+                key={cat.id}
+                data-cat={cat.id}
+                onClick={() => scrollToCategory(cat.id)}
+                className={`flex-shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
+                  activeCategoryId === cat.id
+                    ? 'bg-[#F0A429] text-white shadow-sm'
+                    : 'text-[#601131]/60 hover:text-[#601131] hover:bg-white'
+                }`}
+              >
+                {cat.name}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {allAllergens.length > 0 && (
+          <div className="border-t border-[#D7CDA7] px-4 md:px-6 py-2">
+            <div className="flex items-center gap-1.5 overflow-x-auto hide-scrollbar">
+              <span className="text-xs text-[#601131]/50 font-semibold flex-shrink-0 mr-1">Hide:</span>
+              {allAllergens.map(a => {
+                const active = hiddenAllergens.has(a.id);
+                return (
+                  <button
+                    key={a.id}
+                    onClick={() => toggleAllergen(a.id)}
+                    className={`flex-shrink-0 flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full border transition-all ${
+                      active
+                        ? 'bg-red-100 border-red-300 text-red-700'
+                        : 'bg-white border-[#D7CDA7] text-[#601131]/60 hover:border-[#601131]/30 hover:text-[#601131]'
+                    }`}
+                  >
+                    {a.icon && <span>{a.icon}</span>}
+                    {a.name}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* CONTENT + CART */}
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 items-start">
+
+        {/* Menu items */}
+        <div className="space-y-10 min-w-0">
+          {isSearchMode ? (
+            filteredItems.length === 0 ? (
+              <div className="text-center py-16 text-[#601131]/40">
+                <Search className="w-10 h-10 mx-auto mb-3 opacity-40" />
+                <p className="font-semibold text-[#601131]/60">No items found</p>
+                <p className="text-sm mt-1">Try a different search or adjust the filters</p>
+                <button
+                  onClick={() => { setSearchQuery(''); setMinPrice(''); setMaxPrice(''); setSortBy('default'); }}
+                  className="mt-4 text-sm text-[#F0A429] hover:underline"
+                >
+                  Clear all filters
+                </button>
+              </div>
+            ) : (
+              <>
+                <p className="text-xs font-semibold text-[#601131]/50 -mb-6">
+                  {filteredItems.length} {filteredItems.length === 1 ? 'item' : 'items'}
+                </p>
+                <div className="space-y-1.5">
+                  {filteredItems.map(item => (
+                    <MenuItemRow
+                      key={item.id}
+                      item={item}
+                      accent={itemAccentMap.get(item.id) ?? ACCENT_COLORS[0]}
+                      onClick={() => setSelectedItem(item)}
+                    />
+                  ))}
+                </div>
+              </>
+            )
+          ) : (
+            categories.map((cat, catIdx) => {
+              const accent = cat.colorCode ?? ACCENT_COLORS[catIdx % ACCENT_COLORS.length];
+              const visibleSubs = cat.subcategories
+                .map(sub => ({ ...sub, menuItems: sub.menuItems.filter(item => visibleIds.has(item.id)) }))
+                .filter(sub => sub.menuItems.length > 0);
+
+              if (visibleSubs.length === 0) return null;
+
+              const totalItems = visibleSubs.reduce((s, sub) => s + sub.menuItems.length, 0);
+
+              return (
+                <section
+                  key={cat.id}
+                  id={cat.id}
+                  ref={el => { categoryRefs.current[cat.id] = el; }}
+                  className="scroll-mt-36"
+                >
+                  <div className="flex items-center gap-2.5 mb-5">
+                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-full" style={{ backgroundColor: `${accent}18` }}>
+                      <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: accent }} />
+                      <h2 className="text-sm font-bold tracking-wide" style={{ color: accent }}>{cat.name}</h2>
+                    </div>
+                    <span className="text-xs font-semibold text-[#601131]/50 bg-[#F1EED0] px-2 py-0.5 rounded-full border border-[#D7CDA7]">{totalItems} items</span>
+                  </div>
+
+                  {visibleSubs.map(sub => (
+                    <div key={sub.id ?? 'uncat'} className="mb-5">
+                      {sub.name !== 'Uncategorized' && (
+                        <p className="text-xs font-semibold text-[#601131]/50 uppercase tracking-widest mb-3 pl-4">
+                          {sub.name}
+                        </p>
+                      )}
+                      <div className="space-y-1.5">
+                        {sub.menuItems.map(item => (
+                          <MenuItemRow
+                            key={item.id}
+                            item={item}
+                            accent={accent}
+                            onClick={() => setSelectedItem(item)}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </section>
+              );
+            })
+          )}
+        </div>
+
+        {/* Cart card (desktop) */}
+        <aside className="hidden lg:block bg-[#F1EED0] rounded-xl border border-[#D7CDA7] overflow-hidden">
+          <div className="px-4 pt-4 pb-3 border-b border-[#D7CDA7] space-y-3">
             <div className="flex items-center justify-between">
-              <h2 className="font-black text-gray-900 text-base">Your Order</h2>
+              <h2 className="font-bold text-[#601131] text-base">Your Order</h2>
               {itemCount > 0 && (
-                <span className="text-xs font-bold bg-brand-500 text-white w-5 h-5 rounded-full flex items-center justify-center">
+                <span className="text-xs font-bold bg-[#F0A429] text-white w-5 h-5 rounded-full flex items-center justify-center">
                   {itemCount}
                 </span>
               )}
             </div>
 
-            <div className="flex bg-gray-100 rounded-lg p-0.5 gap-0.5">
+            <div className="flex bg-[#F5F5DC] rounded-lg p-0.5 gap-0.5">
               {ORDER_TYPE_TABS.map(({ value, label }) => (
                 <button
                   key={value}
                   onClick={() => setOrderType(value)}
                   className={`flex-1 py-1.5 text-xs font-semibold rounded-md transition-all ${
                     cart.orderType === value
-                      ? 'bg-white text-brand-600 font-bold shadow-sm'
-                      : 'text-gray-400 hover:text-gray-600'
+                      ? 'bg-white text-[#601131] shadow-sm'
+                      : 'text-[#601131]/40 hover:text-[#601131]/70'
                   }`}
                 >
                   {label}
@@ -634,13 +618,13 @@ export default function MenuBrowser() {
               <div className="space-y-1.5">
                 {showSavedPostcode ? (
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs text-gray-500 flex items-center gap-1.5">
-                      <MapPin size={11} className="text-gray-400" />
+                    <span className="text-xs text-[#601131]/60 flex items-center gap-1.5">
+                      <MapPin size={11} className="text-[#601131]/40" />
                       <span className="font-semibold uppercase tracking-wide">{deliveryPostcode}</span>
                     </span>
                     <button
                       onClick={() => { setShowSavedPostcode(false); setPostcodeResult(null); setDeliveryPostcode(''); }}
-                      className="text-xs text-gray-400 hover:text-gray-700 underline transition-colors"
+                      className="text-xs text-[#601131]/50 hover:text-[#601131] underline transition-colors"
                     >
                       Change
                     </button>
@@ -653,34 +637,34 @@ export default function MenuBrowser() {
                       value={deliveryPostcode}
                       onChange={e => { setDeliveryPostcode(e.target.value.toUpperCase()); setPostcodeResult(null); }}
                       onKeyDown={e => e.key === 'Enter' && checkDelivery()}
-                      className="flex-1 border border-gray-200 rounded-lg px-2.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500 uppercase"
+                      className="flex-1 border border-[#D7CDA7] rounded-lg px-2.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 uppercase bg-white text-[#601131]"
                     />
                     <button
                       onClick={checkDelivery}
                       disabled={postcodeChecking || !deliveryPostcode.trim()}
-                      className="bg-gray-100 hover:bg-gray-200 disabled:opacity-50 text-gray-700 text-xs font-semibold px-3 py-2 rounded-lg transition-colors whitespace-nowrap flex items-center"
+                      className="bg-[#F5F5DC] hover:bg-[#EDE7C5] disabled:opacity-50 text-[#601131] text-xs font-semibold px-3 py-2 rounded-lg transition-colors whitespace-nowrap flex items-center"
                     >
                       {postcodeChecking ? <Loader2 size={12} className="animate-spin" /> : 'Check'}
                     </button>
                   </div>
                 )}
                 {postcodeChecking && (
-                  <p className="text-xs text-gray-400 flex items-center gap-1">
+                  <p className="text-xs text-[#601131]/50 flex items-center gap-1">
                     <Loader2 size={11} className="animate-spin" /> Checking…
                   </p>
                 )}
                 {postcodeResult && !postcodeChecking && (
                   postcodeResult.ok ? (
-                    <p className="text-xs text-green-600 font-medium">
+                    <p className="text-xs text-green-700 font-medium">
                       ✓ Delivery available — £{postcodeResult.fee.toFixed(2)} fee
                       {postcodeResult.minOrderValue > 0 && ` · £${postcodeResult.minOrderValue.toFixed(2)} minimum order`}
                     </p>
                   ) : (
-                    <p className="text-xs text-red-500">{postcodeResult.message}</p>
+                    <p className="text-xs text-red-600">{postcodeResult.message}</p>
                   )
                 )}
                 {!postcodeResult && !postcodeChecking && cart.deliveryDetails?.deliveryFee !== undefined && (
-                  <p className="text-xs text-green-600 font-medium">
+                  <p className="text-xs text-green-700 font-medium">
                     ✓ £{cart.deliveryDetails.deliveryFee.toFixed(2)} delivery fee applied
                     {!!cart.deliveryDetails.minOrderValue && cart.deliveryDetails.minOrderValue > 0 &&
                       ` · £${cart.deliveryDetails.minOrderValue.toFixed(2)} minimum order`}
@@ -690,15 +674,15 @@ export default function MenuBrowser() {
             )}
           </div>
 
-          <div className="flex-1 overflow-y-auto">
+          <div>
             {itemCount === 0 ? (
-              <div className="flex flex-col items-center justify-center h-full gap-3 py-10">
-                <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-brand-50">
-                  <ShoppingBag size={26} className="text-brand-400" />
+              <div className="flex flex-col items-center justify-center gap-3 py-10">
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-[#F0A429]/10">
+                  <ShoppingBag size={26} className="text-[#F0A429]" />
                 </div>
                 <div className="text-center">
-                  <p className="text-sm font-bold text-gray-500">Your order is empty</p>
-                  <p className="text-xs text-gray-400 mt-0.5">Pick something delicious</p>
+                  <p className="text-sm font-bold text-[#601131]/70">Your order is empty</p>
+                  <p className="text-xs text-[#601131]/40 mt-0.5">Pick something delicious</p>
                 </div>
               </div>
             ) : (
@@ -716,32 +700,32 @@ export default function MenuBrowser() {
           </div>
 
           {itemCount > 0 && (
-            <div className="border-t border-gray-100 p-4">
+            <div className="border-t border-[#D7CDA7] p-4">
               <div className="space-y-1.5 mb-4">
-                <div className="flex justify-between text-sm text-gray-500">
+                <div className="flex justify-between text-sm text-[#601131]/60">
                   <span>Subtotal</span>
-                  <span className="font-medium text-gray-700">£{subtotal.toFixed(2)}</span>
+                  <span className="font-medium text-[#601131]">£{subtotal.toFixed(2)}</span>
                 </div>
                 {tax > 0 && (
-                  <div className="flex justify-between text-sm text-gray-500">
+                  <div className="flex justify-between text-sm text-[#601131]/60">
                     <span>Tax</span>
-                    <span className="font-medium text-gray-700">£{tax.toFixed(2)}</span>
+                    <span className="font-medium text-[#601131]">£{tax.toFixed(2)}</span>
                   </div>
                 )}
                 {cart.orderType === 'DELIVERY' && cart.deliveryDetails?.deliveryFee !== undefined && (
-                  <div className="flex justify-between text-sm text-gray-500">
+                  <div className="flex justify-between text-sm text-[#601131]/60">
                     <span>Delivery</span>
-                    <span className="font-medium text-gray-700">£{cart.deliveryDetails.deliveryFee.toFixed(2)}</span>
+                    <span className="font-medium text-[#601131]">£{cart.deliveryDetails.deliveryFee.toFixed(2)}</span>
                   </div>
                 )}
-                <div className="flex justify-between font-bold text-gray-900 pt-2 border-t border-gray-100">
+                <div className="flex justify-between font-bold text-[#601131] pt-2 border-t border-[#D7CDA7]">
                   <span>Total</span>
                   <span>£{total.toFixed(2)}</span>
                 </div>
               </div>
               <Link
                 href="/order/checkout"
-                className="flex items-center justify-between w-full text-white font-bold py-3.5 px-5 rounded-xl transition-all group bg-brand-500 hover:bg-brand-600"
+                className="flex items-center justify-between w-full text-white font-bold py-3.5 px-5 rounded-xl transition-all group bg-[#F0A429] hover:bg-[#e79b26]"
               >
                 <span>Go to Checkout</span>
                 <ChevronRight size={18} className="group-hover:translate-x-0.5 transition-transform" />
@@ -755,7 +739,7 @@ export default function MenuBrowser() {
       {itemCount > 0 && (
         <Link
           href="/order/cart"
-          className="md:hidden fixed bottom-20 left-4 right-4 z-30 flex items-center justify-between bg-brand-500 hover:bg-brand-600 text-white font-bold py-3.5 px-5 rounded-2xl shadow-lg transition-colors"
+          className="lg:hidden fixed bottom-20 left-4 right-4 z-30 flex items-center justify-between bg-[#F0A429] hover:bg-[#e79b26] text-white font-bold py-3.5 px-5 rounded-2xl shadow-lg transition-colors"
         >
           <span>View order ({itemCount})</span>
           <span>£{total.toFixed(2)}</span>
@@ -788,8 +772,7 @@ function MenuItemRow({ item, accent, onClick }: { item: MenuItem; accent: string
   return (
     <button
       onClick={onClick}
-      className="w-full text-left bg-white rounded-2xl border border-gray-100/80 flex items-stretch overflow-hidden hover:shadow-lg hover:-translate-y-0.5 hover:border-gray-200 transition-all duration-200 group"
-      style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}
+      className="w-full text-left bg-[#F1EED0] rounded-xl flex items-stretch overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 group"
     >
       <div className="w-1 self-stretch flex-shrink-0" style={{ backgroundColor: accent }} />
 
@@ -812,13 +795,13 @@ function MenuItemRow({ item, accent, onClick }: { item: MenuItem; accent: string
         )}
 
         <div className="flex-1 min-w-0">
-          <p className="font-bold text-gray-900 text-sm leading-snug">{item.name}</p>
+          <p className="font-semibold text-[#601131] text-sm leading-snug">{item.name}</p>
           {item.description && (
-            <p className="text-xs text-gray-400 mt-1 line-clamp-2 leading-relaxed">{item.description}</p>
+            <p className="text-xs text-gray-700 mt-1 line-clamp-2 leading-relaxed">{item.description}</p>
           )}
           {hasModifiers && (
             <span
-              className="inline-block text-[10px] font-black mt-1.5 px-2 py-0.5 rounded-full tracking-wide"
+              className="inline-block text-[10px] font-bold mt-1.5 px-2 py-0.5 rounded-full tracking-wide"
               style={{ color: accent, backgroundColor: `${accent}18` }}
             >
               CUSTOMISABLE
@@ -827,8 +810,8 @@ function MenuItemRow({ item, accent, onClick }: { item: MenuItem; accent: string
         </div>
 
         <div className="flex flex-col items-end justify-between gap-2 self-stretch py-0.5 flex-shrink-0">
-          <span className="font-black text-gray-900 text-base tabular-nums">
-            {showFromPrice && <span className="font-medium text-gray-400 text-xs mr-0.5">From</span>}
+          <span className="font-bold text-[#601131] text-base tabular-nums">
+            {showFromPrice && <span className="font-medium text-[#601131]/50 text-xs mr-0.5">From</span>}
             £{minPrice.toFixed(2)}
           </span>
           <div
@@ -845,38 +828,38 @@ function MenuItemRow({ item, accent, onClick }: { item: MenuItem; accent: string
 
 function CartItemRow({ item, onUpdateQty, onRemove }: { item: CartItem; onUpdateQty: (qty: number) => void; onRemove: () => void }) {
   return (
-    <div className="bg-gray-50 rounded-xl p-3">
+    <div className="bg-[#F5F5DC] rounded-xl p-3">
       <div className="flex items-start justify-between gap-2 mb-2">
         <div className="min-w-0">
-          <p className="text-sm font-semibold text-gray-800 leading-snug">{item.name}</p>
+          <p className="text-sm font-semibold text-[#601131] leading-snug">{item.name}</p>
           {item.selectedModifiers.length > 0 && (
-            <p className="text-xs text-gray-400 mt-0.5 line-clamp-1">
+            <p className="text-xs text-[#601131]/50 mt-0.5 line-clamp-1">
               {item.selectedModifiers.map(m => m.modifierName).join(', ')}
             </p>
           )}
           {item.specialInstructions && (
-            <p className="text-xs text-gray-400 mt-0.5 italic line-clamp-1">
+            <p className="text-xs text-[#601131]/50 mt-0.5 italic line-clamp-1">
               &ldquo;{item.specialInstructions}&rdquo;
             </p>
           )}
         </div>
-        <p className="text-sm font-bold text-gray-900 flex-shrink-0 tabular-nums">
+        <p className="text-sm font-bold text-[#601131] flex-shrink-0 tabular-nums">
           £{item.totalPrice.toFixed(2)}
         </p>
       </div>
 
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-1 bg-white border border-gray-200 rounded-full px-1.5 py-0.5">
+        <div className="flex items-center gap-1 bg-white border border-[#D7CDA7] rounded-full px-1.5 py-0.5">
           <button
             onClick={() => onUpdateQty(item.quantity - 1)}
-            className="w-5 h-5 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+            className="w-5 h-5 flex items-center justify-center rounded-full hover:bg-[#F5F5DC] transition-colors"
           >
             <Minus size={11} />
           </button>
           <span className="text-xs font-bold w-4 text-center tabular-nums">{item.quantity}</span>
           <button
             onClick={() => onUpdateQty(item.quantity + 1)}
-            className="w-5 h-5 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+            className="w-5 h-5 flex items-center justify-center rounded-full hover:bg-[#F5F5DC] transition-colors"
           >
             <Plus size={11} />
           </button>
@@ -884,7 +867,7 @@ function CartItemRow({ item, onUpdateQty, onRemove }: { item: CartItem; onUpdate
         <button
           onClick={onRemove}
           aria-label="Remove"
-          className="p-1 text-gray-300 hover:text-red-400 transition-colors"
+          className="p-1 text-[#601131]/30 hover:text-red-500 transition-colors"
         >
           <Trash2 size={13} />
         </button>

@@ -85,17 +85,17 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
   if (trackBy === undefined || (isLoading && trackBy)) {
     return (
       <div className="flex items-center justify-center min-h-64">
-        <Loader2 className="animate-spin text-brand-500" size={32} />
+        <Loader2 className="animate-spin text-[#F0A429]" size={32} />
       </div>
     );
   }
 
   if (!trackBy || error || !order) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-64 gap-3 text-gray-500 px-4">
+      <div className="flex flex-col items-center justify-center min-h-64 gap-3 text-[#601131]/60 px-4">
         <AlertCircle size={36} className="text-red-400" />
         <p className="text-center">Could not load your order. Please check back later.</p>
-        <Link href="/order" className="text-brand-500 underline text-sm">Return to menu</Link>
+        <Link href="/order" className="text-[#F0A429] underline text-sm">Return to menu</Link>
       </div>
     );
   }
@@ -109,23 +109,23 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
   const visibleSteps = getVisibleStatusSteps(STATUS_STEPS, order.orderType);
 
   return (
-    <div className="max-w-lg mx-auto">
+    <div className="max-w-lg mx-auto font-poppins">
       <div className="text-center mb-8">
         {isCancelled ? (
           <>
             <AlertCircle className="mx-auto text-red-400 mb-3" size={52} />
-            <h1 className="text-2xl font-bold text-gray-900 mb-1">Order cancelled</h1>
+            <h1 className="text-2xl font-bold text-[#601131] mb-1">Order cancelled</h1>
           </>
         ) : isComplete ? (
           <>
             <CheckCircle className="mx-auto text-green-500 mb-3" size={52} />
-            <h1 className="text-2xl font-bold text-gray-900 mb-1">Enjoy your meal!</h1>
+            <h1 className="text-2xl font-bold text-[#601131] mb-1">Enjoy your meal!</h1>
           </>
         ) : (
           <>
-            <Clock className="mx-auto text-brand-500 mb-3" size={52} />
-            <h1 className="text-2xl font-bold text-gray-900 mb-1">Order placed!</h1>
-            <p className="text-gray-500 text-sm">We&apos;ll update this page as your order progresses.</p>
+            <Clock className="mx-auto text-[#F0A429] mb-3" size={52} />
+            <h1 className="text-2xl font-bold text-[#601131] mb-1">Order placed!</h1>
+            <p className="text-[#601131]/50 text-sm">We&apos;ll update this page as your order progresses.</p>
           </>
         )}
       </div>
@@ -136,7 +136,7 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
             ? 'bg-green-50 border-green-200 text-green-700'
             : order.paymentStatus === 'FAILED' || redirectStatus === 'failed'
               ? 'bg-amber-50 border-amber-200 text-amber-700'
-              : 'bg-gray-50 border-gray-200 text-gray-600'
+              : 'bg-[#F5F5DC] border-[#D7CDA7] text-[#601131]/70'
         }`}>
           <CreditCard size={18} className="flex-shrink-0" />
           {order.paymentStatus === 'PAID'
@@ -151,8 +151,8 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
         isCancelled, stripeEnabled: !!store?.stripeEnabled, paymentStatus: order.paymentStatus,
         hasPayClientSecret: !!payClientSecret, redirectStatus,
       }) && (
-        <div className="bg-white rounded-2xl border border-gray-200 p-5 mb-5">
-          <p className="text-sm text-gray-600 mb-3">
+        <div className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] p-5 mb-5">
+          <p className="text-sm text-gray-700 mb-3">
             {stripeBroken
               ? 'Online payment is currently unavailable. You can try again, or pay at the restaurant.'
               : cardDeclined
@@ -175,7 +175,7 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
               }
             }}
             disabled={requestingPayment}
-            className="w-full bg-brand-500 hover:bg-brand-600 disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2"
+            className="w-full bg-[#F0A429] hover:bg-[#e79b26] disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2"
           >
             {requestingPayment ? <Loader2 size={18} className="animate-spin" /> : 'Pay now'}
           </button>
@@ -196,7 +196,7 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
                 }
               }}
               disabled={confirmingPayAtStore}
-              className="w-full mt-2 bg-gray-100 hover:bg-gray-200 disabled:opacity-60 text-gray-700 font-semibold py-3 rounded-xl transition-colors flex items-center justify-center gap-2"
+              className="w-full mt-2 bg-[#F5F5DC] hover:bg-[#EDE7C5] disabled:opacity-60 text-[#601131] font-semibold py-3 rounded-xl transition-colors flex items-center justify-center gap-2"
             >
               {confirmingPayAtStore ? <Loader2 size={18} className="animate-spin" /> : 'Pay at the restaurant instead'}
             </button>
@@ -205,8 +205,8 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
       )}
 
       {payClientSecret && (
-        <div className="bg-white rounded-2xl border border-gray-200 p-5 mb-5">
-          <h2 className="font-semibold text-gray-800 mb-3">Pay for your order</h2>
+        <div className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] p-5 mb-5">
+          <h2 className="font-semibold text-[#601131] mb-3">Pay for your order</h2>
           <Elements stripe={getStripe(store?.stripePublishableKey)} options={{ clientSecret: payClientSecret }}>
             <PaymentForm returnUrl={`${window.location.origin}/order/orders/${orderId}`} />
           </Elements>
@@ -214,7 +214,7 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
       )}
 
       {!isCancelled && (
-        <div className="bg-white rounded-2xl border border-gray-200 p-5 mb-5">
+        <div className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] p-5 mb-5">
           <div className="space-y-4">
             {visibleSteps.map((step, idx) => {
               const done = currentStepIndex >= idx;
@@ -223,13 +223,13 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
               return (
                 <div key={step.status} className="flex items-center gap-3">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
-                    done ? 'bg-brand-500 text-white' : 'bg-gray-100 text-gray-400'
+                    done ? 'bg-[#F0A429] text-white' : 'bg-[#F5F5DC] text-[#601131]/40'
                   }`}>
                     <Icon size={16} />
                   </div>
-                  <span className={`text-sm font-medium ${active ? 'text-brand-600' : done ? 'text-gray-700' : 'text-gray-400'}`}>
+                  <span className={`text-sm font-medium ${active ? 'text-[#B87814]' : done ? 'text-[#601131]' : 'text-[#601131]/40'}`}>
                     {step.label}
-                    {active && !isComplete && <span className="ml-2 text-xs font-normal text-gray-400 animate-pulse">• in progress</span>}
+                    {active && !isComplete && <span className="ml-2 text-xs font-normal text-[#601131]/40 animate-pulse">• in progress</span>}
                   </span>
                 </div>
               );
@@ -238,9 +238,9 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
         </div>
       )}
 
-      <div className="bg-white rounded-2xl border border-gray-200 p-5 mb-5 space-y-3">
-        <h2 className="font-semibold text-gray-800">Order details</h2>
-        <div className="text-sm space-y-1 text-gray-600">
+      <div className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] p-5 mb-5 space-y-3">
+        <h2 className="font-semibold text-[#601131]">Order details</h2>
+        <div className="text-sm space-y-1 text-gray-700">
           <div className="flex justify-between">
             <span>Type</span>
             <span className="font-medium capitalize">{order.orderType.replace('_', ' ').toLowerCase()}</span>
@@ -261,7 +261,7 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
               </span>
             </div>
           )}
-          <div className="flex justify-between font-semibold text-gray-900 pt-2 border-t border-gray-100">
+          <div className="flex justify-between font-semibold text-[#601131] pt-2 border-t border-[#D7CDA7]">
             <span>Total</span>
             <span>£{Number(order.total).toFixed(2)}</span>
           </div>
@@ -269,15 +269,15 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
       </div>
 
       {order.items && order.items.length > 0 && (
-        <div className="bg-white rounded-2xl border border-gray-200 p-5 mb-5 space-y-2">
-          <h2 className="font-semibold text-gray-800 mb-3">Items</h2>
+        <div className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] p-5 mb-5 space-y-2">
+          <h2 className="font-semibold text-[#601131] mb-3">Items</h2>
           {order.items.map((item, i) => (
-            <div key={i} className="text-sm text-gray-600">
+            <div key={i} className="text-sm text-gray-700">
               <div className="flex justify-between">
                 <span>
                   {item.quantity}× {item.name}
                   {item.modifiers && item.modifiers.length > 0 && (
-                    <span className="text-xs text-gray-400 ml-1">
+                    <span className="text-xs text-[#601131]/40 ml-1">
                       ({item.modifiers.map(m => m.modifierName).join(', ')})
                     </span>
                   )}
@@ -285,7 +285,7 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
                 <span>£{Number(item.price * item.quantity).toFixed(2)}</span>
               </div>
               {item.notes && (
-                <p className="text-xs text-gray-400 italic mt-0.5">&ldquo;{item.notes}&rdquo;</p>
+                <p className="text-xs text-[#601131]/40 italic mt-0.5">&ldquo;{item.notes}&rdquo;</p>
               )}
             </div>
           ))}
@@ -294,7 +294,7 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
 
       <Link
         href="/order"
-        className="block text-center text-sm text-brand-500 hover:underline"
+        className="block text-center text-sm text-[#F0A429] hover:underline"
       >
         ← Back to menu
       </Link>

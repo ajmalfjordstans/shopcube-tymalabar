@@ -33,16 +33,16 @@ export default function ScheduleModal({ storeId, leadHours, maxDays, value, onCh
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center font-poppins">
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
 
-      <div className="relative w-full sm:max-w-md bg-white rounded-t-2xl sm:rounded-2xl max-h-[85vh] flex flex-col shadow-2xl">
-        <div className="flex items-center justify-between p-5 border-b border-gray-100 flex-shrink-0">
-          <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-            <Clock size={18} className="text-brand-500" />
+      <div className="relative w-full sm:max-w-md bg-[#F1EED0] rounded-t-2xl sm:rounded-2xl max-h-[85vh] flex flex-col shadow-2xl">
+        <div className="flex items-center justify-between p-5 border-b border-[#D7CDA7] flex-shrink-0">
+          <h2 className="text-lg font-bold text-[#601131] flex items-center gap-2">
+            <Clock size={18} className="text-[#F0A429]" />
             Choose a time
           </h2>
-          <button onClick={onClose} className="p-1 rounded-full hover:bg-gray-100 transition-colors">
+          <button onClick={onClose} className="p-1 rounded-full hover:bg-white/60 transition-colors text-[#601131]">
             <X size={20} />
           </button>
         </div>
@@ -64,7 +64,7 @@ export default function ScheduleModal({ storeId, leadHours, maxDays, value, onCh
           />
         </div>
 
-        <p className="px-5 pb-5 pt-1 text-xs text-gray-400 flex items-center gap-1.5 flex-shrink-0 border-t border-gray-50">
+        <p className="px-5 pb-5 pt-1 text-xs text-[#601131]/50 flex items-center gap-1.5 flex-shrink-0 border-t border-[#D7CDA7]/60">
           <Clock size={12} />
           Needs at least {leadHours} hour{leadHours === 1 ? '' : 's'} notice — orders can be scheduled up to {maxDays} day{maxDays === 1 ? '' : 's'} ahead.
         </p>

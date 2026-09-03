@@ -11,7 +11,7 @@ import type { Store } from '@/types/order';
 import { Gift, Search, ChevronLeft, Loader2, CheckCircle, AlertCircle, CreditCard } from 'lucide-react';
 import toast from 'react-hot-toast';
 
-const inp = 'w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100 bg-white';
+const inp = 'w-full px-4 py-3 border border-[#D7CDA7] rounded-xl text-sm focus:border-[#F0A429] focus:outline-none focus:ring-2 focus:ring-[#F0A429]/20 bg-white text-[#601131]';
 
 const PRESETS = [10, 25, 50, 100];
 
@@ -76,7 +76,7 @@ function CheckBalance() {
         <button
           onClick={handleCheck}
           disabled={loading}
-          className="px-5 py-3 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl flex items-center gap-2 disabled:opacity-60 transition-colors flex-shrink-0"
+          className="px-5 py-3 bg-[#F0A429] hover:bg-[#e79b26] text-white font-bold rounded-xl flex items-center gap-2 disabled:opacity-60 transition-colors flex-shrink-0"
         >
           {loading ? <Loader2 size={16} className="animate-spin" /> : <Search size={16} />}
           Check
@@ -91,13 +91,13 @@ function CheckBalance() {
       )}
 
       {result && (
-        <div className={`rounded-2xl border p-5 space-y-3 ${!result.isActive || result.isExpired ? 'bg-gray-50 border-gray-200' : 'bg-green-50 border-green-200'}`}>
+        <div className={`rounded-2xl border p-5 space-y-3 ${!result.isActive || result.isExpired ? 'bg-[#F5F5DC] border-[#D7CDA7]' : 'bg-green-50 border-green-200'}`}>
           <div className="flex items-center gap-2">
-            <Gift size={18} className={result.isActive && !result.isExpired ? 'text-green-600' : 'text-gray-400'} />
-            <span className="font-bold font-mono text-gray-900">{result.code}</span>
+            <Gift size={18} className={result.isActive && !result.isExpired ? 'text-green-600' : 'text-[#601131]/40'} />
+            <span className="font-bold font-mono text-[#601131]">{result.code}</span>
             <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ml-auto ${
               !result.isActive ? 'bg-red-100 text-red-600'
-              : result.isExpired ? 'bg-gray-100 text-gray-500'
+              : result.isExpired ? 'bg-[#EDE7C5] text-[#601131]/60'
               : 'bg-green-100 text-green-700'
             }`}>
               {!result.isActive ? 'Deactivated' : result.isExpired ? 'Expired' : 'Active'}
@@ -106,12 +106,12 @@ function CheckBalance() {
 
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Remaining balance</span>
-              <span className="font-bold text-2xl text-gray-900">£{result.remainingBalance.toFixed(2)}</span>
+              <span className="text-[#601131]/50">Remaining balance</span>
+              <span className="font-bold text-2xl text-[#601131]">£{result.remainingBalance.toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Validity</span>
-              <span className={`font-medium ${result.isExpired ? 'text-red-500' : 'text-gray-700'}`}>
+              <span className="text-[#601131]/50">Validity</span>
+              <span className={`font-medium ${result.isExpired ? 'text-red-600' : 'text-gray-700'}`}>
                 {formatExpiry(result.expiresAt, result.isExpired)}
               </span>
             </div>
@@ -210,30 +210,30 @@ function BuyGiftCard({ store }: { store: Store | undefined }) {
         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
           <CheckCircle size={32} className="text-green-600" />
         </div>
-        <h3 className="text-xl font-black text-gray-900">Gift card purchased!</h3>
-        <div className="bg-gray-50 rounded-2xl p-5 text-left space-y-2">
+        <h3 className="text-xl font-bold text-[#601131]">Gift card purchased!</h3>
+        <div className="bg-[#F5F5DC] rounded-2xl p-5 text-left space-y-2">
           <div className="flex justify-between text-sm">
-            <span className="text-gray-500">Code</span>
-            <span className="font-black font-mono text-lg text-gray-900">{lastCard.code}</span>
+            <span className="text-[#601131]/50">Code</span>
+            <span className="font-bold font-mono text-lg text-[#601131]">{lastCard.code}</span>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-gray-500">Value</span>
-            <span className="font-bold text-gray-900">£{lastCard.amount?.toFixed(2)}</span>
+            <span className="text-[#601131]/50">Value</span>
+            <span className="font-bold text-[#601131]">£{lastCard.amount?.toFixed(2)}</span>
           </div>
           {lastCard.expiresAt && (
             <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Expires</span>
+              <span className="text-[#601131]/50">Expires</span>
               <span className="text-gray-700">{formatExpiry(lastCard.expiresAt, false)}</span>
             </div>
           )}
         </div>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-[#601131]/50">
           {form.recipientEmail || form.purchaserEmail
             ? 'A confirmation has been sent by email.'
             : 'Save the code above to use or share.'}
         </p>
         <button onClick={() => { setStep('form'); sessionStorage.removeItem('last_gift_card'); }}
-          className="w-full py-3 border border-gray-200 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-50 transition-colors">
+          className="w-full py-3 border border-[#D7CDA7] rounded-xl text-sm font-semibold text-[#601131]/70 hover:bg-[#F5F5DC] transition-colors">
           Buy another gift card
         </button>
       </div>
@@ -243,19 +243,19 @@ function BuyGiftCard({ store }: { store: Store | undefined }) {
   if (step === 'payment' && clientSecret && purchaseData) {
     return (
       <div className="space-y-4">
-        <div className="bg-brand-50 border border-brand-200 rounded-2xl p-4 flex items-center gap-3">
-          <CreditCard size={18} className="text-brand-500 flex-shrink-0" />
+        <div className="bg-[#F0A429]/10 border border-[#F0A429]/30 rounded-2xl p-4 flex items-center gap-3">
+          <CreditCard size={18} className="text-[#F0A429] flex-shrink-0" />
           <div>
-            <p className="text-sm font-bold text-brand-800">Pay £{purchaseData.amount.toFixed(2)}</p>
-            <p className="text-xs text-brand-600 mt-0.5">Complete payment to receive your gift card code.</p>
+            <p className="text-sm font-bold text-[#B87814]">Pay £{purchaseData.amount.toFixed(2)}</p>
+            <p className="text-xs text-[#B87814]/80 mt-0.5">Complete payment to receive your gift card code.</p>
           </div>
         </div>
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+        <div className="bg-white rounded-2xl border border-[#D7CDA7] shadow-sm p-6">
           <Elements stripe={getStripe(store?.stripePublishableKey)} options={{ clientSecret, appearance: { theme: 'stripe' } }}>
             <PaymentForm returnUrl={returnUrl} />
           </Elements>
         </div>
-        <button onClick={() => setStep('form')} className="w-full py-3 text-sm text-gray-400 hover:text-gray-600 transition-colors">
+        <button onClick={() => setStep('form')} className="w-full py-3 text-sm text-[#601131]/50 hover:text-[#601131] transition-colors">
           Back
         </button>
       </div>
@@ -265,11 +265,11 @@ function BuyGiftCard({ store }: { store: Store | undefined }) {
   return (
     <div className="space-y-5">
       <div>
-        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Amount</label>
+        <label className="block text-xs font-bold text-[#601131]/50 uppercase tracking-wider mb-2">Amount</label>
         <div className="grid grid-cols-4 gap-2 mb-2">
           {PRESETS.map(p => (
             <button key={p} onClick={() => { setAmount(p); setCustomAmount(''); }}
-              className={`py-2.5 rounded-xl border-2 text-sm font-bold transition-colors ${amount === p && !customAmount ? 'border-brand-500 bg-brand-50 text-brand-700' : 'border-gray-200 bg-white text-gray-700 hover:border-brand-300'}`}>
+              className={`py-2.5 rounded-xl border-2 text-sm font-bold transition-colors ${amount === p && !customAmount ? 'border-[#F0A429] bg-[#F0A429]/10 text-[#B87814]' : 'border-[#D7CDA7] bg-white text-[#601131]/70 hover:border-[#F0A429]/50'}`}>
               £{p}
             </button>
           ))}
@@ -284,7 +284,7 @@ function BuyGiftCard({ store }: { store: Store | undefined }) {
       </div>
 
       <div>
-        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Your details (optional)</label>
+        <label className="block text-xs font-bold text-[#601131]/50 uppercase tracking-wider mb-2">Your details (optional)</label>
         <div className="space-y-2">
           <input value={form.purchaserName} onChange={e => setForm(f => ({ ...f, purchaserName: e.target.value }))}
             placeholder="Your name" className={inp} />
@@ -294,7 +294,7 @@ function BuyGiftCard({ store }: { store: Store | undefined }) {
       </div>
 
       <div>
-        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Send to (optional)</label>
+        <label className="block text-xs font-bold text-[#601131]/50 uppercase tracking-wider mb-2">Send to (optional)</label>
         <div className="space-y-2">
           <input value={form.recipientName} onChange={e => setForm(f => ({ ...f, recipientName: e.target.value }))}
             placeholder="Recipient's name" className={inp} />
@@ -306,7 +306,7 @@ function BuyGiftCard({ store }: { store: Store | undefined }) {
       </div>
 
       {store?.giftCardValidityMonths && (
-        <p className="text-xs text-gray-400 text-center">
+        <p className="text-xs text-[#601131]/40 text-center">
           Valid for {store.giftCardValidityMonths} month{store.giftCardValidityMonths !== 1 ? 's' : ''} from purchase date.
         </p>
       )}
@@ -317,7 +317,7 @@ function BuyGiftCard({ store }: { store: Store | undefined }) {
         </div>
       ) : (
         <button onClick={handlePay} disabled={loadingPI || !finalAmount}
-          className="w-full py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-2xl flex items-center justify-center gap-2 disabled:opacity-60 transition-colors">
+          className="w-full py-4 bg-[#F0A429] hover:bg-[#e79b26] text-white font-bold rounded-2xl flex items-center justify-center gap-2 disabled:opacity-60 transition-colors">
           {loadingPI ? <Loader2 size={18} className="animate-spin" /> : <CreditCard size={18} />}
           {loadingPI ? 'Setting up payment…' : `Pay £${(finalAmount ?? 0).toFixed(2)}`}
         </button>
@@ -337,35 +337,35 @@ export default function GiftCardsPage() {
   const store = storeData?.data;
 
   return (
-    <div className="max-w-lg mx-auto">
+    <div className="max-w-lg mx-auto font-poppins">
       <Link
         href="/order"
-        className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 mb-6 transition-colors"
+        className="flex items-center gap-1.5 text-sm text-[#601131]/60 hover:text-[#601131] mb-6 transition-colors"
       >
         <ChevronLeft size={16} />
         Back to menu
       </Link>
 
       <div className="flex items-center gap-3 mb-8">
-        <div className="w-10 h-10 rounded-xl bg-brand-100 flex items-center justify-center flex-shrink-0">
-          <Gift size={20} className="text-brand-500" />
+        <div className="w-10 h-10 rounded-xl bg-[#F0A429]/10 flex items-center justify-center flex-shrink-0">
+          <Gift size={20} className="text-[#F0A429]" />
         </div>
         <div>
-          <h1 className="text-xl font-black text-gray-900">Gift Cards</h1>
-          {store && <p className="text-sm text-gray-500">{store.name}</p>}
+          <h1 className="text-xl font-bold text-[#601131]">Gift Cards</h1>
+          {store && <p className="text-sm text-[#601131]/50">{store.name}</p>}
         </div>
       </div>
 
-      <div className="flex gap-1 bg-gray-100 rounded-xl p-1 mb-6">
+      <div className="flex gap-1 bg-[#F1EED0] rounded-xl p-1 mb-6 border border-[#D7CDA7]">
         {(['buy', 'check'] as const).map(t => (
           <button key={t} onClick={() => setTab(t)}
-            className={`flex-1 py-2.5 text-sm font-bold rounded-lg transition-colors ${tab === t ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>
+            className={`flex-1 py-2.5 text-sm font-bold rounded-lg transition-colors ${tab === t ? 'bg-white text-[#601131] shadow-sm' : 'text-[#601131]/50 hover:text-[#601131]'}`}>
             {t === 'buy' ? '🎁 Buy a Gift Card' : '🔍 Check Balance'}
           </button>
         ))}
       </div>
 
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+      <div className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] shadow-sm p-6">
         {tab === 'buy' ? <BuyGiftCard store={store} /> : <CheckBalance />}
       </div>
     </div>

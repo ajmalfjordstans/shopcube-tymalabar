@@ -33,7 +33,7 @@ function formatDateTime12(iso: string) {
   });
 }
 
-const inp = 'w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100 bg-white';
+const inp = 'w-full px-4 py-3 border border-[#D7CDA7] rounded-xl text-sm focus:border-[#F0A429] focus:outline-none focus:ring-2 focus:ring-[#F0A429]/20 bg-white text-[#601131]';
 
 export default function ReservationsPage() {
   const router = useRouter();
@@ -177,7 +177,7 @@ export default function ReservationsPage() {
   };
 
   return (
-    <div className="max-w-lg mx-auto">
+    <div className="max-w-lg mx-auto font-poppins">
       <button
         onClick={() => {
           if (step === 'select') router.push('/order');
@@ -186,55 +186,55 @@ export default function ReservationsPage() {
           else if (step === 'payment') setStep('form');
           else if (step === 'confirm') router.push('/order');
         }}
-        className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 mb-6 transition-colors"
+        className="flex items-center gap-1.5 text-sm text-[#601131]/60 hover:text-[#601131] mb-6 transition-colors"
       >
         <ChevronLeft size={16} />
         {step === 'select' || step === 'confirm' ? 'Back to menu' : 'Back'}
       </button>
 
       <div className="flex items-center gap-3 mb-8">
-        <div className="w-10 h-10 rounded-xl bg-brand-100 flex items-center justify-center flex-shrink-0">
-          <CalendarDays size={20} className="text-brand-500" />
+        <div className="w-10 h-10 rounded-xl bg-[#F0A429]/10 flex items-center justify-center flex-shrink-0">
+          <CalendarDays size={20} className="text-[#F0A429]" />
         </div>
         <div>
-          <h1 className="text-xl font-black text-gray-900">Reserve a Table</h1>
-          {store && <p className="text-sm text-gray-500">{store.name}</p>}
+          <h1 className="text-xl font-bold text-[#601131]">Reserve a Table</h1>
+          {store && <p className="text-sm text-[#601131]/50">{store.name}</p>}
         </div>
       </div>
 
       {step === 'select' && (
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-5">
+        <div className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] shadow-sm p-6 space-y-5">
           <div>
-            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Date</label>
+            <label className="block text-xs font-bold text-[#601131]/50 uppercase tracking-wider mb-2">Date</label>
             <div className="flex items-center gap-2">
               <button onClick={() => setDate(d => shiftDate(d, -1))} disabled={date <= todayStr()}
-                className="p-2.5 border border-gray-200 rounded-xl hover:bg-gray-50 disabled:opacity-40 transition-colors">
-                <ChevronLeft size={16} className="text-gray-500" />
+                className="p-2.5 border border-[#D7CDA7] rounded-xl hover:bg-white disabled:opacity-40 transition-colors bg-white">
+                <ChevronLeft size={16} className="text-[#601131]/60" />
               </button>
               <input type="date" value={date} min={todayStr()} onChange={e => setDate(e.target.value)}
-                className="flex-1 px-4 py-3 border border-gray-200 rounded-xl text-sm focus:border-brand-500 focus:outline-none bg-white text-center font-semibold" />
+                className="flex-1 px-4 py-3 border border-[#D7CDA7] rounded-xl text-sm focus:border-[#F0A429] focus:outline-none bg-white text-center font-semibold text-[#601131]" />
               <button onClick={() => setDate(d => shiftDate(d, 1))}
-                className="p-2.5 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors">
-                <ChevronRight size={16} className="text-gray-500" />
+                className="p-2.5 border border-[#D7CDA7] rounded-xl hover:bg-white transition-colors bg-white">
+                <ChevronRight size={16} className="text-[#601131]/60" />
               </button>
             </div>
-            <p className="text-xs text-gray-400 mt-1.5 text-center">{formatDateLong(date)}</p>
+            <p className="text-xs text-[#601131]/40 mt-1.5 text-center">{formatDateLong(date)}</p>
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Party size</label>
+            <label className="block text-xs font-bold text-[#601131]/50 uppercase tracking-wider mb-2">Party size</label>
             <div className="flex items-center gap-4 justify-center">
               <button onClick={() => setPartySize(p => Math.max(1, p - 1))}
-                className="w-11 h-11 rounded-xl border border-gray-200 hover:bg-gray-50 flex items-center justify-center text-xl font-bold text-gray-600 transition-colors">
+                className="w-11 h-11 rounded-xl border border-[#D7CDA7] hover:bg-white flex items-center justify-center text-xl font-bold text-[#601131]/70 transition-colors bg-white">
                 −
               </button>
               <div className="flex items-center gap-2">
-                <Users size={18} className="text-brand-500" />
-                <span className="text-2xl font-black text-gray-900 w-8 text-center">{partySize}</span>
-                <span className="text-sm text-gray-500">{partySize === 1 ? 'person' : 'people'}</span>
+                <Users size={18} className="text-[#F0A429]" />
+                <span className="text-2xl font-bold text-[#601131] w-8 text-center">{partySize}</span>
+                <span className="text-sm text-[#601131]/50">{partySize === 1 ? 'person' : 'people'}</span>
               </div>
               <button onClick={() => setPartySize(p => Math.min(maxParty, p + 1))}
-                className="w-11 h-11 rounded-xl border border-gray-200 hover:bg-gray-50 flex items-center justify-center text-xl font-bold text-gray-600 transition-colors">
+                className="w-11 h-11 rounded-xl border border-[#D7CDA7] hover:bg-white flex items-center justify-center text-xl font-bold text-[#601131]/70 transition-colors bg-white">
                 +
               </button>
             </div>
@@ -244,7 +244,7 @@ export default function ReservationsPage() {
           </div>
 
           <button onClick={handleFetchSlots} disabled={loadingSlots}
-            className="w-full py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl flex items-center justify-center gap-2 disabled:opacity-60 transition-colors">
+            className="w-full py-3.5 bg-[#F0A429] hover:bg-[#e79b26] text-white font-bold rounded-xl flex items-center justify-center gap-2 disabled:opacity-60 transition-colors">
             {loadingSlots ? <Loader2 size={18} className="animate-spin" /> : <Clock size={18} />}
             {loadingSlots ? 'Checking availability…' : 'Check Availability'}
           </button>
@@ -253,11 +253,11 @@ export default function ReservationsPage() {
 
       {step === 'slots' && (
         <div className="space-y-4">
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-            <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">
+          <div className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] shadow-sm p-5">
+            <p className="text-xs font-bold text-[#601131]/50 uppercase tracking-wider mb-1">
               {formatDateLong(date)} · {partySize} {partySize === 1 ? 'person' : 'people'}
             </p>
-            <p className="text-sm text-gray-600">Select a time slot</p>
+            <p className="text-sm text-gray-700">Select a time slot</p>
           </div>
 
           {slotsError ? (
@@ -271,7 +271,7 @@ export default function ReservationsPage() {
                 <button
                   key={slot}
                   onClick={() => { setSelectedSlot(slot); setStep('form'); }}
-                  className="py-3.5 rounded-xl border-2 text-sm font-bold transition-colors border-gray-200 bg-white hover:border-brand-400 hover:bg-brand-50 hover:text-brand-600 text-gray-700"
+                  className="py-3.5 rounded-xl border-2 text-sm font-bold transition-colors border-[#D7CDA7] bg-white hover:border-[#F0A429]/50 hover:bg-[#F0A429]/10 hover:text-[#B87814] text-[#601131]/70"
                 >
                   {slot}
                 </button>
@@ -283,35 +283,35 @@ export default function ReservationsPage() {
 
       {step === 'form' && selectedSlot && (
         <div className="space-y-4">
-          <div className="bg-brand-50 border border-brand-200 rounded-2xl p-4 flex items-center gap-3">
-            <Clock size={16} className="text-brand-500 flex-shrink-0" />
+          <div className="bg-[#F0A429]/10 border border-[#F0A429]/30 rounded-2xl p-4 flex items-center gap-3">
+            <Clock size={16} className="text-[#F0A429] flex-shrink-0" />
             <div>
-              <p className="text-sm font-bold text-brand-800">{formatDateLong(date)} at {selectedSlot}</p>
-              <p className="text-xs text-brand-600">{partySize} {partySize === 1 ? 'person' : 'people'}</p>
+              <p className="text-sm font-bold text-[#B87814]">{formatDateLong(date)} at {selectedSlot}</p>
+              <p className="text-xs text-[#B87814]/80">{partySize} {partySize === 1 ? 'person' : 'people'}</p>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-4">
+          <div className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] shadow-sm p-6 space-y-4">
             <div>
-              <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Full Name *</label>
+              <label className="block text-xs font-bold text-[#601131]/50 uppercase tracking-wider mb-1.5">Full Name *</label>
               <input value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
                 placeholder="Your name" className={inp} />
             </div>
             <div>
-              <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Phone *</label>
+              <label className="block text-xs font-bold text-[#601131]/50 uppercase tracking-wider mb-1.5">Phone *</label>
               <input type="tel" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
                 placeholder="07700 900000" className={inp} />
             </div>
             <div>
-              <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">
-                Email <span className="font-normal text-gray-400">(optional)</span>
+              <label className="block text-xs font-bold text-[#601131]/50 uppercase tracking-wider mb-1.5">
+                Email <span className="font-normal text-[#601131]/40">(optional)</span>
               </label>
               <input type="email" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
                 placeholder="you@example.com" className={inp} />
             </div>
             <div>
-              <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">
-                Special requests <span className="font-normal text-gray-400">(optional)</span>
+              <label className="block text-xs font-bold text-[#601131]/50 uppercase tracking-wider mb-1.5">
+                Special requests <span className="font-normal text-[#601131]/40">(optional)</span>
               </label>
               <textarea value={form.notes} onChange={e => setForm(f => ({ ...f, notes: e.target.value }))}
                 placeholder="Allergies, occasion, high chair needed…"
@@ -319,11 +319,11 @@ export default function ReservationsPage() {
             </div>
 
             <button onClick={handleSubmit} disabled={submitting}
-              className="w-full py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl flex items-center justify-center gap-2 disabled:opacity-60 transition-colors">
+              className="w-full py-3.5 bg-[#F0A429] hover:bg-[#e79b26] text-white font-bold rounded-xl flex items-center justify-center gap-2 disabled:opacity-60 transition-colors">
               {submitting && <Loader2 size={18} className="animate-spin" />}
               {submitting ? 'Submitting…' : 'Request Reservation'}
             </button>
-            <p className="text-xs text-gray-400 text-center">
+            <p className="text-xs text-[#601131]/40 text-center">
               Your reservation will be pending confirmation — we&apos;ll be in touch.
             </p>
           </div>
@@ -345,12 +345,12 @@ export default function ReservationsPage() {
           </div>
 
           {loadingPaymentIntent ? (
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 flex items-center justify-center gap-3">
-              <Loader2 size={20} className="animate-spin text-brand-500" />
-              <span className="text-sm text-gray-500">Setting up payment…</span>
+            <div className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] shadow-sm p-8 flex items-center justify-center gap-3">
+              <Loader2 size={20} className="animate-spin text-[#F0A429]" />
+              <span className="text-sm text-[#601131]/60">Setting up payment…</span>
             </div>
           ) : clientSecret ? (
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+            <div className="bg-white rounded-2xl border border-[#D7CDA7] shadow-sm p-6">
               <Elements
                 stripe={getStripe(store?.stripePublishableKey)}
                 options={{ clientSecret, appearance: { theme: 'stripe' } }}
@@ -364,7 +364,7 @@ export default function ReservationsPage() {
 
           <button
             onClick={() => setStep('confirm')}
-            className="w-full py-3 text-sm text-gray-400 hover:text-gray-600 transition-colors"
+            className="w-full py-3 text-sm text-[#601131]/40 hover:text-[#601131]/70 transition-colors"
           >
             Skip — pay deposit later
           </button>
@@ -373,37 +373,37 @@ export default function ReservationsPage() {
 
       {step === 'confirm' && confirmed && (
         <div className="space-y-4">
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 text-center">
+          <div className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] shadow-sm p-8 text-center">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <CalendarDays size={28} className="text-green-600" />
             </div>
-            <h2 className="text-xl font-black text-gray-900 mb-1">
+            <h2 className="text-xl font-bold text-[#601131] mb-1">
               {confirmed.status === 'CONFIRMED' ? 'Reservation Confirmed!' : 'Request Received!'}
             </h2>
-            <p className="text-sm text-gray-500 mb-6">
+            <p className="text-sm text-[#601131]/50 mb-6">
               {confirmed.status === 'CONFIRMED'
                 ? 'Your table has been reserved. See you soon!'
                 : 'We\'ll confirm your booking shortly.'}
             </p>
 
-            <div className="text-left bg-gray-50 rounded-xl p-4 space-y-3 mb-6">
+            <div className="text-left bg-white rounded-xl p-4 space-y-3 mb-6 border border-[#D7CDA7]/60">
               <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Date &amp; time</span>
-                <span className="font-semibold text-gray-900">{formatDateTime12(confirmed.reservationDate)}</span>
+                <span className="text-[#601131]/50">Date &amp; time</span>
+                <span className="font-semibold text-[#601131]">{formatDateTime12(confirmed.reservationDate)}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Party size</span>
-                <span className="font-semibold text-gray-900">{confirmed.partySize} {confirmed.partySize === 1 ? 'person' : 'people'}</span>
+                <span className="text-[#601131]/50">Party size</span>
+                <span className="font-semibold text-[#601131]">{confirmed.partySize} {confirmed.partySize === 1 ? 'person' : 'people'}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Status</span>
+                <span className="text-[#601131]/50">Status</span>
                 <span className={`font-semibold ${confirmed.status === 'CONFIRMED' ? 'text-green-600' : 'text-amber-600'}`}>
                   {confirmed.status === 'CONFIRMED' ? 'Confirmed' : 'Awaiting confirmation'}
                 </span>
               </div>
               {confirmed.depositRequired && (
-                <div className="flex justify-between text-sm pt-2 border-t border-gray-200">
-                  <span className="text-gray-500">Deposit</span>
+                <div className="flex justify-between text-sm pt-2 border-t border-[#D7CDA7]">
+                  <span className="text-[#601131]/50">Deposit</span>
                   <span className={`font-semibold ${depositPaid ? 'text-green-600' : 'text-amber-600'}`}>
                     {depositPaid
                       ? `Paid — £${(confirmed.depositAmount ?? 0).toFixed(2)}`
@@ -432,7 +432,7 @@ export default function ReservationsPage() {
             )}
 
             <button onClick={() => router.push('/order')}
-              className="w-full py-3 border border-gray-200 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-50 transition-colors">
+              className="w-full py-3 border border-[#D7CDA7] rounded-xl text-sm font-semibold text-[#601131]/70 hover:bg-white transition-colors">
               Back to menu
             </button>
           </div>

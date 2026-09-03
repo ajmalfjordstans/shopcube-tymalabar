@@ -91,10 +91,10 @@ export default function AccountPage() {
     .toUpperCase();
 
   return (
-    <div className="max-w-lg mx-auto">
+    <div className="max-w-lg mx-auto font-poppins">
       <Link
         href="/order"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 mb-6 transition-colors"
+        className="inline-flex items-center gap-1.5 text-sm text-[#601131]/60 hover:text-[#601131] mb-6 transition-colors"
       >
         <ArrowLeft size={16} />
         Back to menu
@@ -102,69 +102,69 @@ export default function AccountPage() {
 
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-brand-500 flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+          <div className="w-14 h-14 rounded-2xl bg-[#F0A429] flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
             {initials}
           </div>
           <div>
-            <h1 className="text-xl font-bold text-gray-900 leading-tight">{session.user.name}</h1>
-            <p className="text-sm text-gray-400">{session.user.email}</p>
+            <h1 className="text-xl font-bold text-[#601131] leading-tight">{session.user.name}</h1>
+            <p className="text-sm text-[#601131]/50">{session.user.email}</p>
           </div>
         </div>
         <button
           onClick={logout}
-          className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-red-500 transition-colors"
+          className="flex items-center gap-1.5 text-sm text-[#601131]/50 hover:text-red-500 transition-colors"
         >
           <LogOut size={15} />
           Sign out
         </button>
       </div>
 
-      <section className="bg-white rounded-2xl border border-gray-100 p-5 mb-4 shadow-sm">
-        <h2 className="font-bold text-gray-900 mb-4">Personal Details</h2>
+      <section className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] p-5 mb-4 shadow-sm">
+        <h2 className="font-bold text-[#601131] mb-4">Personal Details</h2>
         <form onSubmit={handleSaveProfile} className="space-y-3">
           <div>
-            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
+            <label className="block text-xs font-semibold text-[#601131]/50 uppercase tracking-wide mb-1.5">
               Full Name
             </label>
             <div className="relative">
-              <User size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+              <User size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#601131]/40 pointer-events-none" />
               <input
                 type="text"
                 value={name}
                 onChange={e => setName(e.target.value)}
                 placeholder="Your name"
-                className="w-full border border-gray-200 rounded-xl pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full border border-[#D7CDA7] rounded-xl pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
-              Email <span className="normal-case font-normal text-gray-400">(read-only)</span>
+            <label className="block text-xs font-semibold text-[#601131]/50 uppercase tracking-wide mb-1.5">
+              Email <span className="normal-case font-normal text-[#601131]/40">(read-only)</span>
             </label>
             <div className="relative">
-              <Mail size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300 pointer-events-none" />
+              <Mail size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#601131]/30 pointer-events-none" />
               <input
                 type="email"
                 value={session.user.email}
                 readOnly
-                className="w-full border border-gray-100 bg-gray-50 rounded-xl pl-9 pr-3 py-2.5 text-sm text-gray-400 cursor-not-allowed"
+                className="w-full border border-[#D7CDA7]/60 bg-[#F5F5DC] rounded-xl pl-9 pr-3 py-2.5 text-sm text-[#601131]/50 cursor-not-allowed"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
+            <label className="block text-xs font-semibold text-[#601131]/50 uppercase tracking-wide mb-1.5">
               Phone
             </label>
             <div className="relative">
-              <Phone size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+              <Phone size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#601131]/40 pointer-events-none" />
               <input
                 type="tel"
                 value={phone}
                 onChange={e => setPhone(e.target.value)}
                 placeholder="07700 900000"
-                className="w-full border border-gray-200 rounded-xl pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full border border-[#D7CDA7] rounded-xl pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
               />
             </div>
           </div>
@@ -172,7 +172,7 @@ export default function AccountPage() {
           <button
             type="submit"
             disabled={savingProfile}
-            className="w-full bg-brand-500 hover:bg-brand-600 disabled:opacity-60 text-white font-semibold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 mt-1"
+            className="w-full bg-[#F0A429] hover:bg-[#e79b26] disabled:opacity-60 text-white font-semibold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 mt-1"
           >
             {savingProfile ? <Loader2 size={16} className="animate-spin" /> : 'Save Changes'}
           </button>
@@ -180,31 +180,31 @@ export default function AccountPage() {
       </section>
 
       {orderHistory.length > 0 && (
-        <section className="bg-white rounded-2xl border border-gray-100 p-5 mb-4 shadow-sm">
+        <section className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] p-5 mb-4 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
-            <Clock size={16} className="text-brand-500" />
-            <h2 className="font-bold text-gray-900">Recent Orders</h2>
+            <Clock size={16} className="text-[#F0A429]" />
+            <h2 className="font-bold text-[#601131]">Recent Orders</h2>
           </div>
           <div className="space-y-2">
             {orderHistory.map(order => (
               <Link
                 key={order.id}
                 href={`/order/orders/${order.id}`}
-                className="flex items-center justify-between p-3 rounded-xl border border-gray-100 hover:border-gray-200 hover:bg-gray-50 transition-all group"
+                className="flex items-center justify-between p-3 rounded-xl border border-[#D7CDA7]/70 hover:border-[#D7CDA7] hover:bg-white transition-all group"
               >
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                    <span className="text-xs font-semibold text-[#601131]/60 uppercase tracking-wide">
                       {order.orderType === 'DELIVERY' ? 'Delivery' : order.orderType === 'EAT_IN' ? 'Dine In' : 'Collection'}
                     </span>
                   </div>
-                  <p className="text-xs text-gray-400 mt-0.5">
+                  <p className="text-xs text-[#601131]/40 mt-0.5">
                     {new Date(order.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
                   </p>
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0">
-                  <span className="text-sm font-bold text-gray-900">£{order.total.toFixed(2)}</span>
-                  <ChevronRight size={14} className="text-gray-300 group-hover:text-gray-500 transition-colors" />
+                  <span className="text-sm font-bold text-[#601131]">£{order.total.toFixed(2)}</span>
+                  <ChevronRight size={14} className="text-[#601131]/30 group-hover:text-[#601131]/60 transition-colors" />
                 </div>
               </Link>
             ))}
@@ -212,17 +212,17 @@ export default function AccountPage() {
         </section>
       )}
 
-      <section className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm">
+      <section className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] p-5 shadow-sm">
         <div className="flex items-start justify-between mb-1">
-          <h2 className="font-bold text-gray-900">Default Delivery Address</h2>
-          <MapPin size={16} className="text-brand-500 mt-0.5" />
+          <h2 className="font-bold text-[#601131]">Default Delivery Address</h2>
+          <MapPin size={16} className="text-[#F0A429] mt-0.5" />
         </div>
-        <p className="text-xs text-gray-400 mb-4">
+        <p className="text-xs text-[#601131]/40 mb-4">
           Saved on this device. Pre-fills your delivery address at checkout.
         </p>
         <form onSubmit={handleSaveAddress} className="space-y-3">
           <div>
-            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
+            <label className="block text-xs font-semibold text-[#601131]/50 uppercase tracking-wide mb-1.5">
               Street Address
             </label>
             <textarea
@@ -230,12 +230,12 @@ export default function AccountPage() {
               onChange={e => setAddress(e.target.value)}
               rows={2}
               placeholder="8 Hendre Road, Pencoed"
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
+              className="w-full border border-[#D7CDA7] rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 resize-none bg-white text-[#601131]"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
+            <label className="block text-xs font-semibold text-[#601131]/50 uppercase tracking-wide mb-1.5">
               Postcode
             </label>
             <input
@@ -244,14 +244,14 @@ export default function AccountPage() {
               onChange={e => setPostcode(e.target.value.toUpperCase())}
               placeholder="CF35 5NW"
               maxLength={8}
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 uppercase"
+              className="w-full border border-[#D7CDA7] rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 uppercase bg-white text-[#601131]"
             />
           </div>
 
           <button
             type="submit"
             className={`w-full font-semibold py-2.5 rounded-xl transition-colors ${
-              savedAddress ? 'bg-green-500 text-white' : 'bg-gray-900 hover:bg-gray-800 text-white'
+              savedAddress ? 'bg-green-500 text-white' : 'bg-[#601131] hover:bg-[#4a0d26] text-white'
             }`}
           >
             {savedAddress ? '✓ Address Saved' : 'Save Address'}

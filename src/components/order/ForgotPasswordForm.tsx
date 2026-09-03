@@ -25,41 +25,41 @@ export default function ForgotPasswordForm() {
   }
 
   return (
-    <div className="max-w-sm mx-auto">
+    <div className="max-w-sm mx-auto font-poppins">
       <Link
         href="/order/login"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 transition-colors mb-6"
+        className="inline-flex items-center gap-1.5 text-sm text-[#601131]/60 hover:text-[#601131] transition-colors mb-6"
       >
         <ArrowLeft size={16} />
         Back to sign in
       </Link>
 
       {sent ? (
-        <div className="bg-white rounded-2xl p-6 text-center space-y-4 border border-gray-100" style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
+        <div className="bg-[#F1EED0] rounded-2xl p-6 text-center space-y-4 border border-[#D7CDA7]">
           <div className="w-14 h-14 rounded-full bg-emerald-100 flex items-center justify-center mx-auto">
             <Mail size={24} className="text-emerald-600" />
           </div>
           <div>
-            <h2 className="font-bold text-gray-900 text-lg">Check your inbox</h2>
-            <p className="text-gray-500 text-sm mt-1.5">
+            <h2 className="font-bold text-[#601131] text-lg">Check your inbox</h2>
+            <p className="text-[#601131]/60 text-sm mt-1.5">
               If <strong>{email}</strong> is registered, you&apos;ll receive a password reset link shortly. It expires in 60 minutes.
             </p>
           </div>
           <Link
             href="/order/login"
-            className="block w-full py-3 border border-gray-200 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-50 text-center transition-colors"
+            className="block w-full py-3 border border-[#D7CDA7] rounded-xl text-sm font-semibold text-[#601131]/70 hover:bg-white text-center transition-colors"
           >
             Back to sign in
           </Link>
         </div>
       ) : (
         <>
-          <h1 className="text-2xl font-black text-gray-900 mb-1">Forgot password?</h1>
-          <p className="text-sm text-gray-400 mb-6">Enter your email and we&apos;ll send you a reset link.</p>
+          <h1 className="text-2xl font-bold text-[#601131] mb-1">Forgot password?</h1>
+          <p className="text-sm text-[#601131]/50 mb-6">Enter your email and we&apos;ll send you a reset link.</p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <label className="block text-sm font-medium text-[#601131] mb-1">Email</label>
               <input
                 type="email"
                 value={email}
@@ -67,14 +67,14 @@ export default function ForgotPasswordForm() {
                 placeholder="you@example.com"
                 autoComplete="email"
                 autoFocus
-                className="w-full border border-gray-200 bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 text-[#601131]"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full disabled:opacity-60 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600"
+              className="w-full disabled:opacity-60 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 bg-[#F0A429] hover:bg-[#e79b26]"
             >
               {loading ? <Loader2 size={18} className="animate-spin" /> : 'Send reset link'}
             </button>

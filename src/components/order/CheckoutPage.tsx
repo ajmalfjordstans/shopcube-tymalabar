@@ -281,12 +281,12 @@ export default function CheckoutPage() {
 
   if (payment) {
     return (
-      <div className="max-w-lg mx-auto">
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Pay for your order</h1>
-        <p className="text-sm text-gray-500 mb-6">
+      <div className="max-w-lg mx-auto font-poppins">
+        <h1 className="text-2xl font-bold text-[#601131] mb-2">Pay for your order</h1>
+        <p className="text-sm text-gray-700 mb-6">
           Your order has been placed. Complete payment below to confirm it.
         </p>
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-[#F1EED0] rounded-xl border border-[#D7CDA7] p-4">
           <Elements stripe={getStripe(store?.stripePublishableKey)} options={{ clientSecret: payment.clientSecret }}>
             <PaymentForm returnUrl={`${window.location.origin}/order/orders/pending`} />
           </Elements>
@@ -297,27 +297,27 @@ export default function CheckoutPage() {
 
   if (storeClosed && !preOrderEnabled) {
     return (
-      <div className="max-w-lg mx-auto">
+      <div className="max-w-lg mx-auto font-poppins">
         <Link
           href="/order/cart"
-          className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 mb-5 transition-colors"
+          className="inline-flex items-center gap-1.5 text-sm text-[#601131]/60 hover:text-[#601131] mb-5 transition-colors"
         >
           <ArrowLeft size={16} />
           Back to order
         </Link>
-        <div className="bg-white rounded-2xl border border-gray-200 p-8 flex flex-col items-center text-center gap-3">
+        <div className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] p-8 flex flex-col items-center text-center gap-3">
           <div className="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center">
             <Clock size={26} className="text-red-500" />
           </div>
-          <h1 className="text-xl font-bold text-gray-900">We&apos;re closed right now</h1>
-          <p className="text-sm text-gray-500">
+          <h1 className="text-xl font-bold text-[#601131]">We&apos;re closed right now</h1>
+          <p className="text-sm text-gray-700">
             {store?.name ?? 'This store'} isn&apos;t accepting orders at the moment.
             {storeStatus && !storeStatus.open && storeStatus.reopenTime &&
               ` We'll be back ${storeStatus.reopenDay} at ${storeStatus.reopenTime}.`}
           </p>
           <Link
             href="/order"
-            className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600"
+            className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-[#B87814]"
           >
             <ArrowLeft size={14} /> Back to menu
           </Link>
@@ -327,16 +327,16 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="max-w-lg mx-auto">
+    <div className="max-w-lg mx-auto font-poppins">
       <Link
         href="/order/cart"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 mb-5 transition-colors"
+        className="inline-flex items-center gap-1.5 text-sm text-[#601131]/60 hover:text-[#601131] mb-5 transition-colors"
       >
         <ArrowLeft size={16} />
         Back to order
       </Link>
 
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Checkout</h1>
+      <h1 className="text-2xl font-bold text-[#601131] mb-6">Checkout</h1>
 
       {!isLoggedIn && (
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
@@ -350,47 +350,47 @@ export default function CheckoutPage() {
       )}
 
       <div className="space-y-4">
-        <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-3">
-          <h2 className="font-semibold text-gray-800">Your details</h2>
+        <div className="bg-[#F1EED0] rounded-xl border border-[#D7CDA7] p-4 space-y-3">
+          <h2 className="font-semibold text-[#601131]">Your details</h2>
           <input
             type="text"
             placeholder="Full name *"
             value={name}
             onChange={e => setName(e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+            className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
           />
           <input
             type="email"
             placeholder="Email address *"
             value={email}
             onChange={e => setEmail(e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+            className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
           />
           <input
             type="tel"
             placeholder="Phone number *"
             value={phone}
             onChange={e => setPhone(e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+            className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
           />
         </div>
 
         {preOrderEnabled && (
-          <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-3">
-            <h2 className="font-semibold text-gray-800 flex items-center gap-2">
-              <Calendar size={16} className="text-brand-500" />
+          <div className="bg-[#F1EED0] rounded-xl border border-[#D7CDA7] p-4 space-y-3">
+            <h2 className="font-semibold text-[#601131] flex items-center gap-2">
+              <Calendar size={16} className="text-[#F0A429]" />
               When would you like this?
             </h2>
             {storeClosed && (
-              <p className="text-xs text-red-500">{closedNoticeMessage}</p>
+              <p className="text-xs text-red-600">{closedNoticeMessage}</p>
             )}
             <div className="flex gap-2">
               {!storeClosed && (
                 <button
                   type="button"
                   onClick={() => setScheduleForLater(false)}
-                  className={`flex-1 text-sm font-semibold py-2.5 rounded-lg border transition-colors ${
-                    !scheduleForLater ? 'border-brand-500 bg-brand-50 text-brand-700' : 'border-gray-200 text-gray-600'
+                  className={`flex-1 text-sm font-semibold py-2.5 rounded-lg border transition-colors bg-white ${
+                    !scheduleForLater ? 'border-[#F0A429] bg-[#F0A429]/10 text-[#B87814]' : 'border-[#D7CDA7] text-[#601131]/60'
                   }`}
                 >
                   As soon as possible
@@ -402,8 +402,8 @@ export default function CheckoutPage() {
                   setScheduleForLater(true);
                   if (!scheduledAtIso) setShowScheduleModal(true);
                 }}
-                className={`flex-1 text-sm font-semibold py-2.5 rounded-lg border transition-colors ${
-                  scheduleForLater ? 'border-brand-500 bg-brand-50 text-brand-700' : 'border-gray-200 text-gray-600'
+                className={`flex-1 text-sm font-semibold py-2.5 rounded-lg border transition-colors bg-white ${
+                  scheduleForLater ? 'border-[#F0A429] bg-[#F0A429]/10 text-[#B87814]' : 'border-[#D7CDA7] text-[#601131]/60'
                 }`}
               >
                 Schedule for later
@@ -413,16 +413,16 @@ export default function CheckoutPage() {
               <button
                 type="button"
                 onClick={() => setShowScheduleModal(true)}
-                className="w-full flex items-center justify-between gap-2 border border-gray-200 rounded-lg px-3 py-2.5 text-sm hover:border-brand-300 transition-colors"
+                className="w-full flex items-center justify-between gap-2 border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm hover:border-[#F0A429]/50 transition-colors bg-white"
               >
                 {scheduledAtIso ? (
-                  <span className="font-medium text-gray-800">
+                  <span className="font-medium text-[#601131]">
                     {new Date(scheduledAtIso).toLocaleString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
                   </span>
                 ) : (
-                  <span className="text-gray-400">Choose a time…</span>
+                  <span className="text-[#601131]/40">Choose a time…</span>
                 )}
-                <span className="flex items-center gap-1 text-brand-500 font-semibold text-xs flex-shrink-0">
+                <span className="flex items-center gap-1 text-[#F0A429] font-semibold text-xs flex-shrink-0">
                   {scheduledAtIso ? 'Change' : 'Select'}
                   <ChevronRight size={14} />
                 </span>
@@ -432,9 +432,9 @@ export default function CheckoutPage() {
         )}
 
         {cart.orderType === 'DELIVERY' && (
-          <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-3">
-            <h2 className="font-semibold text-gray-800 flex items-center gap-2">
-              <MapPin size={16} className="text-brand-500" />
+          <div className="bg-[#F1EED0] rounded-xl border border-[#D7CDA7] p-4 space-y-3">
+            <h2 className="font-semibold text-[#601131] flex items-center gap-2">
+              <MapPin size={16} className="text-[#F0A429]" />
               Delivery address
             </h2>
             <input
@@ -442,17 +442,17 @@ export default function CheckoutPage() {
               placeholder="Street address"
               value={address}
               onChange={e => setAddress(e.target.value)}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+              className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
             />
             <input
               type="text"
               placeholder="Postcode *"
               value={postcode}
               onChange={e => setPostcode(e.target.value.toUpperCase())}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+              className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
             />
             {!!cart.deliveryDetails?.minOrderValue && cart.deliveryDetails.minOrderValue > 0 && (
-              <p className={`text-xs ${subtotal < cart.deliveryDetails.minOrderValue ? 'text-red-500 font-medium' : 'text-gray-400'}`}>
+              <p className={`text-xs ${subtotal < cart.deliveryDetails.minOrderValue ? 'text-red-600 font-medium' : 'text-[#601131]/50'}`}>
                 Minimum order for delivery: £{cart.deliveryDetails.minOrderValue.toFixed(2)}
                 {subtotal < cart.deliveryDetails.minOrderValue &&
                   ` — add £${(cart.deliveryDetails.minOrderValue - subtotal).toFixed(2)} more to qualify`}
@@ -461,50 +461,50 @@ export default function CheckoutPage() {
           </div>
         )}
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4 space-y-2">
-          <h2 className="font-semibold text-gray-800 mb-3">Order summary</h2>
+        <div className="bg-[#F1EED0] rounded-xl border border-[#D7CDA7] p-4 space-y-2">
+          <h2 className="font-semibold text-[#601131] mb-3">Order summary</h2>
           {cart.items.map(item => (
-            <div key={item.cartItemId} className="flex justify-between text-sm text-gray-600">
+            <div key={item.cartItemId} className="flex justify-between text-sm text-gray-700">
               <span>{item.quantity}× {item.name}</span>
               <span>£{item.totalPrice.toFixed(2)}</span>
             </div>
           ))}
-          <div className="border-t border-gray-100 pt-2 mt-2 space-y-1">
+          <div className="border-t border-[#D7CDA7] pt-2 mt-2 space-y-1">
             {preOrderEnabled && scheduleForLater && scheduledAtIso && (
-              <div className="flex justify-between text-sm text-gray-600">
+              <div className="flex justify-between text-sm text-gray-700">
                 <span>Scheduled for</span>
-                <span className="font-medium text-gray-800">
+                <span className="font-medium text-[#601131]">
                   {new Date(scheduledAtIso).toLocaleString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
                 </span>
               </div>
             )}
-            <div className="flex justify-between text-sm text-gray-600">
+            <div className="flex justify-between text-sm text-gray-700">
               <span>Subtotal</span>
               <span>£{subtotal.toFixed(2)}</span>
             </div>
             {tax > 0 && (
-              <div className="flex justify-between text-sm text-gray-600">
+              <div className="flex justify-between text-sm text-gray-700">
                 <span>Tax</span>
                 <span>£{tax.toFixed(2)}</span>
               </div>
             )}
             {cart.orderType === 'DELIVERY' && (
-              <div className="flex justify-between text-sm text-gray-600">
+              <div className="flex justify-between text-sm text-gray-700">
                 <span>Delivery</span>
                 {deliveryCheck?.checking ? (
-                  <span className="text-gray-400 italic flex items-center gap-1">
+                  <span className="text-[#601131]/40 italic flex items-center gap-1">
                     <Loader2 size={12} className="animate-spin" /> Checking…
                   </span>
                 ) : deliveryCheck?.ok && cart.deliveryDetails?.deliveryFee !== undefined ? (
-                  <span className="font-medium text-gray-700">£{cart.deliveryDetails.deliveryFee.toFixed(2)}</span>
+                  <span className="font-medium text-[#601131]">£{cart.deliveryDetails.deliveryFee.toFixed(2)}</span>
                 ) : deliveryCheck?.message ? (
-                  <span className="text-red-500 text-xs">{deliveryCheck.message}</span>
+                  <span className="text-red-600 text-xs">{deliveryCheck.message}</span>
                 ) : (
-                  <span className="text-gray-400 italic">calculated by restaurant</span>
+                  <span className="text-[#601131]/40 italic">calculated by restaurant</span>
                 )}
               </div>
             )}
-            <div className="flex justify-between font-bold text-gray-900 pt-1">
+            <div className="flex justify-between font-bold text-[#601131] pt-1">
               <span>Total</span>
               <span>£{total.toFixed(2)}</span>
             </div>
@@ -512,11 +512,11 @@ export default function CheckoutPage() {
         </div>
 
         {store?.giftCardEnabled !== false && (
-          <div className="bg-white rounded-xl border border-gray-200 p-4">
+          <div className="bg-[#F1EED0] rounded-xl border border-[#D7CDA7] p-4">
             <button onClick={() => setGcOpen(v => !v)}
-              className="w-full flex items-center justify-between text-sm font-semibold text-gray-700 hover:text-gray-900">
-              <span className="flex items-center gap-2"><Gift size={16} className="text-brand-500" /> Have a gift card?</span>
-              <span className="text-gray-400 text-xs">{gcOpen ? 'Hide' : 'Apply'}</span>
+              className="w-full flex items-center justify-between text-sm font-semibold text-[#601131]/80 hover:text-[#601131]">
+              <span className="flex items-center gap-2"><Gift size={16} className="text-[#F0A429]" /> Have a gift card?</span>
+              <span className="text-[#601131]/40 text-xs">{gcOpen ? 'Hide' : 'Apply'}</span>
             </button>
 
             {gcOpen && (
@@ -529,35 +529,35 @@ export default function CheckoutPage() {
                         onChange={e => { setGcCode(e.target.value.toUpperCase()); setGcError(null); }}
                         onKeyDown={e => e.key === 'Enter' && handleLookupGiftCard()}
                         placeholder="e.g. GC-9D4A7C82"
-                        className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-brand-500"
+                        className="flex-1 border border-[#D7CDA7] rounded-lg px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
                       />
                       <button onClick={handleLookupGiftCard} disabled={gcLooking}
-                        className="px-4 py-2 bg-brand-500 text-white text-sm font-bold rounded-lg disabled:opacity-60">
+                        className="px-4 py-2 bg-[#F0A429] text-white text-sm font-bold rounded-lg disabled:opacity-60">
                         {gcLooking ? <Loader2 size={14} className="animate-spin" /> : 'Check'}
                       </button>
                     </div>
-                    {gcError && <p className="text-xs text-red-500">{gcError}</p>}
+                    {gcError && <p className="text-xs text-red-600">{gcError}</p>}
                   </>
                 ) : (
                   <div className="space-y-2">
                     <div className="flex items-center justify-between bg-green-50 border border-green-200 rounded-lg px-3 py-2">
                       <div>
-                        <p className="text-sm font-bold font-mono text-gray-900">{gcInfo.code}</p>
+                        <p className="text-sm font-bold font-mono text-[#601131]">{gcInfo.code}</p>
                         <p className="text-xs text-green-700">Balance: £{gcInfo.remainingBalance.toFixed(2)}</p>
                       </div>
                       <button onClick={() => { setGcInfo(null); setGcCode(''); setGcApply(''); }}
-                        className="text-gray-400 hover:text-gray-600">
+                        className="text-[#601131]/40 hover:text-[#601131]">
                         <X size={16} />
                       </button>
                     </div>
                     <div>
-                      <label className="text-xs text-gray-500 mb-1 block">Amount to apply (max £{Math.min(gcInfo.remainingBalance, total).toFixed(2)})</label>
+                      <label className="text-xs text-[#601131]/50 mb-1 block">Amount to apply (max £{Math.min(gcInfo.remainingBalance, total).toFixed(2)})</label>
                       <input
                         type="number" min="0.01" step="0.01"
                         max={Math.min(gcInfo.remainingBalance, total)}
                         value={gcApply}
                         onChange={e => setGcApply(e.target.value)}
-                        className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                        className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
                       />
                     </div>
                     {gcApplyAmount > 0 && (
@@ -567,7 +567,7 @@ export default function CheckoutPage() {
                       </div>
                     )}
                     {remainingAfterGc > 0 && (
-                      <div className="flex justify-between text-sm font-bold text-gray-900">
+                      <div className="flex justify-between text-sm font-bold text-[#601131]">
                         <span>Remaining to pay</span>
                         <span>£{remainingAfterGc.toFixed(2)}</span>
                       </div>
@@ -593,7 +593,7 @@ export default function CheckoutPage() {
         <button
           onClick={handlePlaceOrder}
           disabled={placing}
-          className="w-full bg-brand-500 hover:bg-brand-600 disabled:opacity-60 text-white font-bold py-4 rounded-2xl transition-colors flex items-center justify-center gap-2"
+          className="w-full bg-[#F0A429] hover:bg-[#e79b26] disabled:opacity-60 text-white font-bold py-4 rounded-2xl transition-colors flex items-center justify-center gap-2"
         >
           {placing ? (
             <>

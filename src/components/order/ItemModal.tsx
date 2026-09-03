@@ -97,10 +97,10 @@ export default function ItemModal({ item, onClose }: Props) {
   const lineTotal = (basePrice + modifierTotal) * quantity;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center font-poppins">
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
 
-      <div className="relative w-full sm:max-w-lg bg-white rounded-t-2xl sm:rounded-2xl max-h-[90vh] flex flex-col shadow-2xl">
+      <div className="relative w-full sm:max-w-lg bg-[#F1EED0] rounded-t-2xl sm:rounded-2xl max-h-[90vh] flex flex-col shadow-2xl">
         {item.imageUrl && (
           <div className="relative h-48 w-full overflow-hidden rounded-t-2xl flex-shrink-0">
             <Image src={item.imageUrl} alt={item.name} fill className="object-cover" />
@@ -109,16 +109,16 @@ export default function ItemModal({ item, onClose }: Props) {
 
         <div className="flex items-start justify-between p-5 flex-shrink-0">
           <div className="flex-1 min-w-0 pr-4">
-            <h2 className="text-xl font-bold text-gray-900">{item.name}</h2>
+            <h2 className="text-xl font-bold text-[#601131]">{item.name}</h2>
             {item.description && (
-              <p className="text-gray-500 text-sm mt-1">{item.description}</p>
+              <p className="text-gray-700 text-sm mt-1">{item.description}</p>
             )}
-            <p className="font-semibold text-gray-900 mt-1">
-              {showFromPrice && <span className="font-medium text-gray-400 text-xs mr-1">From</span>}
+            <p className="font-semibold text-[#601131] mt-1">
+              {showFromPrice && <span className="font-medium text-[#601131]/50 text-xs mr-1">From</span>}
               £{startingPrice.toFixed(2)}
             </p>
           </div>
-          <button onClick={onClose} className="p-1 rounded-full hover:bg-gray-100 transition-colors flex-shrink-0">
+          <button onClick={onClose} className="p-1 rounded-full hover:bg-white/60 transition-colors flex-shrink-0 text-[#601131]">
             <X size={20} />
           </button>
         </div>
@@ -126,7 +126,7 @@ export default function ItemModal({ item, onClose }: Props) {
         <div className="flex-1 overflow-y-auto px-5 pb-2 space-y-6">
           {item.allergens.length > 0 && (
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-2">Allergens</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#601131]/50 mb-2">Allergens</p>
               <div className="flex flex-wrap gap-2">
                 {item.allergens.map(a => (
                   <span key={a.id} className="text-xs bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-full">
@@ -147,7 +147,7 @@ export default function ItemModal({ item, onClose }: Props) {
           ))}
 
           <div>
-            <label className="text-xs font-semibold uppercase tracking-wide text-gray-500 block mb-2">
+            <label className="text-xs font-semibold uppercase tracking-wide text-[#601131]/50 block mb-2">
               Special Instructions
             </label>
             <textarea
@@ -156,24 +156,24 @@ export default function ItemModal({ item, onClose }: Props) {
               placeholder="Allergies, preferences…"
               rows={2}
               maxLength={200}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-brand-500"
+              className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
             />
           </div>
         </div>
 
-        <div className="p-5 border-t border-gray-100 flex-shrink-0 flex items-center gap-3">
-          <div className="flex items-center gap-2 border border-gray-200 rounded-full px-2 py-1">
+        <div className="p-5 border-t border-[#D7CDA7] flex-shrink-0 flex items-center gap-3">
+          <div className="flex items-center gap-2 border border-[#D7CDA7] rounded-full px-2 py-1 bg-white">
             <button
               onClick={() => setQuantity(q => Math.max(1, q - 1))}
-              className="p-1 rounded-full hover:bg-gray-100 disabled:opacity-40"
+              className="p-1 rounded-full hover:bg-[#F5F5DC] disabled:opacity-40 text-[#601131]"
               disabled={quantity <= 1}
             >
               <Minus size={16} />
             </button>
-            <span className="w-5 text-center font-semibold text-sm">{quantity}</span>
+            <span className="w-5 text-center font-semibold text-sm text-[#601131]">{quantity}</span>
             <button
               onClick={() => setQuantity(q => q + 1)}
-              className="p-1 rounded-full hover:bg-gray-100"
+              className="p-1 rounded-full hover:bg-[#F5F5DC] text-[#601131]"
             >
               <Plus size={16} />
             </button>
@@ -182,7 +182,7 @@ export default function ItemModal({ item, onClose }: Props) {
           <button
             onClick={handleAdd}
             className={`flex-1 text-white font-semibold py-3 rounded-full transition-colors duration-200 flex items-center px-4 ${
-              justAdded ? 'bg-green-500 justify-center gap-2' : 'bg-brand-500 hover:bg-brand-600 justify-between'
+              justAdded ? 'bg-green-500 justify-center gap-2' : 'bg-[#F0A429] hover:bg-[#e79b26] justify-between'
             }`}
           >
             {justAdded ? (
@@ -215,9 +215,9 @@ function ModifierGroupSection({
   return (
     <div>
       <div className="flex items-center justify-between mb-2">
-        <p className="text-sm font-semibold text-gray-800">{group.name}</p>
+        <p className="text-sm font-semibold text-[#601131]">{group.name}</p>
         <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
-          group.isRequired ? 'bg-red-50 text-red-600' : 'bg-gray-100 text-gray-500'
+          group.isRequired ? 'bg-red-50 text-red-600' : 'bg-[#F5F5DC] text-[#601131]/50'
         }`}>
           {group.isRequired ? 'Required' : 'Optional'}
         </span>
@@ -231,20 +231,20 @@ function ModifierGroupSection({
               onClick={() => onToggle(mod)}
               className={`w-full flex items-center justify-between text-sm px-3 py-2.5 rounded-lg border transition-colors ${
                 selected
-                  ? 'border-brand-500 bg-brand-50 text-brand-700'
-                  : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300'
+                  ? 'border-[#F0A429] bg-[#F0A429]/10 text-[#B87814]'
+                  : 'border-[#D7CDA7] bg-white text-[#601131] hover:border-[#601131]/30'
               }`}
             >
               <div className="flex items-center gap-2">
                 <div className={`w-4 h-4 rounded-full border-2 flex-shrink-0 flex items-center justify-center ${
-                  selected ? 'border-brand-500 bg-brand-500' : 'border-gray-300'
+                  selected ? 'border-[#F0A429] bg-[#F0A429]' : 'border-[#D7CDA7]'
                 }`}>
                   {selected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
                 </div>
                 <span>{mod.name}</span>
               </div>
               {mod.price > 0 && (
-                <span className="text-gray-500">+£{mod.price.toFixed(2)}</span>
+                <span className="text-[#601131]/60">+£{mod.price.toFixed(2)}</span>
               )}
             </button>
           );
