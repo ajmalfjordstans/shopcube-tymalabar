@@ -327,7 +327,10 @@ export default function MenuBrowser() {
       </div>
 
       {/* Search + filters + category pills — sticky so it stays reachable while browsing a long menu */}
-      <div className="sticky top-0 z-20 bg-[#F1EED0] rounded-xl border border-[#D7CDA7] mb-6 shadow-sm">
+      <div
+        className="sticky z-20 bg-[#F1EED0] rounded-xl border border-[#D7CDA7] mb-6 shadow-sm"
+        style={{ top: 'var(--site-nav-offset, 0px)' }}
+      >
         <div className="flex items-center gap-2 px-4 md:px-6 pt-3 pb-2">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#601131]/40 w-4 h-4 pointer-events-none" />
@@ -587,7 +590,10 @@ export default function MenuBrowser() {
         </div>
 
         {/* Cart card (desktop) — sticky, pinned just below the sticky toolbar */}
-        <aside className="hidden lg:flex lg:flex-col sticky top-[130px] max-h-[calc(100vh-150px)] bg-[#F1EED0] rounded-xl border border-[#D7CDA7] overflow-hidden">
+        <aside
+          className="hidden lg:flex lg:flex-col sticky max-h-[calc(100vh-150px)] bg-[#F1EED0] rounded-xl border border-[#D7CDA7] overflow-hidden"
+          style={{ top: 'calc(var(--site-nav-offset, 0px) + 130px)' }}
+        >
           <div className="flex-shrink-0 px-4 pt-4 pb-3 border-b border-[#D7CDA7] space-y-3">
             <div className="flex items-center justify-between">
               <h2 className="font-bold text-[#601131] text-base">Your Order</h2>

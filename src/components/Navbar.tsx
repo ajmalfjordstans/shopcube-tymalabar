@@ -9,6 +9,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const lastScrollY = useRef(0);
+  const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const isOrderSection = pathname?.startsWith('/order') ?? false;
 
@@ -38,13 +39,26 @@ const Navbar = () => {
     if (!isOrderSection) setIsHidden(false);
   }, [isOrderSection]);
 
+  // This nav is position:fixed with a higher z-index than the ordering page's own
+  // sticky search/category bar, so that bar would otherwise stick underneath it
+  // whenever this nav is visible. Publish this nav's live rendered height (0 while
+  // hidden) as a CSS variable so the ordering page can offset its sticky elements
+  // below it instead of overlapping.
+  useEffect(() => {
+    const h = navRef.current?.offsetHeight ?? 0;
+    document.documentElement.style.setProperty(
+      '--site-nav-offset',
+      isOrderSection && !isHidden ? `${h + 8}px` : '0px'
+    );
+  }, [isScrolled, isHidden, isOrderSection]);
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
     <>
-      <nav className={`px-4 sm:px-6 fixed z-[90] w-full top-0 transition-all duration-300 font-poppins ${isHidden ? '-translate-y-full' : 'translate-y-0'} ${isScrolled
+      <nav ref={navRef} className={`px-4 sm:px-6 fixed z-[90] w-full top-0 transition-all duration-300 font-poppins ${isHidden ? '-translate-y-full' : 'translate-y-0'} ${isScrolled
         ? 'bg-[#601131] py-1 shadow-lg backdrop-blur-sm'
         : 'bg-transparent py-4'
         }`}>
