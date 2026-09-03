@@ -203,18 +203,22 @@ export default function ScrollStoryHomePage() {
       });
 
       /* ---------------- About / roots ----------------
-         Nothing here starts fully hidden — a pause anywhere in the scroll
-         (a short flick, a moment spent reading) must never leave the section
-         looking broken or half-missing. Everything is present from the first
-         frame; scroll only adds a gentle settle/parallax on top. */
+         The circle-wipe and heading-wipe are back, just floored instead of
+         starting from fully hidden — a pause anywhere in the scroll must never
+         leave the section looking broken, but the reveal itself should still
+         be visible motion, not just a settle. */
       s.about = lerp(s.about, getSectionProgress(aboutSpacerRef.current), SMOOTHING);
       const aboutP = s.about;
       if (aboutImageWrapRef.current) {
-        aboutImageWrapRef.current.style.clipPath = 'circle(75% at 50% 50%)';
-        aboutImageWrapRef.current.style.transform = `scale(${lerp(1.05, 1, aboutP)}) translateY(${lerp(0, -8, aboutP)}%)`;
+        const revealP = easeOutCubic(localProgress(aboutP, 0, 0.45));
+        aboutImageWrapRef.current.style.clipPath = `circle(${lerp(40, 75, revealP)}% at 50% 50%)`;
+        aboutImageWrapRef.current.style.transform = `scale(${lerp(1.05, 1, revealP)}) translateY(${lerp(0, -8, aboutP)}%)`;
       }
-      if (aboutHeadingRef.current)
-        aboutHeadingRef.current.style.transform = `translateY(${lerp(10, 0, easeOutCubic(localProgress(aboutP, 0, 0.25)))}px)`;
+      if (aboutHeadingRef.current) {
+        const hp = easeOutCubic(localProgress(aboutP, 0.05, 0.3));
+        aboutHeadingRef.current.style.clipPath = `inset(0 ${lerp(40, 0, hp)}% 0 0)`;
+        aboutHeadingRef.current.style.transform = `translateY(${lerp(6, 0, hp)}px)`;
+      }
       if (aboutParaRef.current) {
         const pp = lerp(0.7, 1, localProgress(aboutP, 0.1, 0.3));
         aboutParaRef.current.style.opacity = `${pp}`;
@@ -246,20 +250,23 @@ export default function ScrollStoryHomePage() {
         menuHeadingRef.current.style.transform = `translateY(${lerp(-8, 0, hp)}px)`;
       }
       // Stagger the three dish pairs across the whole section instead of finishing
-      // by the halfway point — the last pair now lands right at the handoff.
+      // by the halfway point — the last pair now lands right at the handoff. These
+      // fly in from fully off-screen (no visibility floor, unlike the headline
+      // content above) — the heading and center dish are already always visible,
+      // so this section can never look broken even while a card is still off-frame.
       menuLeftRefs.current.forEach((el, i) => {
         if (!el) return;
         const start = i * 0.25;
         const local = easeOutBack(localProgress(menuP, start, start + 0.45));
-        el.style.transform = `translateX(${lerp(-18, 0, local)}vw)`;
-        el.style.opacity = `${lerp(0.5, 1, clamp(local * 1.3))}`;
+        el.style.transform = `translateX(${lerp(-70, 0, local)}vw)`;
+        el.style.opacity = `${clamp(local * 1.3)}`;
       });
       menuRightRefs.current.forEach((el, i) => {
         if (!el) return;
         const start = i * 0.25;
         const local = easeOutBack(localProgress(menuP, start, start + 0.45));
-        el.style.transform = `translateX(${lerp(18, 0, local)}vw)`;
-        el.style.opacity = `${lerp(0.5, 1, clamp(local * 1.3))}`;
+        el.style.transform = `translateX(${lerp(70, 0, local)}vw)`;
+        el.style.opacity = `${clamp(local * 1.3)}`;
       });
 
       /* ---------------- How it works ---------------- */
@@ -473,7 +480,7 @@ export default function ScrollStoryHomePage() {
                 <div
                   ref={aboutImageWrapRef}
                   className="relative w-72 h-72 lg:w-96 lg:h-96 rounded-full overflow-hidden will-change-transform"
-                  style={{ clipPath: 'circle(75% at 50% 50%)' }}
+                  style={{ clipPath: 'circle(40% at 50% 50%)' }}
                 >
                   <Image src="/images/home/location.png" alt="About Ty Malabar" fill className="object-cover object-center" />
                 </div>
@@ -484,6 +491,7 @@ export default function ScrollStoryHomePage() {
                 <h2
                   ref={aboutHeadingRef}
                   className="text-4xl font-bold mb-6 text-gray-800 will-change-transform"
+                  style={{ clipPath: 'inset(0 40% 0 0)' }}
                 >
                   A Culinary Journey Through<br />Tradition And Taste
                 </h2>
@@ -528,7 +536,7 @@ export default function ScrollStoryHomePage() {
                   key={dish.name}
                   ref={el => { menuLeftRefs.current[i] = el; }}
                   className="flex items-center bg-white p-4 rounded-xl shadow-md will-change-transform"
-                  style={{ opacity: 0.5 }}
+                  style={{ opacity: 0 }}
                 >
                   <div className="text-center w-full">
                     <h3 className="font-semibold text-gray-800">{dish.name}</h3>
@@ -558,7 +566,7 @@ export default function ScrollStoryHomePage() {
                   key={dish.name}
                   ref={el => { menuRightRefs.current[i] = el; }}
                   className="flex items-center bg-white p-4 rounded-xl shadow-md will-change-transform"
-                  style={{ opacity: 0.5 }}
+                  style={{ opacity: 0 }}
                 >
                   <div className="text-center w-full">
                     <h3 className="font-semibold text-gray-800">{dish.name}</h3>

@@ -12,16 +12,17 @@ const Navbar = () => {
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const isOrderSection = pathname?.startsWith('/order') ?? false;
+  // The ordering pages have their own sticky search bar competing for the same
+  // space, and the home-v3 scroll story wants the nav out of the way of its
+  // pinned sections — auto-hide the nav on scroll-down for both.
+  const autoHideSection = isOrderSection || (pathname?.startsWith('/home-v3') ?? false);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       setIsScrolled(scrollTop > 50);
 
-      // On the ordering pages, the page has its own sticky search/category bar right
-      // below this nav — auto-hide this nav on scroll-down so that bar can take the
-      // top of the screen instead of the two competing for the same space.
-      if (isOrderSection) {
+      if (autoHideSection) {
         const goingDown = scrollTop > lastScrollY.current;
         setIsHidden(goingDown && scrollTop > 120);
       } else {
@@ -32,12 +33,12 @@ const Navbar = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isOrderSection]);
+  }, [autoHideSection]);
 
-  // Reset when navigating away from /order so the nav doesn't stay hidden elsewhere.
+  // Reset when navigating away so the nav doesn't stay hidden elsewhere.
   useEffect(() => {
-    if (!isOrderSection) setIsHidden(false);
-  }, [isOrderSection]);
+    if (!autoHideSection) setIsHidden(false);
+  }, [autoHideSection]);
 
   // This nav is position:fixed with a higher z-index than the ordering page's own
   // sticky search/category bar, so that bar would otherwise stick underneath it
