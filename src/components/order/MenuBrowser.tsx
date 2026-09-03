@@ -326,8 +326,8 @@ export default function MenuBrowser() {
         )}
       </div>
 
-      {/* Search + filters + category pills */}
-      <div className="bg-[#F1EED0] rounded-xl border border-[#D7CDA7] mb-6">
+      {/* Search + filters + category pills — sticky so it stays reachable while browsing a long menu */}
+      <div className="sticky top-0 z-20 bg-[#F1EED0] rounded-xl border border-[#D7CDA7] mb-6 shadow-sm">
         <div className="flex items-center gap-2 px-4 md:px-6 pt-3 pb-2">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#601131]/40 w-4 h-4 pointer-events-none" />
@@ -586,9 +586,9 @@ export default function MenuBrowser() {
           )}
         </div>
 
-        {/* Cart card (desktop) */}
-        <aside className="hidden lg:block bg-[#F1EED0] rounded-xl border border-[#D7CDA7] overflow-hidden">
-          <div className="px-4 pt-4 pb-3 border-b border-[#D7CDA7] space-y-3">
+        {/* Cart card (desktop) — sticky, pinned just below the sticky toolbar */}
+        <aside className="hidden lg:flex lg:flex-col sticky top-[130px] max-h-[calc(100vh-150px)] bg-[#F1EED0] rounded-xl border border-[#D7CDA7] overflow-hidden">
+          <div className="flex-shrink-0 px-4 pt-4 pb-3 border-b border-[#D7CDA7] space-y-3">
             <div className="flex items-center justify-between">
               <h2 className="font-bold text-[#601131] text-base">Your Order</h2>
               {itemCount > 0 && (
@@ -674,7 +674,7 @@ export default function MenuBrowser() {
             )}
           </div>
 
-          <div>
+          <div className="flex-1 overflow-y-auto">
             {itemCount === 0 ? (
               <div className="flex flex-col items-center justify-center gap-3 py-10">
                 <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-[#F0A429]/10">
@@ -700,7 +700,7 @@ export default function MenuBrowser() {
           </div>
 
           {itemCount > 0 && (
-            <div className="border-t border-[#D7CDA7] p-4">
+            <div className="flex-shrink-0 border-t border-[#D7CDA7] p-4">
               <div className="space-y-1.5 mb-4">
                 <div className="flex justify-between text-sm text-[#601131]/60">
                   <span>Subtotal</span>

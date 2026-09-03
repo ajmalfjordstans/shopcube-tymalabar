@@ -35,7 +35,10 @@ export default function OrderHeader() {
         />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between gap-4 flex-wrap">
+      {/* pt clears the site navbar's fixed, transparent, unscrolled height (~120px) — this
+          header's own maroon background needs to reach all the way to y=0 so the navbar's
+          white text has something dark to sit on, the same way MenuHero does on other pages. */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 pt-[120px] pb-4 flex items-center justify-between gap-4 flex-wrap">
         <div>
           <Link href="/order" className="font-bold text-lg leading-tight">
             {storeName}

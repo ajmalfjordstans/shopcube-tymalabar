@@ -1,21 +1,42 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const lastScrollY = useRef(0);
+  const pathname = usePathname();
+  const isOrderSection = pathname?.startsWith('/order') ?? false;
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       setIsScrolled(scrollTop > 50);
+
+      // On the ordering pages, the page has its own sticky search/category bar right
+      // below this nav — auto-hide this nav on scroll-down so that bar can take the
+      // top of the screen instead of the two competing for the same space.
+      if (isOrderSection) {
+        const goingDown = scrollTop > lastScrollY.current;
+        setIsHidden(goingDown && scrollTop > 120);
+      } else {
+        setIsHidden(false);
+      }
+      lastScrollY.current = scrollTop;
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isOrderSection]);
+
+  // Reset when navigating away from /order so the nav doesn't stay hidden elsewhere.
+  useEffect(() => {
+    if (!isOrderSection) setIsHidden(false);
+  }, [isOrderSection]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -23,7 +44,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`px-4 sm:px-6 fixed z-[90] w-full top-0 transition-all duration-300 font-poppins ${isScrolled
+      <nav className={`px-4 sm:px-6 fixed z-[90] w-full top-0 transition-all duration-300 font-poppins ${isHidden ? '-translate-y-full' : 'translate-y-0'} ${isScrolled
         ? 'bg-[#601131] py-1 shadow-lg backdrop-blur-sm'
         : 'bg-transparent py-4'
         }`}>

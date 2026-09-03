@@ -21,12 +21,9 @@
   --color-brand-700: #B87814;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* This site is light-themed only (every page uses fixed warm hex colors, no dark
+   design) — no prefers-color-scheme override, so body's background never leaks
+   through as black for OS-dark-mode users during scroll/sticky compositing. */
 
 body {
   background: var(--background);
