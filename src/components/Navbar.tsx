@@ -43,12 +43,14 @@ const Navbar = () => {
   // sticky search/category bar, so that bar would otherwise stick underneath it
   // whenever this nav is visible. Publish this nav's live rendered height (0 while
   // hidden) as a CSS variable so the ordering page can offset its sticky elements
-  // below it instead of overlapping.
+  // below it instead of overlapping. A small floor keeps a breathing gap above the
+  // sticky bar even once this nav is fully hidden, instead of it touching the very
+  // edge of the viewport.
   useEffect(() => {
     const h = navRef.current?.offsetHeight ?? 0;
     document.documentElement.style.setProperty(
       '--site-nav-offset',
-      isOrderSection && !isHidden ? `${h + 8}px` : '0px'
+      isOrderSection ? (isHidden ? '8px' : `${h + 8}px`) : '0px'
     );
   }, [isScrolled, isHidden, isOrderSection]);
 

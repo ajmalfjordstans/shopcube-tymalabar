@@ -778,7 +778,7 @@ function MenuItemRow({ item, accent, onClick }: { item: MenuItem; accent: string
   return (
     <button
       onClick={onClick}
-      className="w-full text-left bg-[#F1EED0] rounded-xl flex items-stretch overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 group"
+      className="w-full text-left bg-white rounded-xl flex items-stretch overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 group"
     >
       <div className="w-1 self-stretch flex-shrink-0" style={{ backgroundColor: accent }} />
 
