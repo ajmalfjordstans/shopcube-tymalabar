@@ -52,10 +52,10 @@ function getSectionProgress(el: HTMLElement | null): number {
 /* ---------------------------------- content ---------------------------------- */
 
 const FEATURES = [
-  { icon: '/icons/authentic.svg', title: 'Authentic Flavors', desc: "Kerala's traditional dishes await" },
-  { icon: '/icons/delivery.svg', title: 'Fast Delivery', desc: 'Hot meals at your doorstep' },
-  { icon: '/icons/catering.svg', title: 'Budget Catering', desc: 'Affordable event catering' },
-  { icon: '/icons/customised.svg', title: 'Customized Meals', desc: 'Personalized dining plans' },
+  { icon: '/icons/authentic.svg', title: 'Authentic Flavors', desc: "Kerala's traditional dishes await", accent: '#F0A429' },
+  { icon: '/icons/delivery.svg', title: 'Fast Delivery', desc: 'Hot meals at your doorstep', accent: '#8b6b2f' },
+  { icon: '/icons/catering.svg', title: 'Budget Catering', desc: 'Affordable event catering', accent: '#601131' },
+  { icon: '/icons/customised.svg', title: 'Customized Meals', desc: 'Personalized dining plans', accent: '#4a7c6b' },
 ];
 
 const ABOUT_POINTS = [
@@ -99,11 +99,7 @@ const CHAPTERS = ['Arrival', 'Why Us', 'Our Roots', 'The Menu', 'How It Works', 
 
 export default function ScrollStoryHomePage() {
   const heroSpacerRef = useRef<HTMLDivElement>(null);
-  const heroEyebrowRef = useRef<HTMLDivElement>(null);
-  const heroLine1Ref = useRef<HTMLDivElement>(null);
-  const heroLine2Ref = useRef<HTMLDivElement>(null);
-  const heroParaRef = useRef<HTMLDivElement>(null);
-  const heroCtaRef = useRef<HTMLDivElement>(null);
+  const heroTextRef = useRef<HTMLDivElement>(null);
   const heroImageRef = useRef<HTMLDivElement>(null);
   const heroInnerRef = useRef<HTMLDivElement>(null);
 
@@ -150,35 +146,18 @@ export default function ScrollStoryHomePage() {
     function render() {
       ticking = false;
 
-      /* ---------------- Hero ---------------- */
+      /* ---------------- Hero ----------------
+         Fully visible the instant the page loads (no scroll-gated entrance —
+         a hero that starts blank reads as "still loading"). Scrolling instead
+         drives a gentle parallax drift, then hands off to the next chapter. */
       const heroP = getSectionProgress(heroSpacerRef.current);
-      const eyebrowP = easeOutCubic(localProgress(heroP, 0, 0.22));
-      const line1P = easeOutCubic(localProgress(heroP, 0.05, 0.32));
-      const line2P = easeOutCubic(localProgress(heroP, 0.15, 0.42));
-      const paraP = easeOutCubic(localProgress(heroP, 0.28, 0.52));
-      const ctaP = easeOutBack(localProgress(heroP, 0.4, 0.68));
-      const imgP = easeOutCubic(localProgress(heroP, 0, 0.6));
       const exitP = localProgress(heroP, 0.72, 1);
 
-      if (heroEyebrowRef.current) {
-        heroEyebrowRef.current.style.transform = `translateY(${lerp(24, 0, eyebrowP)}px)`;
-        heroEyebrowRef.current.style.opacity = `${eyebrowP}`;
-      }
-      if (heroLine1Ref.current)
-        heroLine1Ref.current.style.clipPath = `inset(0 ${lerp(100, 0, line1P)}% 0 0)`;
-      if (heroLine2Ref.current)
-        heroLine2Ref.current.style.clipPath = `inset(0 ${lerp(100, 0, line2P)}% 0 0)`;
-      if (heroParaRef.current) {
-        heroParaRef.current.style.transform = `translateY(${lerp(20, 0, paraP)}px)`;
-        heroParaRef.current.style.opacity = `${paraP}`;
-      }
-      if (heroCtaRef.current) {
-        heroCtaRef.current.style.transform = `scale(${lerp(0.7, 1, ctaP)})`;
-        heroCtaRef.current.style.opacity = `${localProgress(heroP, 0.4, 0.55)}`;
-      }
+      if (heroTextRef.current)
+        heroTextRef.current.style.transform = `translateY(${heroP * -30}px)`;
       if (heroImageRef.current)
         heroImageRef.current.style.transform =
-          `translateX(${lerp(45, 0, imgP)}vw) translateY(${lerp(6, 0, imgP)}vh) rotate(${lerp(28, 0, imgP)}deg) scale(${lerp(0.55, 1, imgP)})`;
+          `translateY(${heroP * -60}px) scale(${lerp(1, 1.08, heroP)}) rotate(${lerp(0, -5, heroP)}deg)`;
       if (heroInnerRef.current) {
         heroInnerRef.current.style.opacity = `${1 - exitP}`;
         heroInnerRef.current.style.transform = `translateY(${lerp(0, -60, exitP)}px) scale(${lerp(1, 0.94, exitP)})`;
@@ -192,11 +171,11 @@ export default function ScrollStoryHomePage() {
 
       featureCardRefs.current.forEach((el, i) => {
         if (!el) return;
-        const start = i / FEATURES.length;
-        const end = (i + 0.6) / FEATURES.length;
-        const local = easeOutBack(localProgress(featP, start, end));
-        el.style.transform = `scale(${lerp(0.72, 1, local)}) translateY(${lerp(30, 0, local)}px)`;
-        el.style.opacity = `${clamp(local * 1.4)}`;
+        // Each card is centered in the viewport exactly when featP = i/panCount —
+        // pop it into place just before it arrives there, not after.
+        const center = panCount > 0 ? i / panCount : 0;
+        const local = easeOutBack(localProgress(featP, center - 0.22, center + 0.02));
+        el.style.transform = `scale(${lerp(0.82, 1, local)}) translateY(${lerp(20, 0, local)}px)`;
       });
       featuresDotRefs.current.forEach((el, i) => {
         if (!el) return;
@@ -355,27 +334,21 @@ export default function ScrollStoryHomePage() {
 
           <div ref={heroInnerRef} className="relative z-10 max-w-7xl mx-auto px-6 h-full flex items-center">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
-              <div className="text-white">
-                <div ref={heroEyebrowRef} className="text-orange-300 mb-4 text-lg" style={{ opacity: 0 }}>
-                  Good Food Good Life
-                </div>
+              <div ref={heroTextRef} className="text-white will-change-transform">
+                <p className="text-orange-300 mb-4 text-lg">Good Food Good Life</p>
                 <h1 className="text-4xl lg:text-6xl font-bold mb-2 leading-tight">
-                  <div ref={heroLine1Ref} style={{ clipPath: 'inset(0 100% 0 0)' }}>Experience The Best</div>
-                  <div ref={heroLine2Ref} style={{ clipPath: 'inset(0 100% 0 0)' }}>Food In Town</div>
+                  <div>Experience The Best</div>
+                  <div>Food In Town</div>
                 </h1>
-                <div ref={heroParaRef} className="mt-4" style={{ opacity: 0 }}>
-                  <p className="text-lg mb-8 text-gray-200 leading-relaxed max-w-md">
-                    Here at Ty Malabar, we are constantly striving to improve our service and quality
-                    in order to give our customers the very best experience.
-                  </p>
-                </div>
-                <div ref={heroCtaRef} style={{ opacity: 0 }}>
-                  <Link href="/menu">
-                    <button className="bg-[#F1EED0] hover:bg-orange-500 hover:text-white text-black font-semibold px-8 py-3 rounded-lg transition-colors">
-                      Explore Menu
-                    </button>
-                  </Link>
-                </div>
+                <p className="text-lg mb-8 mt-4 text-gray-200 leading-relaxed max-w-md">
+                  Here at Ty Malabar, we are constantly striving to improve our service and quality
+                  in order to give our customers the very best experience.
+                </p>
+                <Link href="/menu">
+                  <button className="bg-[#F1EED0] hover:bg-orange-500 hover:text-white text-black font-semibold px-8 py-3 rounded-lg transition-colors">
+                    Explore Menu
+                  </button>
+                </Link>
               </div>
 
               <div className="flex justify-end">
@@ -393,17 +366,17 @@ export default function ScrollStoryHomePage() {
             </div>
           </div>
 
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 text-xs tracking-widest uppercase">
-            Scroll to begin the story
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 text-xs tracking-widest uppercase animate-pulse">
+            Scroll to continue the story
           </div>
         </div>
       </div>
 
       {/* ================= FEATURES FILMSTRIP ================= */}
-      <div ref={featuresSpacerRef} className="relative" style={{ height: '300vh' }}>
+      <div ref={featuresSpacerRef} className="relative" style={{ height: '220vh' }}>
         <div className="sticky top-0 h-screen overflow-hidden bg-[#F1EED0] flex flex-col items-center justify-center">
           <p className="text-[#601131]/50 font-semibold tracking-widest uppercase text-sm mb-2">Why TyMalabar</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-10 text-center px-6">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-8 text-center px-6">
             Everything We Promise, Every Time
           </h2>
 
@@ -411,14 +384,27 @@ export default function ScrollStoryHomePage() {
             <div ref={featuresTrackRef} className="flex will-change-transform">
               {FEATURES.map((f, i) => (
                 <div key={f.title} className="w-screen flex-shrink-0 flex items-center justify-center px-6">
-                  <div
-                    ref={el => { featureCardRefs.current[i] = el; }}
-                    className="bg-white rounded-3xl shadow-xl p-10 max-w-sm w-full text-center will-change-transform"
-                    style={{ opacity: 0 }}
-                  >
-                    <Image src={f.icon} alt="" width={56} height={56} className="w-16 h-16 mx-auto mb-6" />
-                    <h3 className="text-2xl font-semibold mb-2 text-gray-800">{f.title}</h3>
-                    <p className="text-gray-600">{f.desc}</p>
+                  <div className="relative flex items-center justify-center w-full">
+                    <span
+                      aria-hidden
+                      className="absolute text-[200px] lg:text-[300px] font-black leading-none select-none pointer-events-none"
+                      style={{ color: f.accent, opacity: 0.08 }}
+                    >
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <div
+                      ref={el => { featureCardRefs.current[i] = el; }}
+                      className="relative bg-white rounded-3xl shadow-xl p-10 lg:p-14 max-w-md w-full text-center will-change-transform"
+                    >
+                      <div
+                        className="w-20 h-20 rounded-2xl mx-auto mb-6 flex items-center justify-center"
+                        style={{ backgroundColor: `${f.accent}1A` }}
+                      >
+                        <Image src={f.icon} alt="" width={40} height={40} className="w-10 h-10" />
+                      </div>
+                      <h3 className="text-2xl lg:text-3xl font-semibold mb-3 text-gray-800">{f.title}</h3>
+                      <p className="text-gray-600 text-lg">{f.desc}</p>
+                    </div>
                   </div>
                 </div>
               ))}
