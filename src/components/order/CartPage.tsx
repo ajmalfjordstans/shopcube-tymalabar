@@ -30,7 +30,7 @@ export default function CartPage() {
 
   if (itemCount === 0) {
     return (
-      <div className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] flex flex-col items-center justify-center px-4 py-16 text-center font-poppins">
+      <div className="bg-white rounded-2xl border border-[#D7CDA7] flex flex-col items-center justify-center px-4 py-16 text-center font-poppins">
         <div className="w-24 h-24 rounded-3xl flex items-center justify-center mb-4 bg-[#F0A429]/10">
           <ShoppingBag size={40} className="text-[#F0A429]" />
         </div>
@@ -69,8 +69,8 @@ export default function CartPage() {
               onClick={() => setOrderType(value)}
               className={`flex flex-col items-center text-center p-4 rounded-2xl border-2 transition-all ${
                 cart.orderType === value
-                  ? 'border-[#F0A429] bg-[#F1EED0] shadow-md'
-                  : 'border-[#D7CDA7]/70 bg-[#F1EED0]/60 hover:bg-[#F1EED0] hover:border-[#D7CDA7]'
+                  ? 'border-[#F0A429] bg-white shadow-md'
+                  : 'border-[#D7CDA7]/70 bg-white/60 hover:bg-white hover:border-[#D7CDA7]'
               }`}
             >
               <span className={`text-sm font-bold ${cart.orderType === value ? 'text-[#B87814]' : 'text-[#601131]/70'}`}>
@@ -84,7 +84,7 @@ export default function CartPage() {
 
       <div className="space-y-3 mb-6">
         {cart.items.map(item => (
-          <div key={item.cartItemId} className="bg-[#F1EED0] rounded-2xl p-4 shadow-sm">
+          <div key={item.cartItemId} className="bg-white rounded-2xl p-4 shadow-sm">
             <div className="flex items-start gap-3">
               {item.imageUrl && (
                 <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-[#F5F5DC]">
@@ -163,7 +163,7 @@ export default function CartPage() {
         ))}
       </div>
 
-      <div className="bg-[#F1EED0] rounded-2xl p-4 mb-6 space-y-2 shadow-sm">
+      <div className="bg-white rounded-2xl p-4 mb-6 space-y-2 shadow-sm">
         <div className="flex justify-between text-sm text-[#601131]/60">
           <span>Subtotal</span>
           <span className="font-medium text-[#601131]">£{subtotal.toFixed(2)}</span>
