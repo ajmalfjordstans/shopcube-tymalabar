@@ -104,9 +104,9 @@ export default function ScrollStoryHomePage() {
   const heroInnerRef = useRef<HTMLDivElement>(null);
 
   const featuresSpacerRef = useRef<HTMLDivElement>(null);
-  const featuresTrackRef = useRef<HTMLDivElement>(null);
-  const featureCardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const featuresDotRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const featureIconRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const featureStepRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const featureBarFillRef = useRef<HTMLDivElement>(null);
 
   const aboutSpacerRef = useRef<HTMLDivElement>(null);
   const aboutImageWrapRef = useRef<HTMLDivElement>(null);
@@ -134,9 +134,17 @@ export default function ScrollStoryHomePage() {
   const railFillRef = useRef<HTMLDivElement>(null);
   const railDotRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+  // Each section's progress is eased toward its raw scroll-derived value every
+  // frame instead of snapping straight to it — a fast flick or a laggy scroll
+  // event no longer jumps the animation; it catches up smoothly over a few
+  // frames, which is what actually reads as "smooth scrolling" here (the page
+  // itself doesn't scroll any differently — the animation just trails it).
+  const smoothedRef = useRef({ hero: 0, feat: 0, about: 0, menu: 0, proc: 0, cta: 0 });
+
   useEffect(() => {
-    let ticking = false;
+    let rafId = 0;
     let pathLength = 0;
+    const SMOOTHING = 0.16;
 
     if (processPathRef.current) {
       pathLength = processPathRef.current.getTotalLength();
@@ -144,13 +152,14 @@ export default function ScrollStoryHomePage() {
     }
 
     function render() {
-      ticking = false;
+      const s = smoothedRef.current;
 
       /* ---------------- Hero ----------------
          Fully visible the instant the page loads (no scroll-gated entrance —
          a hero that starts blank reads as "still loading"). Scrolling instead
          drives a gentle parallax drift, then hands off to the next chapter. */
-      const heroP = getSectionProgress(heroSpacerRef.current);
+      s.hero = lerp(s.hero, getSectionProgress(heroSpacerRef.current), SMOOTHING);
+      const heroP = s.hero;
       const exitP = localProgress(heroP, 0.72, 1);
 
       if (heroTextRef.current)
@@ -163,78 +172,95 @@ export default function ScrollStoryHomePage() {
         heroInnerRef.current.style.transform = `translateY(${lerp(0, -60, exitP)}px) scale(${lerp(1, 0.94, exitP)})`;
       }
 
-      /* ---------------- Features filmstrip ---------------- */
-      const featP = getSectionProgress(featuresSpacerRef.current);
-      const panCount = FEATURES.length - 1;
-      if (featuresTrackRef.current)
-        featuresTrackRef.current.style.transform = `translateX(${-featP * panCount * 100}vw)`;
+      /* ---------------- Why TyMalabar — synced icon + stepper ----------------
+         No physical panning: all four stages live in one fixed layout and simply
+         take turns being "active" as featP sweeps 0-1 in four equal, evenly-paced
+         beats — so pacing is linear by construction, not just because the numbers
+         happen to line up. */
+      s.feat = lerp(s.feat, getSectionProgress(featuresSpacerRef.current), SMOOTHING);
+      const featP = s.feat;
+      const stage = 1 / FEATURES.length;
 
-      featureCardRefs.current.forEach((el, i) => {
-        if (!el) return;
-        // Each card is centered in the viewport exactly when featP = i/panCount —
-        // pop it into place just before it arrives there, not after.
-        const center = panCount > 0 ? i / panCount : 0;
-        const local = easeOutBack(localProgress(featP, center - 0.22, center + 0.02));
-        el.style.transform = `scale(${lerp(0.82, 1, local)}) translateY(${lerp(20, 0, local)}px)`;
-      });
-      featuresDotRefs.current.forEach((el, i) => {
-        if (!el) return;
-        const active = i === Math.min(FEATURES.length - 1, Math.round(featP * panCount));
-        el.style.transform = active ? 'scale(1.35)' : 'scale(1)';
-        el.style.opacity = active ? '1' : '0.35';
+      if (featureBarFillRef.current) featureBarFillRef.current.style.transform = `scaleX(${featP})`;
+
+      FEATURES.forEach((_, i) => {
+        const center = (i + 0.5) * stage;
+        // Triangular falloff around each stage's midpoint — 1 right at center,
+        // fading to 0 by the time the neighboring stage takes over.
+        const activeness = clamp(1 - Math.abs(featP - center) / (stage * 0.75));
+
+        const icon = featureIconRefs.current[i];
+        if (icon) {
+          icon.style.opacity = `${activeness}`;
+          icon.style.transform = `scale(${lerp(0.8, 1, activeness)}) rotate(${lerp(-12, 0, activeness)}deg)`;
+        }
+
+        const step = featureStepRefs.current[i];
+        if (step) {
+          step.style.transform = `scale(${lerp(0.96, 1, activeness)}) translateX(${lerp(0, 12, activeness)}px)`;
+          step.style.opacity = `${lerp(0.45, 1, activeness)}`;
+        }
       });
 
       /* ---------------- About / roots ---------------- */
-      const aboutP = getSectionProgress(aboutSpacerRef.current);
+      s.about = lerp(s.about, getSectionProgress(aboutSpacerRef.current), SMOOTHING);
+      const aboutP = s.about;
       const revealP = easeOutCubic(localProgress(aboutP, 0, 0.45));
       if (aboutImageWrapRef.current) {
         aboutImageWrapRef.current.style.clipPath = `circle(${lerp(0, 75, revealP)}% at 50% 50%)`;
         aboutImageWrapRef.current.style.transform = `scale(${lerp(1.15, 1, revealP)}) translateY(${lerp(0, -8, aboutP)}%)`;
       }
       if (aboutHeadingRef.current) {
-        const hp = easeOutCubic(localProgress(aboutP, 0.05, 0.4));
+        const hp = easeOutCubic(localProgress(aboutP, 0.05, 0.3));
         aboutHeadingRef.current.style.clipPath = `inset(0 ${lerp(100, 0, hp)}% 0 0)`;
       }
       if (aboutParaRef.current) {
-        const pp = localProgress(aboutP, 0.2, 0.45);
+        const pp = localProgress(aboutP, 0.15, 0.35);
         aboutParaRef.current.style.opacity = `${pp}`;
         aboutParaRef.current.style.transform = `translateX(${lerp(24, 0, pp)}px)`;
       }
+      // Spread the four checklist points across the rest of the section's scroll
+      // range instead of clustering them all early, so motion continues all the
+      // way to the handoff instead of leaving the back half of the scroll dead.
       aboutPointRefs.current.forEach((el, i) => {
         if (!el) return;
-        const start = 0.35 + i * 0.1;
-        const local = easeOutCubic(localProgress(aboutP, start, start + 0.2));
+        const start = 0.4 + i * 0.14;
+        const local = easeOutCubic(localProgress(aboutP, start, start + 0.28));
         el.style.opacity = `${local}`;
         el.style.transform = `translateX(${lerp(30, 0, local)}px)`;
       });
 
       /* ---------------- Menu assembly ---------------- */
-      const menuP = getSectionProgress(menuSpacerRef.current);
-      const centerP = easeOutBack(localProgress(menuP, 0, 0.55));
+      s.menu = lerp(s.menu, getSectionProgress(menuSpacerRef.current), SMOOTHING);
+      const menuP = s.menu;
+      const centerP = easeOutBack(localProgress(menuP, 0, 0.35));
       if (menuCenterRef.current)
         menuCenterRef.current.style.transform = `scale(${lerp(0.25, 1, centerP)}) rotate(${lerp(-30, 0, centerP)}deg)`;
       if (menuHeadingRef.current) {
-        const hp = localProgress(menuP, 0, 0.2);
+        const hp = localProgress(menuP, 0, 0.15);
         menuHeadingRef.current.style.opacity = `${hp}`;
         menuHeadingRef.current.style.transform = `translateY(${lerp(-16, 0, hp)}px)`;
       }
+      // Stagger the three dish pairs across the whole section instead of finishing
+      // by the halfway point — the last pair now lands right at the handoff.
       menuLeftRefs.current.forEach((el, i) => {
         if (!el) return;
-        const start = 0.1 + i * 0.12;
-        const local = easeOutBack(localProgress(menuP, start, start + 0.32));
+        const start = i * 0.25;
+        const local = easeOutBack(localProgress(menuP, start, start + 0.45));
         el.style.transform = `translateX(${lerp(-70, 0, local)}vw)`;
         el.style.opacity = `${clamp(local * 1.3)}`;
       });
       menuRightRefs.current.forEach((el, i) => {
         if (!el) return;
-        const start = 0.1 + i * 0.12;
-        const local = easeOutBack(localProgress(menuP, start, start + 0.32));
+        const start = i * 0.25;
+        const local = easeOutBack(localProgress(menuP, start, start + 0.45));
         el.style.transform = `translateX(${lerp(70, 0, local)}vw)`;
         el.style.opacity = `${clamp(local * 1.3)}`;
       });
 
       /* ---------------- How it works ---------------- */
-      const procP = getSectionProgress(processSpacerRef.current);
+      s.proc = lerp(s.proc, getSectionProgress(processSpacerRef.current), SMOOTHING);
+      const procP = s.proc;
       if (processHeadingRef.current) {
         const hp = localProgress(procP, 0, 0.15);
         processHeadingRef.current.style.opacity = `${hp}`;
@@ -253,22 +279,23 @@ export default function ScrollStoryHomePage() {
       });
 
       /* ---------------- Finale / CTA ---------------- */
-      const ctaP2 = getSectionProgress(ctaSpacerRef.current);
-      const settleP = easeOutCubic(localProgress(ctaP2, 0, 0.45));
+      s.cta = lerp(s.cta, getSectionProgress(ctaSpacerRef.current), SMOOTHING);
+      const ctaP2 = s.cta;
+      const settleP = easeOutCubic(localProgress(ctaP2, 0, 0.4));
       if (ctaImageRef.current)
         ctaImageRef.current.style.transform = `scale(${lerp(0.6, 1, settleP)}) rotate(${lerp(-16, 0, settleP)}deg)`;
       if (ctaHeadingRef.current) {
-        const hp = localProgress(ctaP2, 0.1, 0.4);
+        const hp = localProgress(ctaP2, 0.2, 0.55);
         ctaHeadingRef.current.style.opacity = `${hp}`;
         ctaHeadingRef.current.style.transform = `translateY(${lerp(24, 0, hp)}px)`;
       }
       if (ctaButtonRef.current) {
-        const bp = easeOutBack(localProgress(ctaP2, 0.3, 0.6));
+        const bp = easeOutBack(localProgress(ctaP2, 0.45, 0.85));
         ctaButtonRef.current.style.transform = `scale(${lerp(0.6, 1, bp)})`;
-        ctaButtonRef.current.style.opacity = `${localProgress(ctaP2, 0.3, 0.45)}`;
+        ctaButtonRef.current.style.opacity = `${localProgress(ctaP2, 0.45, 0.65)}`;
       }
       if (ctaGlowRef.current) {
-        ctaGlowRef.current.style.opacity = `${smoothstep(0.1, 0.5, ctaP2) * 0.6}`;
+        ctaGlowRef.current.style.opacity = `${smoothstep(0.1, 0.7, ctaP2) * 0.6}`;
         ctaGlowRef.current.style.transform = `scale(${lerp(0.7, 1.15, ctaP2)}) rotate(${ctaP2 * 40}deg)`;
       }
 
@@ -283,22 +310,11 @@ export default function ScrollStoryHomePage() {
         el.style.transform = isActive ? 'scale(1.4)' : 'scale(1)';
         el.style.opacity = isActive ? '1' : '0.4';
       });
+      rafId = requestAnimationFrame(render);
     }
 
-    function onScroll() {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(render);
-      }
-    }
-
-    render();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-    };
+    rafId = requestAnimationFrame(render);
+    return () => cancelAnimationFrame(rafId);
   }, []);
 
   return (
@@ -326,7 +342,7 @@ export default function ScrollStoryHomePage() {
       </div>
 
       {/* ================= HERO ================= */}
-      <div ref={heroSpacerRef} className="relative" style={{ height: '250vh' }}>
+      <div ref={heroSpacerRef} className="relative" style={{ height: '180vh' }}>
         <div className="sticky top-0 h-screen overflow-hidden bg-[#601131]">
           <div className="absolute inset-0">
             <Image src="/background/doodle.avif" alt="" fill className="object-cover object-center" priority />
@@ -372,59 +388,71 @@ export default function ScrollStoryHomePage() {
         </div>
       </div>
 
-      {/* ================= FEATURES FILMSTRIP ================= */}
-      <div ref={featuresSpacerRef} className="relative" style={{ height: '220vh' }}>
-        <div className="sticky top-0 h-screen overflow-hidden bg-[#F1EED0] flex flex-col items-center justify-center">
-          <p className="text-[#601131]/50 font-semibold tracking-widest uppercase text-sm mb-2">Why TyMalabar</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-8 text-center px-6">
-            Everything We Promise, Every Time
-          </h2>
-
-          <div className="w-full overflow-hidden">
-            <div ref={featuresTrackRef} className="flex will-change-transform">
-              {FEATURES.map((f, i) => (
-                <div key={f.title} className="w-screen flex-shrink-0 flex items-center justify-center px-6">
-                  <div className="relative flex items-center justify-center w-full">
-                    <span
-                      aria-hidden
-                      className="absolute text-[200px] lg:text-[300px] font-black leading-none select-none pointer-events-none"
-                      style={{ color: f.accent, opacity: 0.08 }}
-                    >
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
+      {/* ================= WHY TYMALABAR ================= */}
+      <div ref={featuresSpacerRef} className="relative" style={{ height: '150vh' }}>
+        <div className="sticky top-0 h-screen overflow-hidden bg-[#F1EED0] flex items-center">
+          <div className="max-w-6xl mx-auto px-6 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="relative flex justify-center order-2 lg:order-1">
+                <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full bg-white shadow-xl">
+                  {FEATURES.map((f, i) => (
                     <div
-                      ref={el => { featureCardRefs.current[i] = el; }}
-                      className="relative bg-white rounded-3xl shadow-xl p-10 lg:p-14 max-w-md w-full text-center will-change-transform"
+                      key={f.title}
+                      ref={el => { featureIconRefs.current[i] = el; }}
+                      className="absolute inset-0 flex flex-col items-center justify-center gap-4 will-change-transform"
+                      style={{ opacity: 0 }}
                     >
                       <div
-                        className="w-20 h-20 rounded-2xl mx-auto mb-6 flex items-center justify-center"
+                        className="w-20 h-20 lg:w-24 lg:h-24 rounded-2xl flex items-center justify-center"
                         style={{ backgroundColor: `${f.accent}1A` }}
                       >
-                        <Image src={f.icon} alt="" width={40} height={40} className="w-10 h-10" />
+                        <Image src={f.icon} alt="" width={48} height={48} className="w-11 h-11 lg:w-12 lg:h-12" />
                       </div>
-                      <h3 className="text-2xl lg:text-3xl font-semibold mb-3 text-gray-800">{f.title}</h3>
-                      <p className="text-gray-600 text-lg">{f.desc}</p>
+                      <span className="text-sm font-bold tracking-widest uppercase" style={{ color: f.accent }}>
+                        {String(i + 1).padStart(2, '0')} / {String(FEATURES.length).padStart(2, '0')}
+                      </span>
                     </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
 
-          <div className="flex gap-2 mt-10">
-            {FEATURES.map((f, i) => (
-              <div
-                key={f.title}
-                ref={el => { featuresDotRefs.current[i] = el; }}
-                className="w-2 h-2 rounded-full bg-[#601131] transition-transform duration-150"
-              />
-            ))}
+              <div className="order-1 lg:order-2">
+                <p className="text-[#601131]/50 font-semibold tracking-widest uppercase text-sm mb-2">Why TyMalabar</p>
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
+                  Everything We Promise, Every Time
+                </h2>
+
+                <div className="h-1 w-full bg-[#601131]/10 rounded-full overflow-hidden mb-8">
+                  <div
+                    ref={featureBarFillRef}
+                    className="h-full w-full bg-[#F0A429] origin-left rounded-full"
+                    style={{ transform: 'scaleX(0)' }}
+                  />
+                </div>
+
+                <div className="space-y-5">
+                  {FEATURES.map((f, i) => (
+                    <div
+                      key={f.title}
+                      ref={el => { featureStepRefs.current[i] = el; }}
+                      className="flex items-start gap-4 will-change-transform"
+                      style={{ borderLeft: `3px solid ${f.accent}`, paddingLeft: '1rem' }}
+                    >
+                      <div>
+                        <h3 className="text-lg lg:text-xl font-semibold text-gray-800">{f.title}</h3>
+                        <p className="text-gray-600">{f.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* ================= ABOUT / OUR ROOTS ================= */}
-      <div ref={aboutSpacerRef} className="relative" style={{ height: '220vh' }}>
+      <div ref={aboutSpacerRef} className="relative" style={{ height: '150vh' }}>
         <div className="sticky top-0 h-screen overflow-hidden bg-[#F5F5DC] flex items-center">
           <div className="max-w-7xl mx-auto px-6 w-full">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -474,7 +502,7 @@ export default function ScrollStoryHomePage() {
       </div>
 
       {/* ================= MENU ASSEMBLY ================= */}
-      <div ref={menuSpacerRef} className="relative" style={{ height: '260vh' }}>
+      <div ref={menuSpacerRef} className="relative" style={{ height: '190vh' }}>
         <div className="sticky top-0 h-screen overflow-hidden bg-gradient-to-b from-[#FFFDF5] to-[#F5F5DC] flex flex-col items-center justify-center px-4">
           <div ref={menuHeadingRef} className="text-center mb-8" style={{ opacity: 0 }}>
             <p className="text-orange-600 font-semibold tracking-wide uppercase mb-2">Our Popular Dishes</p>
@@ -532,7 +560,7 @@ export default function ScrollStoryHomePage() {
       </div>
 
       {/* ================= HOW IT WORKS ================= */}
-      <div ref={processSpacerRef} className="relative" style={{ height: '220vh' }}>
+      <div ref={processSpacerRef} className="relative" style={{ height: '170vh' }}>
         <div className="sticky top-0 h-screen overflow-hidden bg-[#F5F5DC] flex flex-col items-center justify-center px-6">
           <div ref={processHeadingRef} className="text-center mb-14" style={{ opacity: 0 }}>
             <p className="text-orange-500 font-semibold mb-2">The Ty Malabar Way</p>
@@ -580,7 +608,7 @@ export default function ScrollStoryHomePage() {
       </div>
 
       {/* ================= FINALE / CTA ================= */}
-      <div ref={ctaSpacerRef} className="relative" style={{ height: '180vh' }}>
+      <div ref={ctaSpacerRef} className="relative" style={{ height: '130vh' }}>
         <div className="sticky top-0 h-screen overflow-hidden bg-[#601131] flex items-center justify-center">
           <div
             ref={ctaGlowRef}
