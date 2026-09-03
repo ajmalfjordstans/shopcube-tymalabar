@@ -360,19 +360,19 @@ export default function ScrollStoryHomePage() {
           </div>
 
           <div ref={heroInnerRef} className="relative z-10 max-w-7xl mx-auto px-6 h-full flex items-center">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 items-center w-full">
               <div ref={heroTextRef} className="text-white will-change-transform">
-                <p className="text-orange-300 mb-4 text-lg">Good Food Good Life</p>
-                <h1 className="text-4xl lg:text-6xl font-bold mb-2 leading-tight">
+                <p className="text-orange-300 mb-2 lg:mb-4 text-base lg:text-lg">Good Food Good Life</p>
+                <h1 className="text-3xl lg:text-6xl font-bold mb-2 leading-tight">
                   <div>Experience The Best</div>
                   <div>Food In Town</div>
                 </h1>
-                <p className="text-lg mb-8 mt-4 text-gray-200 leading-relaxed max-w-md">
+                <p className="text-sm lg:text-lg mb-4 mt-2 lg:mb-8 lg:mt-4 text-gray-200 leading-relaxed max-w-md">
                   Here at Ty Malabar, we are constantly striving to improve our service and quality
                   in order to give our customers the very best experience.
                 </p>
                 <Link href="/menu">
-                  <button className="bg-[#F1EED0] hover:bg-orange-500 hover:text-white text-black font-semibold px-8 py-3 rounded-lg transition-colors">
+                  <button className="bg-[#F1EED0] hover:bg-orange-500 hover:text-white text-black font-semibold px-6 py-2.5 lg:px-8 lg:py-3 rounded-lg transition-colors">
                     Explore Menu
                   </button>
                 </Link>
@@ -385,7 +385,7 @@ export default function ScrollStoryHomePage() {
                     alt="Delicious food"
                     width={420}
                     height={420}
-                    className="object-contain object-center w-[300px] lg:w-[420px]"
+                    className="object-contain object-center w-[190px] lg:w-[420px]"
                     priority
                   />
                 </div>
@@ -393,7 +393,7 @@ export default function ScrollStoryHomePage() {
             </div>
           </div>
 
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 text-xs tracking-widest uppercase animate-pulse">
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 text-white/60 text-xs tracking-widest uppercase animate-pulse">
             Scroll to continue the story
           </div>
         </div>
@@ -403,27 +403,27 @@ export default function ScrollStoryHomePage() {
       <div ref={featuresSpacerRef} className="relative" style={{ height: '190vh' }}>
         <div className="sticky top-0 h-screen overflow-hidden bg-[#F1EED0] flex items-center">
           <div className="max-w-6xl mx-auto px-6 w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center">
               <div className="relative flex justify-center order-2 lg:order-1">
                 <div
                   aria-hidden
-                  className="absolute w-[420px] h-[420px] lg:w-[520px] lg:h-[520px] rounded-full bg-[#F0A429]/10 blur-3xl"
+                  className="absolute w-32 h-32 lg:w-[520px] lg:h-[520px] rounded-full bg-[#F0A429]/10 blur-3xl"
                 />
-                <div className="relative w-72 h-72 lg:w-[26rem] lg:h-[26rem] rounded-full bg-white shadow-xl">
+                <div className="relative w-28 h-28 lg:w-[26rem] lg:h-[26rem] rounded-full bg-white shadow-xl">
                   {FEATURES.map((f, i) => (
                     <div
                       key={f.title}
                       ref={el => { featureIconRefs.current[i] = el; }}
-                      className="absolute inset-0 flex flex-col items-center justify-center gap-5 will-change-transform"
+                      className="absolute inset-0 flex flex-col items-center justify-center gap-2 lg:gap-5 will-change-transform"
                       style={{ opacity: 0 }}
                     >
                       <div
-                        className="w-28 h-28 lg:w-36 lg:h-36 rounded-3xl flex items-center justify-center"
+                        className="w-12 h-12 lg:w-36 lg:h-36 rounded-xl lg:rounded-3xl flex items-center justify-center"
                         style={{ backgroundColor: `${f.accent}1A` }}
                       >
-                        <Image src={f.icon} alt="" width={64} height={64} className="w-14 h-14 lg:w-16 lg:h-16" />
+                        <Image src={f.icon} alt="" width={64} height={64} className="w-6 h-6 lg:w-16 lg:h-16" />
                       </div>
-                      <span className="text-base font-bold tracking-widest uppercase" style={{ color: f.accent }}>
+                      <span className="text-xs lg:text-base font-bold tracking-widest uppercase" style={{ color: f.accent }}>
                         {String(i + 1).padStart(2, '0')} / {String(FEATURES.length).padStart(2, '0')}
                       </span>
                     </div>
@@ -433,11 +433,11 @@ export default function ScrollStoryHomePage() {
 
               <div className="order-1 lg:order-2">
                 <p className="text-[#601131]/50 font-semibold tracking-widest uppercase text-sm mb-2">Why TyMalabar</p>
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-8">
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4 lg:mb-8">
                   Everything We Promise, Every Time
                 </h2>
 
-                <div className="h-1.5 w-full bg-[#601131]/10 rounded-full overflow-hidden mb-8">
+                <div className="h-1.5 w-full bg-[#601131]/10 rounded-full overflow-hidden mb-4 lg:mb-8">
                   <div
                     ref={featureBarFillRef}
                     className="h-full w-full bg-[#F0A429] origin-left rounded-full"
@@ -445,12 +445,12 @@ export default function ScrollStoryHomePage() {
                   />
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-2.5 lg:space-y-4">
                   {FEATURES.map((f, i) => (
                     <div
                       key={f.title}
                       ref={el => { featureStepRefs.current[i] = el; }}
-                      className="flex items-center gap-4 bg-white rounded-2xl shadow-sm p-5 will-change-transform"
+                      className="flex items-center gap-4 bg-white rounded-2xl shadow-sm p-3 lg:p-5 will-change-transform"
                     >
                       <span
                         className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center font-bold text-white"
@@ -475,11 +475,11 @@ export default function ScrollStoryHomePage() {
       <div ref={aboutSpacerRef} className="relative" style={{ height: '150vh' }}>
         <div className="sticky top-0 h-screen overflow-hidden bg-[#F5F5DC] flex items-center">
           <div className="max-w-7xl mx-auto px-6 w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
               <div className="relative flex justify-center">
                 <div
                   ref={aboutImageWrapRef}
-                  className="relative w-72 h-72 lg:w-96 lg:h-96 rounded-full overflow-hidden will-change-transform"
+                  className="relative w-48 h-48 lg:w-96 lg:h-96 rounded-full overflow-hidden will-change-transform"
                   style={{ clipPath: 'circle(40% at 50% 50%)' }}
                 >
                   <Image src="/images/home/location.png" alt="About Ty Malabar" fill className="object-cover object-center" />
@@ -487,20 +487,20 @@ export default function ScrollStoryHomePage() {
               </div>
 
               <div>
-                <p className="text-orange-500 font-semibold mb-2">Who We Are</p>
+                <p className="text-orange-500 font-semibold mb-1 lg:mb-2 text-sm lg:text-base">Who We Are</p>
                 <h2
                   ref={aboutHeadingRef}
-                  className="text-4xl font-bold mb-6 text-gray-800 will-change-transform"
+                  className="text-2xl lg:text-4xl font-bold mb-3 lg:mb-6 text-gray-800 will-change-transform"
                   style={{ clipPath: 'inset(0 40% 0 0)' }}
                 >
                   A Culinary Journey Through<br />Tradition And Taste
                 </h2>
-                <p ref={aboutParaRef} className="text-gray-600 mb-6 leading-relaxed will-change-transform">
+                <p ref={aboutParaRef} className="text-sm lg:text-base text-gray-600 mb-3 lg:mb-6 leading-relaxed will-change-transform">
                   Ty Malabar offers a unique taste of India with a variety of traditional dishes
                   expertly crafted for your enjoyment. Located in Pencoed, we serve the surrounding
                   areas with fresh, flavorful meals through our easy-to-use online ordering platform.
                 </p>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2 lg:gap-4">
                   {ABOUT_POINTS.map((point, i) => (
                     <div
                       key={point}
@@ -524,30 +524,30 @@ export default function ScrollStoryHomePage() {
       {/* ================= MENU ASSEMBLY ================= */}
       <div ref={menuSpacerRef} className="relative" style={{ height: '190vh' }}>
         <div className="sticky top-0 h-screen overflow-hidden bg-gradient-to-b from-[#FFFDF5] to-[#F5F5DC] flex flex-col items-center justify-center px-4">
-          <div ref={menuHeadingRef} className="text-center mb-8" style={{ opacity: 0.6 }}>
-            <p className="text-orange-600 font-semibold tracking-wide uppercase mb-2">Our Popular Dishes</p>
-            <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-800">Choose Your Best Menu</h2>
+          <div ref={menuHeadingRef} className="text-center mb-3 lg:mb-8" style={{ opacity: 0.6 }}>
+            <p className="text-orange-600 font-semibold tracking-wide uppercase mb-1 lg:mb-2 text-sm lg:text-base">Our Popular Dishes</p>
+            <h2 className="text-2xl lg:text-4xl font-extrabold text-gray-800">Choose Your Best Menu</h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 items-center max-w-6xl w-full">
-            <div className="space-y-4 order-2 lg:order-1">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 lg:gap-10 items-center max-w-6xl w-full">
+            <div className="space-y-2 lg:space-y-4 order-2 lg:order-1">
               {LEFT_DISHES.map((dish, i) => (
                 <div
                   key={dish.name}
                   ref={el => { menuLeftRefs.current[i] = el; }}
-                  className="flex items-center bg-white p-4 rounded-xl shadow-md will-change-transform"
+                  className="flex items-center bg-white p-2.5 lg:p-4 rounded-xl shadow-md will-change-transform"
                   style={{ opacity: 0 }}
                 >
                   <div className="text-center w-full">
-                    <h3 className="font-semibold text-gray-800">{dish.name}</h3>
-                    <p className="text-sm text-gray-600">{dish.desc}</p>
+                    <h3 className="font-semibold text-gray-800 text-sm lg:text-base">{dish.name}</h3>
+                    <p className="text-xs lg:text-sm text-gray-600">{dish.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             <div className="relative order-1 lg:order-2 flex justify-center">
-              <div ref={menuCenterRef} className="relative w-56 h-56 lg:w-72 lg:h-72 will-change-transform">
+              <div ref={menuCenterRef} className="relative w-28 h-28 lg:w-72 lg:h-72 will-change-transform">
                 <div className="w-full h-full bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center shadow-2xl">
                   <Image
                     src="/images/food/full_tandoori_chicken.png"
@@ -560,17 +560,17 @@ export default function ScrollStoryHomePage() {
               </div>
             </div>
 
-            <div className="space-y-4 order-3">
+            <div className="space-y-2 lg:space-y-4 order-3">
               {RIGHT_DISHES.map((dish, i) => (
                 <div
                   key={dish.name}
                   ref={el => { menuRightRefs.current[i] = el; }}
-                  className="flex items-center bg-white p-4 rounded-xl shadow-md will-change-transform"
+                  className="flex items-center bg-white p-2.5 lg:p-4 rounded-xl shadow-md will-change-transform"
                   style={{ opacity: 0 }}
                 >
                   <div className="text-center w-full">
-                    <h3 className="font-semibold text-gray-800">{dish.name}</h3>
-                    <p className="text-sm text-gray-600">{dish.desc}</p>
+                    <h3 className="font-semibold text-gray-800 text-sm lg:text-base">{dish.name}</h3>
+                    <p className="text-xs lg:text-sm text-gray-600">{dish.desc}</p>
                   </div>
                 </div>
               ))}
@@ -582,9 +582,9 @@ export default function ScrollStoryHomePage() {
       {/* ================= HOW IT WORKS ================= */}
       <div ref={processSpacerRef} className="relative" style={{ height: '170vh' }}>
         <div className="sticky top-0 h-screen overflow-hidden bg-[#F5F5DC] flex flex-col items-center justify-center px-6">
-          <div ref={processHeadingRef} className="text-center mb-14" style={{ opacity: 0.6 }}>
-            <p className="text-orange-500 font-semibold mb-2">The Ty Malabar Way</p>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-800">
+          <div ref={processHeadingRef} className="text-center mb-6 lg:mb-14" style={{ opacity: 0.6 }}>
+            <p className="text-orange-500 font-semibold mb-1 lg:mb-2 text-sm lg:text-base">The Ty Malabar Way</p>
+            <h2 className="text-2xl lg:text-4xl font-bold text-gray-800">
               Select, Pay, and Enjoy Freshly Delivered Indian Cuisine
             </h2>
           </div>
@@ -605,20 +605,20 @@ export default function ScrollStoryHomePage() {
               />
             </svg>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-8 relative">
               {PROCESS_STEPS.map((step, i) => (
                 <div
                   key={step.title}
                   ref={el => { processStepRefs.current[i] = el; }}
-                  className="bg-white p-6 rounded-lg shadow-md text-center will-change-transform"
+                  className="bg-white p-4 lg:p-6 rounded-lg shadow-md text-center will-change-transform"
                   style={{ opacity: 0.5 }}
                 >
-                  <div className="w-16 h-16 bg-orange-400 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                    <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 lg:w-16 lg:h-16 bg-orange-400 rounded-lg mx-auto mb-3 lg:mb-4 flex items-center justify-center">
+                    <svg className="w-6 h-6 lg:w-8 lg:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                       <path d={step.path} />
                     </svg>
                   </div>
-                  <h3 className="font-semibold text-gray-800 mb-2">{step.title}</h3>
+                  <h3 className="font-semibold text-gray-800 mb-1 lg:mb-2">{step.title}</h3>
                   <p className="text-sm text-gray-600">{step.desc}</p>
                 </div>
               ))}
@@ -637,18 +637,18 @@ export default function ScrollStoryHomePage() {
           />
 
           <div className="relative z-10 flex flex-col items-center text-center px-6">
-            <div ref={ctaImageRef} className="mb-6 will-change-transform">
+            <div ref={ctaImageRef} className="mb-3 lg:mb-6 will-change-transform">
               <Image
                 src="/images/food/biriyani-circle.png"
                 alt=""
                 width={220}
                 height={220}
-                className="w-40 lg:w-56 object-contain"
+                className="w-28 lg:w-56 object-contain"
               />
             </div>
             <div ref={ctaHeadingRef} style={{ opacity: 0.6 }}>
-              <p className="text-orange-300 font-semibold mb-2">The Ty Malabar Way</p>
-              <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6 max-w-2xl">
+              <p className="text-orange-300 font-semibold mb-1 lg:mb-2 text-sm lg:text-base">The Ty Malabar Way</p>
+              <h2 className="text-2xl lg:text-5xl font-bold text-white mb-3 lg:mb-6 max-w-2xl">
                 Ready To Taste Tradition?
               </h2>
             </div>
