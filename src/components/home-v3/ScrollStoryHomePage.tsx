@@ -202,44 +202,48 @@ export default function ScrollStoryHomePage() {
         }
       });
 
-      /* ---------------- About / roots ---------------- */
+      /* ---------------- About / roots ----------------
+         Nothing here starts fully hidden — a pause anywhere in the scroll
+         (a short flick, a moment spent reading) must never leave the section
+         looking broken or half-missing. Everything is present from the first
+         frame; scroll only adds a gentle settle/parallax on top. */
       s.about = lerp(s.about, getSectionProgress(aboutSpacerRef.current), SMOOTHING);
       const aboutP = s.about;
-      const revealP = easeOutCubic(localProgress(aboutP, 0, 0.45));
       if (aboutImageWrapRef.current) {
-        aboutImageWrapRef.current.style.clipPath = `circle(${lerp(0, 75, revealP)}% at 50% 50%)`;
-        aboutImageWrapRef.current.style.transform = `scale(${lerp(1.15, 1, revealP)}) translateY(${lerp(0, -8, aboutP)}%)`;
+        aboutImageWrapRef.current.style.clipPath = 'circle(75% at 50% 50%)';
+        aboutImageWrapRef.current.style.transform = `scale(${lerp(1.05, 1, aboutP)}) translateY(${lerp(0, -8, aboutP)}%)`;
       }
-      if (aboutHeadingRef.current) {
-        const hp = easeOutCubic(localProgress(aboutP, 0.05, 0.3));
-        aboutHeadingRef.current.style.clipPath = `inset(0 ${lerp(100, 0, hp)}% 0 0)`;
-      }
+      if (aboutHeadingRef.current)
+        aboutHeadingRef.current.style.transform = `translateY(${lerp(10, 0, easeOutCubic(localProgress(aboutP, 0, 0.25)))}px)`;
       if (aboutParaRef.current) {
-        const pp = localProgress(aboutP, 0.15, 0.35);
+        const pp = lerp(0.7, 1, localProgress(aboutP, 0.1, 0.3));
         aboutParaRef.current.style.opacity = `${pp}`;
-        aboutParaRef.current.style.transform = `translateX(${lerp(24, 0, pp)}px)`;
+        aboutParaRef.current.style.transform = `translateX(${lerp(12, 0, pp)}px)`;
       }
       // Spread the four checklist points across the rest of the section's scroll
       // range instead of clustering them all early, so motion continues all the
-      // way to the handoff instead of leaving the back half of the scroll dead.
+      // way to the handoff instead of leaving the back half of the scroll dead —
+      // dimmed rather than invisible before their turn, per the note above.
       aboutPointRefs.current.forEach((el, i) => {
         if (!el) return;
         const start = 0.4 + i * 0.14;
         const local = easeOutCubic(localProgress(aboutP, start, start + 0.28));
-        el.style.opacity = `${local}`;
-        el.style.transform = `translateX(${lerp(30, 0, local)}px)`;
+        el.style.opacity = `${lerp(0.5, 1, local)}`;
+        el.style.transform = `translateX(${lerp(14, 0, local)}px)`;
       });
 
-      /* ---------------- Menu assembly ---------------- */
+      /* ---------------- Menu assembly ----------------
+         Same rule as About: never fully invisible, so a pause anywhere in
+         this section still reads as a real page, not a blank gradient. */
       s.menu = lerp(s.menu, getSectionProgress(menuSpacerRef.current), SMOOTHING);
       const menuP = s.menu;
       const centerP = easeOutBack(localProgress(menuP, 0, 0.35));
       if (menuCenterRef.current)
-        menuCenterRef.current.style.transform = `scale(${lerp(0.25, 1, centerP)}) rotate(${lerp(-30, 0, centerP)}deg)`;
+        menuCenterRef.current.style.transform = `scale(${lerp(0.7, 1, centerP)}) rotate(${lerp(-30, 0, centerP)}deg)`;
       if (menuHeadingRef.current) {
-        const hp = localProgress(menuP, 0, 0.15);
+        const hp = lerp(0.6, 1, localProgress(menuP, 0, 0.15));
         menuHeadingRef.current.style.opacity = `${hp}`;
-        menuHeadingRef.current.style.transform = `translateY(${lerp(-16, 0, hp)}px)`;
+        menuHeadingRef.current.style.transform = `translateY(${lerp(-8, 0, hp)}px)`;
       }
       // Stagger the three dish pairs across the whole section instead of finishing
       // by the halfway point — the last pair now lands right at the handoff.
@@ -247,24 +251,24 @@ export default function ScrollStoryHomePage() {
         if (!el) return;
         const start = i * 0.25;
         const local = easeOutBack(localProgress(menuP, start, start + 0.45));
-        el.style.transform = `translateX(${lerp(-70, 0, local)}vw)`;
-        el.style.opacity = `${clamp(local * 1.3)}`;
+        el.style.transform = `translateX(${lerp(-18, 0, local)}vw)`;
+        el.style.opacity = `${lerp(0.5, 1, clamp(local * 1.3))}`;
       });
       menuRightRefs.current.forEach((el, i) => {
         if (!el) return;
         const start = i * 0.25;
         const local = easeOutBack(localProgress(menuP, start, start + 0.45));
-        el.style.transform = `translateX(${lerp(70, 0, local)}vw)`;
-        el.style.opacity = `${clamp(local * 1.3)}`;
+        el.style.transform = `translateX(${lerp(18, 0, local)}vw)`;
+        el.style.opacity = `${lerp(0.5, 1, clamp(local * 1.3))}`;
       });
 
       /* ---------------- How it works ---------------- */
       s.proc = lerp(s.proc, getSectionProgress(processSpacerRef.current), SMOOTHING);
       const procP = s.proc;
       if (processHeadingRef.current) {
-        const hp = localProgress(procP, 0, 0.15);
+        const hp = lerp(0.6, 1, localProgress(procP, 0, 0.15));
         processHeadingRef.current.style.opacity = `${hp}`;
-        processHeadingRef.current.style.transform = `translateY(${lerp(-16, 0, hp)}px)`;
+        processHeadingRef.current.style.transform = `translateY(${lerp(-8, 0, hp)}px)`;
       }
       if (processPathRef.current && pathLength) {
         const drawP = easeOutCubic(localProgress(procP, 0.05, 0.85));
@@ -274,8 +278,8 @@ export default function ScrollStoryHomePage() {
         if (!el) return;
         const start = 0.15 + i * 0.28;
         const local = easeOutBack(localProgress(procP, start, start + 0.3));
-        el.style.transform = `scale(${lerp(0.4, 1, local)}) translateY(${lerp(24, 0, local)}px)`;
-        el.style.opacity = `${clamp(local * 1.3)}`;
+        el.style.transform = `scale(${lerp(0.75, 1, local)}) translateY(${lerp(14, 0, local)}px)`;
+        el.style.opacity = `${lerp(0.5, 1, clamp(local * 1.3))}`;
       });
 
       /* ---------------- Finale / CTA ---------------- */
@@ -283,16 +287,16 @@ export default function ScrollStoryHomePage() {
       const ctaP2 = s.cta;
       const settleP = easeOutCubic(localProgress(ctaP2, 0, 0.4));
       if (ctaImageRef.current)
-        ctaImageRef.current.style.transform = `scale(${lerp(0.6, 1, settleP)}) rotate(${lerp(-16, 0, settleP)}deg)`;
+        ctaImageRef.current.style.transform = `scale(${lerp(0.8, 1, settleP)}) rotate(${lerp(-16, 0, settleP)}deg)`;
       if (ctaHeadingRef.current) {
-        const hp = localProgress(ctaP2, 0.2, 0.55);
+        const hp = lerp(0.6, 1, localProgress(ctaP2, 0.2, 0.55));
         ctaHeadingRef.current.style.opacity = `${hp}`;
-        ctaHeadingRef.current.style.transform = `translateY(${lerp(24, 0, hp)}px)`;
+        ctaHeadingRef.current.style.transform = `translateY(${lerp(10, 0, hp)}px)`;
       }
       if (ctaButtonRef.current) {
         const bp = easeOutBack(localProgress(ctaP2, 0.45, 0.85));
-        ctaButtonRef.current.style.transform = `scale(${lerp(0.6, 1, bp)})`;
-        ctaButtonRef.current.style.opacity = `${localProgress(ctaP2, 0.45, 0.65)}`;
+        ctaButtonRef.current.style.transform = `scale(${lerp(0.8, 1, bp)})`;
+        ctaButtonRef.current.style.opacity = `${lerp(0.6, 1, localProgress(ctaP2, 0.45, 0.65))}`;
       }
       if (ctaGlowRef.current) {
         ctaGlowRef.current.style.opacity = `${smoothstep(0.1, 0.7, ctaP2) * 0.6}`;
@@ -389,26 +393,30 @@ export default function ScrollStoryHomePage() {
       </div>
 
       {/* ================= WHY TYMALABAR ================= */}
-      <div ref={featuresSpacerRef} className="relative" style={{ height: '150vh' }}>
+      <div ref={featuresSpacerRef} className="relative" style={{ height: '190vh' }}>
         <div className="sticky top-0 h-screen overflow-hidden bg-[#F1EED0] flex items-center">
           <div className="max-w-6xl mx-auto px-6 w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="relative flex justify-center order-2 lg:order-1">
-                <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full bg-white shadow-xl">
+                <div
+                  aria-hidden
+                  className="absolute w-[420px] h-[420px] lg:w-[520px] lg:h-[520px] rounded-full bg-[#F0A429]/10 blur-3xl"
+                />
+                <div className="relative w-72 h-72 lg:w-[26rem] lg:h-[26rem] rounded-full bg-white shadow-xl">
                   {FEATURES.map((f, i) => (
                     <div
                       key={f.title}
                       ref={el => { featureIconRefs.current[i] = el; }}
-                      className="absolute inset-0 flex flex-col items-center justify-center gap-4 will-change-transform"
+                      className="absolute inset-0 flex flex-col items-center justify-center gap-5 will-change-transform"
                       style={{ opacity: 0 }}
                     >
                       <div
-                        className="w-20 h-20 lg:w-24 lg:h-24 rounded-2xl flex items-center justify-center"
+                        className="w-28 h-28 lg:w-36 lg:h-36 rounded-3xl flex items-center justify-center"
                         style={{ backgroundColor: `${f.accent}1A` }}
                       >
-                        <Image src={f.icon} alt="" width={48} height={48} className="w-11 h-11 lg:w-12 lg:h-12" />
+                        <Image src={f.icon} alt="" width={64} height={64} className="w-14 h-14 lg:w-16 lg:h-16" />
                       </div>
-                      <span className="text-sm font-bold tracking-widest uppercase" style={{ color: f.accent }}>
+                      <span className="text-base font-bold tracking-widest uppercase" style={{ color: f.accent }}>
                         {String(i + 1).padStart(2, '0')} / {String(FEATURES.length).padStart(2, '0')}
                       </span>
                     </div>
@@ -418,11 +426,11 @@ export default function ScrollStoryHomePage() {
 
               <div className="order-1 lg:order-2">
                 <p className="text-[#601131]/50 font-semibold tracking-widest uppercase text-sm mb-2">Why TyMalabar</p>
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-8">
                   Everything We Promise, Every Time
                 </h2>
 
-                <div className="h-1 w-full bg-[#601131]/10 rounded-full overflow-hidden mb-8">
+                <div className="h-1.5 w-full bg-[#601131]/10 rounded-full overflow-hidden mb-8">
                   <div
                     ref={featureBarFillRef}
                     className="h-full w-full bg-[#F0A429] origin-left rounded-full"
@@ -430,14 +438,19 @@ export default function ScrollStoryHomePage() {
                   />
                 </div>
 
-                <div className="space-y-5">
+                <div className="space-y-4">
                   {FEATURES.map((f, i) => (
                     <div
                       key={f.title}
                       ref={el => { featureStepRefs.current[i] = el; }}
-                      className="flex items-start gap-4 will-change-transform"
-                      style={{ borderLeft: `3px solid ${f.accent}`, paddingLeft: '1rem' }}
+                      className="flex items-center gap-4 bg-white rounded-2xl shadow-sm p-5 will-change-transform"
                     >
+                      <span
+                        className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center font-bold text-white"
+                        style={{ backgroundColor: f.accent }}
+                      >
+                        {i + 1}
+                      </span>
                       <div>
                         <h3 className="text-lg lg:text-xl font-semibold text-gray-800">{f.title}</h3>
                         <p className="text-gray-600">{f.desc}</p>
@@ -460,7 +473,7 @@ export default function ScrollStoryHomePage() {
                 <div
                   ref={aboutImageWrapRef}
                   className="relative w-72 h-72 lg:w-96 lg:h-96 rounded-full overflow-hidden will-change-transform"
-                  style={{ clipPath: 'circle(0% at 50% 50%)' }}
+                  style={{ clipPath: 'circle(75% at 50% 50%)' }}
                 >
                   <Image src="/images/home/location.png" alt="About Ty Malabar" fill className="object-cover object-center" />
                 </div>
@@ -470,12 +483,11 @@ export default function ScrollStoryHomePage() {
                 <p className="text-orange-500 font-semibold mb-2">Who We Are</p>
                 <h2
                   ref={aboutHeadingRef}
-                  className="text-4xl font-bold mb-6 text-gray-800"
-                  style={{ clipPath: 'inset(0 100% 0 0)' }}
+                  className="text-4xl font-bold mb-6 text-gray-800 will-change-transform"
                 >
                   A Culinary Journey Through<br />Tradition And Taste
                 </h2>
-                <p ref={aboutParaRef} className="text-gray-600 mb-6 leading-relaxed" style={{ opacity: 0 }}>
+                <p ref={aboutParaRef} className="text-gray-600 mb-6 leading-relaxed will-change-transform">
                   Ty Malabar offers a unique taste of India with a variety of traditional dishes
                   expertly crafted for your enjoyment. Located in Pencoed, we serve the surrounding
                   areas with fresh, flavorful meals through our easy-to-use online ordering platform.
@@ -486,7 +498,7 @@ export default function ScrollStoryHomePage() {
                       key={point}
                       ref={el => { aboutPointRefs.current[i] = el; }}
                       className="flex items-center space-x-2 will-change-transform"
-                      style={{ opacity: 0 }}
+                      style={{ opacity: 0.5 }}
                     >
                       <svg className="w-5 h-5 text-orange-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
@@ -504,7 +516,7 @@ export default function ScrollStoryHomePage() {
       {/* ================= MENU ASSEMBLY ================= */}
       <div ref={menuSpacerRef} className="relative" style={{ height: '190vh' }}>
         <div className="sticky top-0 h-screen overflow-hidden bg-gradient-to-b from-[#FFFDF5] to-[#F5F5DC] flex flex-col items-center justify-center px-4">
-          <div ref={menuHeadingRef} className="text-center mb-8" style={{ opacity: 0 }}>
+          <div ref={menuHeadingRef} className="text-center mb-8" style={{ opacity: 0.6 }}>
             <p className="text-orange-600 font-semibold tracking-wide uppercase mb-2">Our Popular Dishes</p>
             <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-800">Choose Your Best Menu</h2>
           </div>
@@ -516,7 +528,7 @@ export default function ScrollStoryHomePage() {
                   key={dish.name}
                   ref={el => { menuLeftRefs.current[i] = el; }}
                   className="flex items-center bg-white p-4 rounded-xl shadow-md will-change-transform"
-                  style={{ opacity: 0 }}
+                  style={{ opacity: 0.5 }}
                 >
                   <div className="text-center w-full">
                     <h3 className="font-semibold text-gray-800">{dish.name}</h3>
@@ -546,7 +558,7 @@ export default function ScrollStoryHomePage() {
                   key={dish.name}
                   ref={el => { menuRightRefs.current[i] = el; }}
                   className="flex items-center bg-white p-4 rounded-xl shadow-md will-change-transform"
-                  style={{ opacity: 0 }}
+                  style={{ opacity: 0.5 }}
                 >
                   <div className="text-center w-full">
                     <h3 className="font-semibold text-gray-800">{dish.name}</h3>
@@ -562,7 +574,7 @@ export default function ScrollStoryHomePage() {
       {/* ================= HOW IT WORKS ================= */}
       <div ref={processSpacerRef} className="relative" style={{ height: '170vh' }}>
         <div className="sticky top-0 h-screen overflow-hidden bg-[#F5F5DC] flex flex-col items-center justify-center px-6">
-          <div ref={processHeadingRef} className="text-center mb-14" style={{ opacity: 0 }}>
+          <div ref={processHeadingRef} className="text-center mb-14" style={{ opacity: 0.6 }}>
             <p className="text-orange-500 font-semibold mb-2">The Ty Malabar Way</p>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-800">
               Select, Pay, and Enjoy Freshly Delivered Indian Cuisine
@@ -591,7 +603,7 @@ export default function ScrollStoryHomePage() {
                   key={step.title}
                   ref={el => { processStepRefs.current[i] = el; }}
                   className="bg-white p-6 rounded-lg shadow-md text-center will-change-transform"
-                  style={{ opacity: 0 }}
+                  style={{ opacity: 0.5 }}
                 >
                   <div className="w-16 h-16 bg-orange-400 rounded-lg mx-auto mb-4 flex items-center justify-center">
                     <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -626,13 +638,13 @@ export default function ScrollStoryHomePage() {
                 className="w-40 lg:w-56 object-contain"
               />
             </div>
-            <div ref={ctaHeadingRef} style={{ opacity: 0 }}>
+            <div ref={ctaHeadingRef} style={{ opacity: 0.6 }}>
               <p className="text-orange-300 font-semibold mb-2">The Ty Malabar Way</p>
               <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6 max-w-2xl">
                 Ready To Taste Tradition?
               </h2>
             </div>
-            <div ref={ctaButtonRef} style={{ opacity: 0 }}>
+            <div ref={ctaButtonRef} style={{ opacity: 0.6 }}>
               <a
                 href="https://tymalabaronline.com/menu"
                 target="_blank"
