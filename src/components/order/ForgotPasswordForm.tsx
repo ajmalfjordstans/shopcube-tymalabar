@@ -67,14 +67,14 @@ export default function ForgotPasswordForm() {
                 placeholder="you@example.com"
                 autoComplete="email"
                 autoFocus
-                className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 text-[#601131]"
+                className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 text-[#601131]"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full disabled:opacity-60 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 bg-[#F0A429] hover:bg-[#e79b26]"
+              className="w-full disabled:opacity-60 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 bg-[#1976D2] hover:bg-[#1565C0]"
             >
               {loading ? <Loader2 size={18} className="animate-spin" /> : 'Send reset link'}
             </button>

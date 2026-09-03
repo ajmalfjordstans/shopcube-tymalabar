@@ -31,14 +31,14 @@ export default function CartPage() {
   if (itemCount === 0) {
     return (
       <div className="bg-white rounded-2xl border border-[#D7CDA7] flex flex-col items-center justify-center px-4 py-16 text-center font-poppins">
-        <div className="w-24 h-24 rounded-3xl flex items-center justify-center mb-4 bg-[#F0A429]/10">
-          <ShoppingBag size={40} className="text-[#F0A429]" />
+        <div className="w-24 h-24 rounded-3xl flex items-center justify-center mb-4 bg-[#1976D2]/10">
+          <ShoppingBag size={40} className="text-[#1976D2]" />
         </div>
         <h2 className="text-xl font-bold text-[#601131] mb-1">Nothing here yet</h2>
         <p className="text-[#601131]/50 mb-8 text-sm">Add something delicious from the menu.</p>
         <Link
           href="/order"
-          className="inline-flex items-center gap-2 text-white font-bold px-8 py-3.5 rounded-full transition-all bg-[#F0A429] hover:bg-[#e79b26]"
+          className="inline-flex items-center gap-2 text-white font-bold px-8 py-3.5 rounded-full transition-all bg-[#1976D2] hover:bg-[#1565C0]"
         >
           Browse Menu
         </Link>
@@ -69,11 +69,11 @@ export default function CartPage() {
               onClick={() => setOrderType(value)}
               className={`flex flex-col items-center text-center p-4 rounded-2xl border-2 transition-all ${
                 cart.orderType === value
-                  ? 'border-[#F0A429] bg-white shadow-md'
+                  ? 'border-[#1976D2] bg-white shadow-md'
                   : 'border-[#D7CDA7]/70 bg-white/60 hover:bg-white hover:border-[#D7CDA7]'
               }`}
             >
-              <span className={`text-sm font-bold ${cart.orderType === value ? 'text-[#B87814]' : 'text-[#601131]/70'}`}>
+              <span className={`text-sm font-bold ${cart.orderType === value ? 'text-[#1565C0]' : 'text-[#601131]/70'}`}>
                 {label}
               </span>
               <span className="text-xs text-[#601131]/40 mt-0.5">{description}</span>
@@ -108,7 +108,7 @@ export default function CartPage() {
                       placeholder="Add a note (e.g. no onions)"
                       rows={2}
                       autoFocus
-                      className="w-full text-xs border border-[#D7CDA7] rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 resize-none bg-white text-[#601131]"
+                      className="w-full text-xs border border-[#D7CDA7] rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 resize-none bg-white text-[#601131]"
                     />
                     <div className="flex justify-end gap-2 mt-1.5">
                       <button
@@ -119,7 +119,7 @@ export default function CartPage() {
                       </button>
                       <button
                         onClick={() => saveNote(item.cartItemId)}
-                        className="text-xs font-semibold text-[#B87814] px-2 py-1 hover:text-[#8a5a0f] transition-colors"
+                        className="text-xs font-semibold text-[#1565C0] px-2 py-1 hover:text-[#0D47A1] transition-colors"
                       >
                         Save
                       </button>
@@ -188,7 +188,7 @@ export default function CartPage() {
 
       <button
         onClick={() => router.push('/order/checkout')}
-        className="w-full text-white font-bold py-4 rounded-2xl transition-all text-center flex items-center justify-center gap-2 bg-[#F0A429] hover:bg-[#e79b26]"
+        className="w-full text-white font-bold py-4 rounded-2xl transition-all text-center flex items-center justify-center gap-2 bg-[#1976D2] hover:bg-[#1565C0]"
       >
         Proceed to Checkout
       </button>

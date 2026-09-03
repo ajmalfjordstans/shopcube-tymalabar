@@ -96,7 +96,7 @@ export default function LoginPage({ next }: { next?: string }) {
             key={t}
             onClick={() => setTab(t)}
             className={`flex-1 py-2.5 text-sm font-bold rounded-xl transition-all ${
-              tab === t ? 'text-white shadow-sm bg-[#F0A429]' : 'text-[#601131]/50 hover:text-[#601131]'
+              tab === t ? 'text-white shadow-sm bg-[#1976D2]' : 'text-[#601131]/50 hover:text-[#601131]'
             }`}
           >
             {t === 'login' ? 'Sign In' : 'Create Account'}
@@ -114,7 +114,7 @@ export default function LoginPage({ next }: { next?: string }) {
               onChange={e => setEmail(e.target.value)}
               placeholder="you@example.com"
               autoComplete="email"
-              className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 text-[#601131]"
+              className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 text-[#601131]"
             />
           </div>
           <div>
@@ -126,7 +126,7 @@ export default function LoginPage({ next }: { next?: string }) {
                 onChange={e => setPassword(e.target.value)}
                 placeholder="••••••••"
                 autoComplete="current-password"
-                className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 text-[#601131]"
+                className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 text-[#601131]"
               />
               <button
                 type="button"
@@ -140,7 +140,7 @@ export default function LoginPage({ next }: { next?: string }) {
           </div>
 
           <div className="flex justify-end">
-            <Link href="/order/forgot-password" className="text-xs text-[#F0A429] hover:text-[#B87814] font-medium">
+            <Link href="/order/forgot-password" className="text-xs text-[#1976D2] hover:text-[#1565C0] font-medium">
               Forgot password?
             </Link>
           </div>
@@ -148,14 +148,14 @@ export default function LoginPage({ next }: { next?: string }) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full disabled:opacity-60 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 bg-[#F0A429] hover:bg-[#e79b26]"
+            className="w-full disabled:opacity-60 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 bg-[#1976D2] hover:bg-[#1565C0]"
           >
             {loading ? <Loader2 size={18} className="animate-spin" /> : 'Sign In'}
           </button>
 
           <p className="text-center text-sm text-[#601131]/60">
             No account?{' '}
-            <button type="button" onClick={() => setTab('register')} className="text-[#F0A429] font-medium hover:underline">
+            <button type="button" onClick={() => setTab('register')} className="text-[#1976D2] font-medium hover:underline">
               Create one
             </button>
           </p>
@@ -170,7 +170,7 @@ export default function LoginPage({ next }: { next?: string }) {
               onChange={e => setRegName(e.target.value)}
               placeholder="Jane Smith"
               autoComplete="name"
-              className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 text-[#601131]"
+              className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 text-[#601131]"
             />
           </div>
           <div>
@@ -181,7 +181,7 @@ export default function LoginPage({ next }: { next?: string }) {
               onChange={e => setRegEmail(e.target.value)}
               placeholder="you@example.com"
               autoComplete="email"
-              className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 text-[#601131]"
+              className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 text-[#601131]"
             />
           </div>
           <div>
@@ -193,7 +193,7 @@ export default function LoginPage({ next }: { next?: string }) {
                 onChange={e => setRegPassword(e.target.value)}
                 placeholder="Minimum 8 characters"
                 autoComplete="new-password"
-                className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 text-[#601131]"
+                className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 text-[#601131]"
               />
               <button
                 type="button"
@@ -213,21 +213,21 @@ export default function LoginPage({ next }: { next?: string }) {
               onChange={e => setRegPhone(e.target.value)}
               placeholder="07700 900000"
               autoComplete="tel"
-              className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 text-[#601131]"
+              className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 text-[#601131]"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full disabled:opacity-60 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 bg-[#F0A429] hover:bg-[#e79b26]"
+            className="w-full disabled:opacity-60 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 bg-[#1976D2] hover:bg-[#1565C0]"
           >
             {loading ? <Loader2 size={18} className="animate-spin" /> : 'Create Account'}
           </button>
 
           <p className="text-center text-sm text-[#601131]/60">
             Already have one?{' '}
-            <button type="button" onClick={() => setTab('login')} className="text-[#F0A429] font-medium hover:underline">
+            <button type="button" onClick={() => setTab('login')} className="text-[#1976D2] font-medium hover:underline">
               Sign in
             </button>
           </p>
@@ -236,7 +236,7 @@ export default function LoginPage({ next }: { next?: string }) {
 
       <div className="mt-6 pt-6 border-t border-[#D7CDA7] text-center">
         <p className="text-xs text-[#601131]/40 mb-2">Or continue without an account</p>
-        <Link href={redirect} className="text-sm text-[#F0A429] hover:text-[#B87814] font-semibold">
+        <Link href={redirect} className="text-sm text-[#1976D2] hover:text-[#1565C0] font-semibold">
           Continue as guest →
         </Link>
       </div>

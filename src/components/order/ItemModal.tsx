@@ -156,7 +156,7 @@ export default function ItemModal({ item, onClose }: Props) {
               placeholder="Allergies, preferences…"
               rows={2}
               maxLength={200}
-              className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
+              className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 bg-white text-[#601131]"
             />
           </div>
         </div>
@@ -182,7 +182,7 @@ export default function ItemModal({ item, onClose }: Props) {
           <button
             onClick={handleAdd}
             className={`flex-1 text-white font-semibold py-3 rounded-full transition-colors duration-200 flex items-center px-4 ${
-              justAdded ? 'bg-green-500 justify-center gap-2' : 'bg-[#F0A429] hover:bg-[#e79b26] justify-between'
+              justAdded ? 'bg-green-500 justify-center gap-2' : 'bg-[#1976D2] hover:bg-[#1565C0] justify-between'
             }`}
           >
             {justAdded ? (
@@ -231,13 +231,13 @@ function ModifierGroupSection({
               onClick={() => onToggle(mod)}
               className={`w-full flex items-center justify-between text-sm px-3 py-2.5 rounded-lg border transition-colors ${
                 selected
-                  ? 'border-[#F0A429] bg-[#F0A429]/10 text-[#B87814]'
+                  ? 'border-[#1976D2] bg-[#1976D2]/10 text-[#1565C0]'
                   : 'border-[#D7CDA7] bg-white text-[#601131] hover:border-[#601131]/30'
               }`}
             >
               <div className="flex items-center gap-2">
                 <div className={`w-4 h-4 rounded-full border-2 flex-shrink-0 flex items-center justify-center ${
-                  selected ? 'border-[#F0A429] bg-[#F0A429]' : 'border-[#D7CDA7]'
+                  selected ? 'border-[#1976D2] bg-[#1976D2]' : 'border-[#D7CDA7]'
                 }`}>
                   {selected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
                 </div>

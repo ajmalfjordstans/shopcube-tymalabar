@@ -31,7 +31,7 @@ export default function PaymentForm({ returnUrl }: { returnUrl: string }) {
       <button
         type="submit"
         disabled={!stripe || submitting}
-        className="w-full bg-[#F0A429] hover:bg-[#e79b26] disabled:opacity-60 text-white font-bold py-4 rounded-2xl transition-colors flex items-center justify-center gap-2 font-poppins"
+        className="w-full bg-[#1976D2] hover:bg-[#1565C0] disabled:opacity-60 text-white font-bold py-4 rounded-2xl transition-colors flex items-center justify-center gap-2 font-poppins"
       >
         {submitting ? (
           <>

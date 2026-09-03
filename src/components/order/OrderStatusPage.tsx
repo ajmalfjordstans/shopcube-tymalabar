@@ -85,7 +85,7 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
   if (trackBy === undefined || (isLoading && trackBy)) {
     return (
       <div className="flex items-center justify-center min-h-64">
-        <Loader2 className="animate-spin text-[#F0A429]" size={32} />
+        <Loader2 className="animate-spin text-[#1976D2]" size={32} />
       </div>
     );
   }
@@ -95,7 +95,7 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
       <div className="flex flex-col items-center justify-center min-h-64 gap-3 text-[#601131]/60 px-4">
         <AlertCircle size={36} className="text-red-400" />
         <p className="text-center">Could not load your order. Please check back later.</p>
-        <Link href="/order" className="text-[#F0A429] underline text-sm">Return to menu</Link>
+        <Link href="/order" className="text-[#1976D2] underline text-sm">Return to menu</Link>
       </div>
     );
   }
@@ -123,7 +123,7 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
           </>
         ) : (
           <>
-            <Clock className="mx-auto text-[#F0A429] mb-3" size={52} />
+            <Clock className="mx-auto text-[#1976D2] mb-3" size={52} />
             <h1 className="text-2xl font-bold text-[#601131] mb-1">Order placed!</h1>
             <p className="text-[#601131]/50 text-sm">We&apos;ll update this page as your order progresses.</p>
           </>
@@ -175,7 +175,7 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
               }
             }}
             disabled={requestingPayment}
-            className="w-full bg-[#F0A429] hover:bg-[#e79b26] disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2"
+            className="w-full bg-[#1976D2] hover:bg-[#1565C0] disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2"
           >
             {requestingPayment ? <Loader2 size={18} className="animate-spin" /> : 'Pay now'}
           </button>
@@ -223,11 +223,11 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
               return (
                 <div key={step.status} className="flex items-center gap-3">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
-                    done ? 'bg-[#F0A429] text-white' : 'bg-[#F5F5DC] text-[#601131]/40'
+                    done ? 'bg-[#1976D2] text-white' : 'bg-[#F5F5DC] text-[#601131]/40'
                   }`}>
                     <Icon size={16} />
                   </div>
-                  <span className={`text-sm font-medium ${active ? 'text-[#B87814]' : done ? 'text-[#601131]' : 'text-[#601131]/40'}`}>
+                  <span className={`text-sm font-medium ${active ? 'text-[#1565C0]' : done ? 'text-[#601131]' : 'text-[#601131]/40'}`}>
                     {step.label}
                     {active && !isComplete && <span className="ml-2 text-xs font-normal text-[#601131]/40 animate-pulse">• in progress</span>}
                   </span>
@@ -294,7 +294,7 @@ export default function OrderStatusPage({ orderId }: { orderId: string }) {
 
       <Link
         href="/order"
-        className="block text-center text-sm text-[#F0A429] hover:underline"
+        className="block text-center text-sm text-[#1976D2] hover:underline"
       >
         ← Back to menu
       </Link>

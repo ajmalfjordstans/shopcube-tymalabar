@@ -33,7 +33,7 @@ function formatDateTime12(iso: string) {
   });
 }
 
-const inp = 'w-full px-4 py-3 border border-[#D7CDA7] rounded-xl text-sm focus:border-[#F0A429] focus:outline-none focus:ring-2 focus:ring-[#F0A429]/20 bg-white text-[#601131]';
+const inp = 'w-full px-4 py-3 border border-[#D7CDA7] rounded-xl text-sm focus:border-[#1976D2] focus:outline-none focus:ring-2 focus:ring-[#1976D2]/20 bg-white text-[#601131]';
 
 export default function ReservationsPage() {
   const router = useRouter();
@@ -193,8 +193,8 @@ export default function ReservationsPage() {
       </button>
 
       <div className="flex items-center gap-3 mb-8">
-        <div className="w-10 h-10 rounded-xl bg-[#F0A429]/10 flex items-center justify-center flex-shrink-0">
-          <CalendarDays size={20} className="text-[#F0A429]" />
+        <div className="w-10 h-10 rounded-xl bg-[#1976D2]/10 flex items-center justify-center flex-shrink-0">
+          <CalendarDays size={20} className="text-[#1976D2]" />
         </div>
         <div>
           <h1 className="text-xl font-bold text-[#601131]">Reserve a Table</h1>
@@ -212,7 +212,7 @@ export default function ReservationsPage() {
                 <ChevronLeft size={16} className="text-[#601131]/60" />
               </button>
               <input type="date" value={date} min={todayStr()} onChange={e => setDate(e.target.value)}
-                className="flex-1 px-4 py-3 border border-[#D7CDA7] rounded-xl text-sm focus:border-[#F0A429] focus:outline-none bg-white text-center font-semibold text-[#601131]" />
+                className="flex-1 px-4 py-3 border border-[#D7CDA7] rounded-xl text-sm focus:border-[#1976D2] focus:outline-none bg-white text-center font-semibold text-[#601131]" />
               <button onClick={() => setDate(d => shiftDate(d, 1))}
                 className="p-2.5 border border-[#D7CDA7] rounded-xl hover:bg-white transition-colors bg-white">
                 <ChevronRight size={16} className="text-[#601131]/60" />
@@ -229,7 +229,7 @@ export default function ReservationsPage() {
                 −
               </button>
               <div className="flex items-center gap-2">
-                <Users size={18} className="text-[#F0A429]" />
+                <Users size={18} className="text-[#1976D2]" />
                 <span className="text-2xl font-bold text-[#601131] w-8 text-center">{partySize}</span>
                 <span className="text-sm text-[#601131]/50">{partySize === 1 ? 'person' : 'people'}</span>
               </div>
@@ -244,7 +244,7 @@ export default function ReservationsPage() {
           </div>
 
           <button onClick={handleFetchSlots} disabled={loadingSlots}
-            className="w-full py-3.5 bg-[#F0A429] hover:bg-[#e79b26] text-white font-bold rounded-xl flex items-center justify-center gap-2 disabled:opacity-60 transition-colors">
+            className="w-full py-3.5 bg-[#1976D2] hover:bg-[#1565C0] text-white font-bold rounded-xl flex items-center justify-center gap-2 disabled:opacity-60 transition-colors">
             {loadingSlots ? <Loader2 size={18} className="animate-spin" /> : <Clock size={18} />}
             {loadingSlots ? 'Checking availability…' : 'Check Availability'}
           </button>
@@ -271,7 +271,7 @@ export default function ReservationsPage() {
                 <button
                   key={slot}
                   onClick={() => { setSelectedSlot(slot); setStep('form'); }}
-                  className="py-3.5 rounded-xl border-2 text-sm font-bold transition-colors border-[#D7CDA7] bg-white hover:border-[#F0A429]/50 hover:bg-[#F0A429]/10 hover:text-[#B87814] text-[#601131]/70"
+                  className="py-3.5 rounded-xl border-2 text-sm font-bold transition-colors border-[#D7CDA7] bg-white hover:border-[#1976D2]/50 hover:bg-[#1976D2]/10 hover:text-[#1565C0] text-[#601131]/70"
                 >
                   {slot}
                 </button>
@@ -283,11 +283,11 @@ export default function ReservationsPage() {
 
       {step === 'form' && selectedSlot && (
         <div className="space-y-4">
-          <div className="bg-[#F0A429]/10 border border-[#F0A429]/30 rounded-2xl p-4 flex items-center gap-3">
-            <Clock size={16} className="text-[#F0A429] flex-shrink-0" />
+          <div className="bg-[#1976D2]/10 border border-[#1976D2]/30 rounded-2xl p-4 flex items-center gap-3">
+            <Clock size={16} className="text-[#1976D2] flex-shrink-0" />
             <div>
-              <p className="text-sm font-bold text-[#B87814]">{formatDateLong(date)} at {selectedSlot}</p>
-              <p className="text-xs text-[#B87814]/80">{partySize} {partySize === 1 ? 'person' : 'people'}</p>
+              <p className="text-sm font-bold text-[#1565C0]">{formatDateLong(date)} at {selectedSlot}</p>
+              <p className="text-xs text-[#1565C0]/80">{partySize} {partySize === 1 ? 'person' : 'people'}</p>
             </div>
           </div>
 
@@ -319,7 +319,7 @@ export default function ReservationsPage() {
             </div>
 
             <button onClick={handleSubmit} disabled={submitting}
-              className="w-full py-3.5 bg-[#F0A429] hover:bg-[#e79b26] text-white font-bold rounded-xl flex items-center justify-center gap-2 disabled:opacity-60 transition-colors">
+              className="w-full py-3.5 bg-[#1976D2] hover:bg-[#1565C0] text-white font-bold rounded-xl flex items-center justify-center gap-2 disabled:opacity-60 transition-colors">
               {submitting && <Loader2 size={18} className="animate-spin" />}
               {submitting ? 'Submitting…' : 'Request Reservation'}
             </button>
@@ -346,7 +346,7 @@ export default function ReservationsPage() {
 
           {loadingPaymentIntent ? (
             <div className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] shadow-sm p-8 flex items-center justify-center gap-3">
-              <Loader2 size={20} className="animate-spin text-[#F0A429]" />
+              <Loader2 size={20} className="animate-spin text-[#1976D2]" />
               <span className="text-sm text-[#601131]/60">Setting up payment…</span>
             </div>
           ) : clientSecret ? (

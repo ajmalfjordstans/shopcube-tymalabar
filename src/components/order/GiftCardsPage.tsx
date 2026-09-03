@@ -11,7 +11,7 @@ import type { Store } from '@/types/order';
 import { Gift, Search, ChevronLeft, Loader2, CheckCircle, AlertCircle, CreditCard } from 'lucide-react';
 import toast from 'react-hot-toast';
 
-const inp = 'w-full px-4 py-3 border border-[#D7CDA7] rounded-xl text-sm focus:border-[#F0A429] focus:outline-none focus:ring-2 focus:ring-[#F0A429]/20 bg-white text-[#601131]';
+const inp = 'w-full px-4 py-3 border border-[#D7CDA7] rounded-xl text-sm focus:border-[#1976D2] focus:outline-none focus:ring-2 focus:ring-[#1976D2]/20 bg-white text-[#601131]';
 
 const PRESETS = [10, 25, 50, 100];
 
@@ -76,7 +76,7 @@ function CheckBalance() {
         <button
           onClick={handleCheck}
           disabled={loading}
-          className="px-5 py-3 bg-[#F0A429] hover:bg-[#e79b26] text-white font-bold rounded-xl flex items-center gap-2 disabled:opacity-60 transition-colors flex-shrink-0"
+          className="px-5 py-3 bg-[#1976D2] hover:bg-[#1565C0] text-white font-bold rounded-xl flex items-center gap-2 disabled:opacity-60 transition-colors flex-shrink-0"
         >
           {loading ? <Loader2 size={16} className="animate-spin" /> : <Search size={16} />}
           Check
@@ -243,11 +243,11 @@ function BuyGiftCard({ store }: { store: Store | undefined }) {
   if (step === 'payment' && clientSecret && purchaseData) {
     return (
       <div className="space-y-4">
-        <div className="bg-[#F0A429]/10 border border-[#F0A429]/30 rounded-2xl p-4 flex items-center gap-3">
-          <CreditCard size={18} className="text-[#F0A429] flex-shrink-0" />
+        <div className="bg-[#1976D2]/10 border border-[#1976D2]/30 rounded-2xl p-4 flex items-center gap-3">
+          <CreditCard size={18} className="text-[#1976D2] flex-shrink-0" />
           <div>
-            <p className="text-sm font-bold text-[#B87814]">Pay £{purchaseData.amount.toFixed(2)}</p>
-            <p className="text-xs text-[#B87814]/80 mt-0.5">Complete payment to receive your gift card code.</p>
+            <p className="text-sm font-bold text-[#1565C0]">Pay £{purchaseData.amount.toFixed(2)}</p>
+            <p className="text-xs text-[#1565C0]/80 mt-0.5">Complete payment to receive your gift card code.</p>
           </div>
         </div>
         <div className="bg-white rounded-2xl border border-[#D7CDA7] shadow-sm p-6">
@@ -269,7 +269,7 @@ function BuyGiftCard({ store }: { store: Store | undefined }) {
         <div className="grid grid-cols-4 gap-2 mb-2">
           {PRESETS.map(p => (
             <button key={p} onClick={() => { setAmount(p); setCustomAmount(''); }}
-              className={`py-2.5 rounded-xl border-2 text-sm font-bold transition-colors ${amount === p && !customAmount ? 'border-[#F0A429] bg-[#F0A429]/10 text-[#B87814]' : 'border-[#D7CDA7] bg-white text-[#601131]/70 hover:border-[#F0A429]/50'}`}>
+              className={`py-2.5 rounded-xl border-2 text-sm font-bold transition-colors ${amount === p && !customAmount ? 'border-[#1976D2] bg-[#1976D2]/10 text-[#1565C0]' : 'border-[#D7CDA7] bg-white text-[#601131]/70 hover:border-[#1976D2]/50'}`}>
               £{p}
             </button>
           ))}
@@ -317,7 +317,7 @@ function BuyGiftCard({ store }: { store: Store | undefined }) {
         </div>
       ) : (
         <button onClick={handlePay} disabled={loadingPI || !finalAmount}
-          className="w-full py-4 bg-[#F0A429] hover:bg-[#e79b26] text-white font-bold rounded-2xl flex items-center justify-center gap-2 disabled:opacity-60 transition-colors">
+          className="w-full py-4 bg-[#1976D2] hover:bg-[#1565C0] text-white font-bold rounded-2xl flex items-center justify-center gap-2 disabled:opacity-60 transition-colors">
           {loadingPI ? <Loader2 size={18} className="animate-spin" /> : <CreditCard size={18} />}
           {loadingPI ? 'Setting up payment…' : `Pay £${(finalAmount ?? 0).toFixed(2)}`}
         </button>
@@ -347,8 +347,8 @@ export default function GiftCardsPage() {
       </Link>
 
       <div className="flex items-center gap-3 mb-8">
-        <div className="w-10 h-10 rounded-xl bg-[#F0A429]/10 flex items-center justify-center flex-shrink-0">
-          <Gift size={20} className="text-[#F0A429]" />
+        <div className="w-10 h-10 rounded-xl bg-[#1976D2]/10 flex items-center justify-center flex-shrink-0">
+          <Gift size={20} className="text-[#1976D2]" />
         </div>
         <div>
           <h1 className="text-xl font-bold text-[#601131]">Gift Cards</h1>

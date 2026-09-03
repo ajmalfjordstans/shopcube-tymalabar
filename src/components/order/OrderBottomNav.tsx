@@ -46,17 +46,17 @@ export default function OrderBottomNav({ reservationEnabled, giftCardEnabled }: 
             key={tab.href}
             href={tab.href}
             className={`flex-1 flex flex-col items-center justify-center gap-0.5 relative pt-1 transition-colors ${
-              tab.isActive ? 'text-[#F0A429]' : 'text-[#601131]/50 active:text-[#601131]'
+              tab.isActive ? 'text-[#1976D2]' : 'text-[#601131]/50 active:text-[#601131]'
             }`}
           >
             {tab.isActive && (
-              <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-full bg-[#F0A429]" />
+              <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-full bg-[#1976D2]" />
             )}
 
             <div className="relative">
               <tab.Icon size={22} strokeWidth={tab.isActive ? 2.5 : 1.8} />
               {tab.badge !== undefined && (
-                <span className={`absolute -top-1.5 -right-2.5 bg-[#F0A429] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center leading-none ${
+                <span className={`absolute -top-1.5 -right-2.5 bg-[#1976D2] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center leading-none ${
                   tab.label === 'Cart' && bump ? 'animate-bump' : ''
                 }`}>
                   {tab.badge > 9 ? '9+' : tab.badge}

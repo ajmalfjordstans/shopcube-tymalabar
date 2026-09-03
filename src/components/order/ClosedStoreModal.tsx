@@ -61,7 +61,7 @@ export default function ClosedStoreModal({ storeName, reopenDay, reopenTime, pre
 
           <button
             onClick={onClose}
-            className="mt-2 w-full py-3 rounded-xl bg-[#F0A429] hover:bg-[#e79b26] active:bg-[#d48e20] text-white font-bold transition-colors"
+            className="mt-2 w-full py-3 rounded-xl bg-[#1976D2] hover:bg-[#1565C0] active:bg-[#0D47A1] text-white font-bold transition-colors"
           >
             {preOrderEnabled ? 'Browse Menu & Pre-order' : 'Browse Menu'}
           </button>

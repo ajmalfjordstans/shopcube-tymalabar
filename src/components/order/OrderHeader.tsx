@@ -53,21 +53,21 @@ export default function OrderHeader() {
         <div className="flex items-center gap-4">
           {reservationEnabled && (
             <Link href="/order/reservations"
-              className="hidden sm:flex items-center gap-1.5 text-sm opacity-90 hover:opacity-100 hover:text-[#F0A429] transition-colors font-medium">
+              className="hidden sm:flex items-center gap-1.5 text-sm opacity-90 hover:opacity-100 hover:text-[#1976D2] transition-colors font-medium">
               <CalendarDays size={16} />
               <span>Reserve</span>
             </Link>
           )}
           {giftCardEnabled && (
             <Link href="/order/gift-cards"
-              className="hidden sm:flex items-center gap-1.5 text-sm opacity-90 hover:opacity-100 hover:text-[#F0A429] transition-colors font-medium">
+              className="hidden sm:flex items-center gap-1.5 text-sm opacity-90 hover:opacity-100 hover:text-[#1976D2] transition-colors font-medium">
               <Gift size={16} />
               <span>Gift Cards</span>
             </Link>
           )}
           {session ? (
             <div className="flex items-center gap-2">
-              <Link href="/order/orders" className="text-sm opacity-90 flex items-center gap-1 hover:opacity-100 hover:text-[#F0A429] transition-colors">
+              <Link href="/order/orders" className="text-sm opacity-90 flex items-center gap-1 hover:opacity-100 hover:text-[#1976D2] transition-colors">
                 <User size={16} />
                 <span className="hidden sm:inline">{session.user.name.split(' ')[0]}</span>
               </Link>
@@ -82,7 +82,7 @@ export default function OrderHeader() {
           ) : (
             <Link
               href="/order/login"
-              className="text-sm opacity-90 hover:opacity-100 hover:text-[#F0A429] transition-colors"
+              className="text-sm opacity-90 hover:opacity-100 hover:text-[#1976D2] transition-colors"
             >
               Sign in
             </Link>
@@ -90,7 +90,7 @@ export default function OrderHeader() {
 
           <Link
             href="/order/cart"
-            className={`relative flex items-center gap-1.5 bg-[#F0A429] hover:bg-[#e79b26] text-white text-sm font-semibold px-3 py-1.5 rounded-full transition-transform duration-200 ${bump ? 'scale-110' : 'scale-100'}`}
+            className={`relative flex items-center gap-1.5 bg-[#1976D2] hover:bg-[#1565C0] text-white text-sm font-semibold px-3 py-1.5 rounded-full transition-transform duration-200 ${bump ? 'scale-110' : 'scale-100'}`}
           >
             <ShoppingBag size={16} className={bump ? 'animate-bump' : ''} />
             {itemCount > 0 && (

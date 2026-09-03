@@ -12,13 +12,15 @@
   --font-display: var(--font-poppins);
   --font-poppins: var(--font-poppins);
 
-  /* Ordering system brand scale — mirrors the site's existing orange/maroon palette */
-  --color-brand-50: #FDF3E4;
-  --color-brand-100: #FBE7C9;
-  --color-brand-400: #F3B65C;
-  --color-brand-500: #F0A429;
-  --color-brand-600: #D48E20;
-  --color-brand-700: #B87814;
+  /* Ordering system brand scale — TEMPORARY Material-style blue swap for client review.
+     Original orange values (revert to these if the client prefers the brand palette):
+     50: #FDF3E4, 100: #FBE7C9, 400: #F3B65C, 500: #F0A429, 600: #D48E20, 700: #B87814 */
+  --color-brand-50: #E3F2FD;
+  --color-brand-100: #BBDEFB;
+  --color-brand-400: #42A5F5;
+  --color-brand-500: #1976D2;
+  --color-brand-600: #0D47A1;
+  --color-brand-700: #1565C0;
 }
 
 /* This site is light-themed only (every page uses fixed warm hex colors, no dark

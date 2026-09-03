@@ -39,7 +39,7 @@ export default function ScheduleModal({ storeId, leadHours, maxDays, value, onCh
       <div className="relative w-full sm:max-w-md bg-[#F1EED0] rounded-t-2xl sm:rounded-2xl max-h-[85vh] flex flex-col shadow-2xl">
         <div className="flex items-center justify-between p-5 border-b border-[#D7CDA7] flex-shrink-0">
           <h2 className="text-lg font-bold text-[#601131] flex items-center gap-2">
-            <Clock size={18} className="text-[#F0A429]" />
+            <Clock size={18} className="text-[#1976D2]" />
             Choose a time
           </h2>
           <button onClick={onClose} className="p-1 rounded-full hover:bg-white/60 transition-colors text-[#601131]">

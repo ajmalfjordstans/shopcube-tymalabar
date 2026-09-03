@@ -317,7 +317,7 @@ export default function CheckoutPage() {
           </p>
           <Link
             href="/order"
-            className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-[#B87814]"
+            className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-[#1565C0]"
           >
             <ArrowLeft size={14} /> Back to menu
           </Link>
@@ -357,28 +357,28 @@ export default function CheckoutPage() {
             placeholder="Full name *"
             value={name}
             onChange={e => setName(e.target.value)}
-            className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
+            className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 bg-white text-[#601131]"
           />
           <input
             type="email"
             placeholder="Email address *"
             value={email}
             onChange={e => setEmail(e.target.value)}
-            className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
+            className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 bg-white text-[#601131]"
           />
           <input
             type="tel"
             placeholder="Phone number *"
             value={phone}
             onChange={e => setPhone(e.target.value)}
-            className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
+            className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 bg-white text-[#601131]"
           />
         </div>
 
         {preOrderEnabled && (
           <div className="bg-[#F1EED0] rounded-xl border border-[#D7CDA7] p-4 space-y-3">
             <h2 className="font-semibold text-[#601131] flex items-center gap-2">
-              <Calendar size={16} className="text-[#F0A429]" />
+              <Calendar size={16} className="text-[#1976D2]" />
               When would you like this?
             </h2>
             {storeClosed && (
@@ -390,7 +390,7 @@ export default function CheckoutPage() {
                   type="button"
                   onClick={() => setScheduleForLater(false)}
                   className={`flex-1 text-sm font-semibold py-2.5 rounded-lg border transition-colors bg-white ${
-                    !scheduleForLater ? 'border-[#F0A429] bg-[#F0A429]/10 text-[#B87814]' : 'border-[#D7CDA7] text-[#601131]/60'
+                    !scheduleForLater ? 'border-[#1976D2] bg-[#1976D2]/10 text-[#1565C0]' : 'border-[#D7CDA7] text-[#601131]/60'
                   }`}
                 >
                   As soon as possible
@@ -403,7 +403,7 @@ export default function CheckoutPage() {
                   if (!scheduledAtIso) setShowScheduleModal(true);
                 }}
                 className={`flex-1 text-sm font-semibold py-2.5 rounded-lg border transition-colors bg-white ${
-                  scheduleForLater ? 'border-[#F0A429] bg-[#F0A429]/10 text-[#B87814]' : 'border-[#D7CDA7] text-[#601131]/60'
+                  scheduleForLater ? 'border-[#1976D2] bg-[#1976D2]/10 text-[#1565C0]' : 'border-[#D7CDA7] text-[#601131]/60'
                 }`}
               >
                 Schedule for later
@@ -413,7 +413,7 @@ export default function CheckoutPage() {
               <button
                 type="button"
                 onClick={() => setShowScheduleModal(true)}
-                className="w-full flex items-center justify-between gap-2 border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm hover:border-[#F0A429]/50 transition-colors bg-white"
+                className="w-full flex items-center justify-between gap-2 border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm hover:border-[#1976D2]/50 transition-colors bg-white"
               >
                 {scheduledAtIso ? (
                   <span className="font-medium text-[#601131]">
@@ -422,7 +422,7 @@ export default function CheckoutPage() {
                 ) : (
                   <span className="text-[#601131]/40">Choose a time…</span>
                 )}
-                <span className="flex items-center gap-1 text-[#F0A429] font-semibold text-xs flex-shrink-0">
+                <span className="flex items-center gap-1 text-[#1976D2] font-semibold text-xs flex-shrink-0">
                   {scheduledAtIso ? 'Change' : 'Select'}
                   <ChevronRight size={14} />
                 </span>
@@ -434,7 +434,7 @@ export default function CheckoutPage() {
         {cart.orderType === 'DELIVERY' && (
           <div className="bg-[#F1EED0] rounded-xl border border-[#D7CDA7] p-4 space-y-3">
             <h2 className="font-semibold text-[#601131] flex items-center gap-2">
-              <MapPin size={16} className="text-[#F0A429]" />
+              <MapPin size={16} className="text-[#1976D2]" />
               Delivery address
             </h2>
             <input
@@ -442,14 +442,14 @@ export default function CheckoutPage() {
               placeholder="Street address"
               value={address}
               onChange={e => setAddress(e.target.value)}
-              className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
+              className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 bg-white text-[#601131]"
             />
             <input
               type="text"
               placeholder="Postcode *"
               value={postcode}
               onChange={e => setPostcode(e.target.value.toUpperCase())}
-              className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
+              className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 bg-white text-[#601131]"
             />
             {!!cart.deliveryDetails?.minOrderValue && cart.deliveryDetails.minOrderValue > 0 && (
               <p className={`text-xs ${subtotal < cart.deliveryDetails.minOrderValue ? 'text-red-600 font-medium' : 'text-[#601131]/50'}`}>
@@ -515,7 +515,7 @@ export default function CheckoutPage() {
           <div className="bg-[#F1EED0] rounded-xl border border-[#D7CDA7] p-4">
             <button onClick={() => setGcOpen(v => !v)}
               className="w-full flex items-center justify-between text-sm font-semibold text-[#601131]/80 hover:text-[#601131]">
-              <span className="flex items-center gap-2"><Gift size={16} className="text-[#F0A429]" /> Have a gift card?</span>
+              <span className="flex items-center gap-2"><Gift size={16} className="text-[#1976D2]" /> Have a gift card?</span>
               <span className="text-[#601131]/40 text-xs">{gcOpen ? 'Hide' : 'Apply'}</span>
             </button>
 
@@ -529,10 +529,10 @@ export default function CheckoutPage() {
                         onChange={e => { setGcCode(e.target.value.toUpperCase()); setGcError(null); }}
                         onKeyDown={e => e.key === 'Enter' && handleLookupGiftCard()}
                         placeholder="e.g. GC-9D4A7C82"
-                        className="flex-1 border border-[#D7CDA7] rounded-lg px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
+                        className="flex-1 border border-[#D7CDA7] rounded-lg px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 bg-white text-[#601131]"
                       />
                       <button onClick={handleLookupGiftCard} disabled={gcLooking}
-                        className="px-4 py-2 bg-[#F0A429] text-white text-sm font-bold rounded-lg disabled:opacity-60">
+                        className="px-4 py-2 bg-[#1976D2] text-white text-sm font-bold rounded-lg disabled:opacity-60">
                         {gcLooking ? <Loader2 size={14} className="animate-spin" /> : 'Check'}
                       </button>
                     </div>
@@ -557,7 +557,7 @@ export default function CheckoutPage() {
                         max={Math.min(gcInfo.remainingBalance, total)}
                         value={gcApply}
                         onChange={e => setGcApply(e.target.value)}
-                        className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
+                        className="w-full border border-[#D7CDA7] rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 bg-white text-[#601131]"
                       />
                     </div>
                     {gcApplyAmount > 0 && (
@@ -593,7 +593,7 @@ export default function CheckoutPage() {
         <button
           onClick={handlePlaceOrder}
           disabled={placing}
-          className="w-full bg-[#F0A429] hover:bg-[#e79b26] disabled:opacity-60 text-white font-bold py-4 rounded-2xl transition-colors flex items-center justify-center gap-2"
+          className="w-full bg-[#1976D2] hover:bg-[#1565C0] disabled:opacity-60 text-white font-bold py-4 rounded-2xl transition-colors flex items-center justify-center gap-2"
         >
           {placing ? (
             <>

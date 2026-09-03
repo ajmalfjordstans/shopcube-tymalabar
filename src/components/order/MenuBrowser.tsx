@@ -19,7 +19,7 @@ import { useAuth } from '@/context/OrderAuthContext';
 import { useCart } from '@/context/OrderCartContext';
 
 const ACCENT_COLORS = [
-  '#601131', '#F0A429', '#8b6b2f', '#4a7c6b', '#8b3a3a',
+  '#601131', '#1976D2', '#8b6b2f', '#4a7c6b', '#8b3a3a',
   '#3a5a8b', '#7a4a8b', '#8b4a6b',
 ];
 
@@ -265,7 +265,7 @@ export default function MenuBrowser() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-24">
-        <Loader2 className="animate-spin text-[#F0A429]" size={32} />
+        <Loader2 className="animate-spin text-[#1976D2]" size={32} />
       </div>
     );
   }
@@ -317,7 +317,7 @@ export default function MenuBrowser() {
         {storeData?.data?.phone && (
           <a
             href={`tel:${storeData.data.phone.replace(/\s/g, '')}`}
-            className="ml-auto flex-shrink-0 flex items-center gap-2 text-sm text-white font-bold bg-[#F0A429] hover:bg-[#e79b26] px-4 py-2 rounded-full transition-all"
+            className="ml-auto flex-shrink-0 flex items-center gap-2 text-sm text-white font-bold bg-[#1976D2] hover:bg-[#1565C0] px-4 py-2 rounded-full transition-all"
           >
             <Phone size={14} />
             <span className="hidden md:inline">{storeData.data.phone}</span>
@@ -339,7 +339,7 @@ export default function MenuBrowser() {
               placeholder="Search menu…"
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-8 py-2 rounded-xl border border-[#D7CDA7] text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white placeholder-[#601131]/40 text-[#601131]"
+              className="w-full pl-9 pr-8 py-2 rounded-xl border border-[#D7CDA7] text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 bg-white placeholder-[#601131]/40 text-[#601131]"
             />
             {searchQuery && (
               <button
@@ -356,14 +356,14 @@ export default function MenuBrowser() {
               onClick={() => setShowFilters(v => !v)}
               className={`flex items-center gap-1.5 text-sm font-semibold px-3 py-2 rounded-xl border transition-all ${
                 showFilters || activeFilterCount > 0
-                  ? 'bg-[#F0A429]/10 border-[#F0A429]/40 text-[#B87814]'
+                  ? 'bg-[#1976D2]/10 border-[#1976D2]/40 text-[#1565C0]'
                   : 'bg-white border-[#D7CDA7] text-[#601131]/60 hover:border-[#601131]/30 hover:text-[#601131]'
               }`}
             >
               <SlidersHorizontal className="w-4 h-4" />
               <span className="hidden sm:inline">Filters</span>
               {activeFilterCount > 0 && (
-                <span className="bg-[#F0A429] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center leading-none">
+                <span className="bg-[#1976D2] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center leading-none">
                   {activeFilterCount}
                 </span>
               )}
@@ -383,7 +383,7 @@ export default function MenuBrowser() {
                           onClick={() => setSortBy(opt.value)}
                           className={`text-xs px-3 py-1.5 rounded-full border font-semibold transition-all ${
                             sortBy === opt.value
-                              ? 'bg-[#F0A429] text-white border-[#F0A429] shadow-sm'
+                              ? 'bg-[#1976D2] text-white border-[#1976D2] shadow-sm'
                               : 'bg-white text-[#601131]/70 border-[#D7CDA7] hover:border-[#601131]/30 hover:text-[#601131]'
                           }`}
                         >
@@ -406,7 +406,7 @@ export default function MenuBrowser() {
                           value={minPrice}
                           min={0}
                           onChange={e => setMinPrice(e.target.value)}
-                          className="w-full pl-6 pr-2 py-1.5 text-xs border border-[#D7CDA7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
+                          className="w-full pl-6 pr-2 py-1.5 text-xs border border-[#D7CDA7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 bg-white text-[#601131]"
                         />
                       </div>
                       <span className="text-xs text-[#601131]/40">to</span>
@@ -418,7 +418,7 @@ export default function MenuBrowser() {
                           value={maxPrice}
                           min={0}
                           onChange={e => setMaxPrice(e.target.value)}
-                          className="w-full pl-6 pr-2 py-1.5 text-xs border border-[#D7CDA7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
+                          className="w-full pl-6 pr-2 py-1.5 text-xs border border-[#D7CDA7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 bg-white text-[#601131]"
                         />
                       </div>
                     </div>
@@ -432,7 +432,7 @@ export default function MenuBrowser() {
                       onClick={() => setHideUnavailable(v => !v)}
                       className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border transition-all ${
                         hideUnavailable
-                          ? 'bg-[#F0A429] text-white border-[#F0A429] shadow-sm'
+                          ? 'bg-[#1976D2] text-white border-[#1976D2] shadow-sm'
                           : 'bg-white text-[#601131]/70 border-[#D7CDA7] hover:border-[#601131]/30'
                       }`}
                     >
@@ -467,7 +467,7 @@ export default function MenuBrowser() {
                 onClick={() => scrollToCategory(cat.id)}
                 className={`flex-shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
                   activeCategoryId === cat.id
-                    ? 'bg-[#F0A429] text-white shadow-sm'
+                    ? 'bg-[#1976D2] text-white shadow-sm'
                     : 'text-[#601131]/60 hover:text-[#601131] hover:bg-white'
                 }`}
               >
@@ -516,7 +516,7 @@ export default function MenuBrowser() {
                 <p className="text-sm mt-1">Try a different search or adjust the filters</p>
                 <button
                   onClick={() => { setSearchQuery(''); setMinPrice(''); setMaxPrice(''); setSortBy('default'); }}
-                  className="mt-4 text-sm text-[#F0A429] hover:underline"
+                  className="mt-4 text-sm text-[#1976D2] hover:underline"
                 >
                   Clear all filters
                 </button>
@@ -598,7 +598,7 @@ export default function MenuBrowser() {
             <div className="flex items-center justify-between">
               <h2 className="font-bold text-[#601131] text-base">Your Order</h2>
               {itemCount > 0 && (
-                <span className="text-xs font-bold bg-[#F0A429] text-white w-5 h-5 rounded-full flex items-center justify-center">
+                <span className="text-xs font-bold bg-[#1976D2] text-white w-5 h-5 rounded-full flex items-center justify-center">
                   {itemCount}
                 </span>
               )}
@@ -643,7 +643,7 @@ export default function MenuBrowser() {
                       value={deliveryPostcode}
                       onChange={e => { setDeliveryPostcode(e.target.value.toUpperCase()); setPostcodeResult(null); }}
                       onKeyDown={e => e.key === 'Enter' && checkDelivery()}
-                      className="flex-1 border border-[#D7CDA7] rounded-lg px-2.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 uppercase bg-white text-[#601131]"
+                      className="flex-1 border border-[#D7CDA7] rounded-lg px-2.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 uppercase bg-white text-[#601131]"
                     />
                     <button
                       onClick={checkDelivery}
@@ -683,8 +683,8 @@ export default function MenuBrowser() {
           <div className="flex-1 overflow-y-auto">
             {itemCount === 0 ? (
               <div className="flex flex-col items-center justify-center gap-3 py-10">
-                <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-[#F0A429]/10">
-                  <ShoppingBag size={26} className="text-[#F0A429]" />
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-[#1976D2]/10">
+                  <ShoppingBag size={26} className="text-[#1976D2]" />
                 </div>
                 <div className="text-center">
                   <p className="text-sm font-bold text-[#601131]/70">Your order is empty</p>
@@ -731,7 +731,7 @@ export default function MenuBrowser() {
               </div>
               <Link
                 href="/order/checkout"
-                className="flex items-center justify-between w-full text-white font-bold py-3.5 px-5 rounded-xl transition-all group bg-[#F0A429] hover:bg-[#e79b26]"
+                className="flex items-center justify-between w-full text-white font-bold py-3.5 px-5 rounded-xl transition-all group bg-[#1976D2] hover:bg-[#1565C0]"
               >
                 <span>Go to Checkout</span>
                 <ChevronRight size={18} className="group-hover:translate-x-0.5 transition-transform" />
@@ -745,7 +745,7 @@ export default function MenuBrowser() {
       {itemCount > 0 && (
         <Link
           href="/order/cart"
-          className="lg:hidden fixed bottom-20 left-4 right-4 z-30 flex items-center justify-between bg-[#F0A429] hover:bg-[#e79b26] text-white font-bold py-3.5 px-5 rounded-2xl shadow-lg transition-colors"
+          className="lg:hidden fixed bottom-20 left-4 right-4 z-30 flex items-center justify-between bg-[#1976D2] hover:bg-[#1565C0] text-white font-bold py-3.5 px-5 rounded-2xl shadow-lg transition-colors"
         >
           <span>View order ({itemCount})</span>
           <span>£{total.toFixed(2)}</span>

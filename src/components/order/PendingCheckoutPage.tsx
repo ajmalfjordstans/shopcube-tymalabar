@@ -77,7 +77,7 @@ export default function PendingCheckoutPage() {
         <AlertCircle size={40} className="text-red-400" />
         <h1 className="text-xl font-bold text-[#601131]">Payment didn&apos;t go through</h1>
         <p className="text-sm text-[#601131]/50">Nothing was charged and no order was placed. You can go back and try again.</p>
-        <Link href="/order/checkout" className="mt-2 text-[#B87814] font-semibold text-sm underline">
+        <Link href="/order/checkout" className="mt-2 text-[#1565C0] font-semibold text-sm underline">
           Back to checkout
         </Link>
       </div>
@@ -87,7 +87,7 @@ export default function PendingCheckoutPage() {
   if (trackBy === null) {
     return (
       <div className="max-w-lg mx-auto flex flex-col items-center text-center gap-3 font-poppins">
-        <Loader2 className="animate-spin text-[#F0A429]" size={32} />
+        <Loader2 className="animate-spin text-[#1976D2]" size={32} />
         <h1 className="text-xl font-bold text-[#601131]">Finishing up your order…</h1>
         <p className="text-sm text-[#601131]/50">
           We just need the phone number you checked out with to find it.
@@ -107,7 +107,7 @@ export default function PendingCheckoutPage() {
             placeholder="Phone number"
             className="flex-1 border border-[#D7CDA7] rounded-lg px-3 py-2 text-sm bg-white text-[#601131]"
           />
-          <button type="submit" className="bg-[#F0A429] hover:bg-[#e79b26] text-white text-sm font-semibold px-4 rounded-lg">
+          <button type="submit" className="bg-[#1976D2] hover:bg-[#1565C0] text-white text-sm font-semibold px-4 rounded-lg">
             Continue
           </button>
         </form>
@@ -123,7 +123,7 @@ export default function PendingCheckoutPage() {
         <p className="text-sm text-[#601131]/50">
           This checkout may have expired. If you were charged, please contact the store — otherwise no payment was taken.
         </p>
-        <Link href="/order" className="mt-2 text-[#B87814] font-semibold text-sm underline">
+        <Link href="/order" className="mt-2 text-[#1565C0] font-semibold text-sm underline">
           Back to menu
         </Link>
       </div>
@@ -132,7 +132,7 @@ export default function PendingCheckoutPage() {
 
   return (
     <div className="max-w-lg mx-auto flex flex-col items-center text-center gap-3 font-poppins">
-      <Loader2 className="animate-spin text-[#F0A429]" size={32} />
+      <Loader2 className="animate-spin text-[#1976D2]" size={32} />
       <h1 className="text-xl font-bold text-[#601131]">Finishing up your order…</h1>
       <p className="text-sm text-[#601131]/50">Your payment went through — just confirming with the store.</p>
     </div>

@@ -106,7 +106,7 @@ export default function OrdersPage() {
           Back to menu
         </Link>
         <div className="flex items-center gap-2 mb-6">
-          <Clock size={20} className="text-[#F0A429]" />
+          <Clock size={20} className="text-[#1976D2]" />
           <h1 className="text-xl font-bold text-[#601131]">My Orders</h1>
         </div>
         <div className="space-y-4">
@@ -129,7 +129,7 @@ export default function OrdersPage() {
       </Link>
 
       <div className="flex items-center gap-2 mb-6">
-        <Clock size={20} className="text-[#F0A429]" />
+        <Clock size={20} className="text-[#1976D2]" />
         <h1 className="text-xl font-bold text-[#601131]">My Orders</h1>
       </div>
 
@@ -202,7 +202,7 @@ export default function OrdersPage() {
                 <div className="px-5 py-3 border-t border-[#D7CDA7]/60 flex justify-end">
                   <Link
                     href={`/order/orders/${order.id}`}
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#F0A429] hover:text-[#B87814] transition-colors"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1976D2] hover:text-[#1565C0] transition-colors"
                   >
                     <ExternalLink size={14} />
                     Track order

@@ -170,7 +170,7 @@ export default function SchedulePicker({ storeId, leadHours, maxDays, value, onC
               type="button"
               onClick={() => setSelectedDate(date)}
               className={`flex flex-col items-center justify-center min-w-[60px] px-3 py-2 rounded-xl border text-xs font-semibold transition-colors shrink-0 bg-white ${
-                isSelected ? 'border-[#F0A429] bg-[#F0A429]/10 text-[#B87814]' : 'border-[#D7CDA7] text-[#601131]/60'
+                isSelected ? 'border-[#1976D2] bg-[#1976D2]/10 text-[#1565C0]' : 'border-[#D7CDA7] text-[#601131]/60'
               }`}
             >
               <span>{day}</span>
@@ -192,7 +192,7 @@ export default function SchedulePicker({ storeId, leadHours, maxDays, value, onC
                   type="button"
                   onClick={() => setActivePeriod(group.label)}
                   className={`flex-1 text-sm font-semibold py-2 rounded-lg border transition-colors bg-white ${
-                    isActive ? 'border-[#F0A429] bg-[#F0A429]/10 text-[#B87814]' : 'border-[#D7CDA7] text-[#601131]/60'
+                    isActive ? 'border-[#1976D2] bg-[#1976D2]/10 text-[#1565C0]' : 'border-[#D7CDA7] text-[#601131]/60'
                   }`}
                 >
                   {group.label}
@@ -211,8 +211,8 @@ export default function SchedulePicker({ storeId, leadHours, maxDays, value, onC
                   onClick={() => onChange(slot.toISOString())}
                   className={`py-2.5 rounded-xl border text-sm font-semibold text-center transition-colors ${
                     isChosen
-                      ? 'border-[#F0A429] bg-[#F0A429] text-white shadow-sm'
-                      : 'border-[#D7CDA7] bg-white text-[#601131] hover:border-[#F0A429]/50 hover:bg-[#F0A429]/10'
+                      ? 'border-[#1976D2] bg-[#1976D2] text-white shadow-sm'
+                      : 'border-[#D7CDA7] bg-white text-[#601131] hover:border-[#1976D2]/50 hover:bg-[#1976D2]/10'
                   }`}
                 >
                   {formatTimeSlot(slot)}

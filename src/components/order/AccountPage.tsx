@@ -102,7 +102,7 @@ export default function AccountPage() {
 
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-[#F0A429] flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+          <div className="w-14 h-14 rounded-2xl bg-[#1976D2] flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
             {initials}
           </div>
           <div>
@@ -133,7 +133,7 @@ export default function AccountPage() {
                 value={name}
                 onChange={e => setName(e.target.value)}
                 placeholder="Your name"
-                className="w-full border border-[#D7CDA7] rounded-xl pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
+                className="w-full border border-[#D7CDA7] rounded-xl pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 bg-white text-[#601131]"
               />
             </div>
           </div>
@@ -164,7 +164,7 @@ export default function AccountPage() {
                 value={phone}
                 onChange={e => setPhone(e.target.value)}
                 placeholder="07700 900000"
-                className="w-full border border-[#D7CDA7] rounded-xl pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 bg-white text-[#601131]"
+                className="w-full border border-[#D7CDA7] rounded-xl pl-9 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 bg-white text-[#601131]"
               />
             </div>
           </div>
@@ -172,7 +172,7 @@ export default function AccountPage() {
           <button
             type="submit"
             disabled={savingProfile}
-            className="w-full bg-[#F0A429] hover:bg-[#e79b26] disabled:opacity-60 text-white font-semibold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 mt-1"
+            className="w-full bg-[#1976D2] hover:bg-[#1565C0] disabled:opacity-60 text-white font-semibold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 mt-1"
           >
             {savingProfile ? <Loader2 size={16} className="animate-spin" /> : 'Save Changes'}
           </button>
@@ -182,7 +182,7 @@ export default function AccountPage() {
       {orderHistory.length > 0 && (
         <section className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] p-5 mb-4 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
-            <Clock size={16} className="text-[#F0A429]" />
+            <Clock size={16} className="text-[#1976D2]" />
             <h2 className="font-bold text-[#601131]">Recent Orders</h2>
           </div>
           <div className="space-y-2">
@@ -215,7 +215,7 @@ export default function AccountPage() {
       <section className="bg-[#F1EED0] rounded-2xl border border-[#D7CDA7] p-5 shadow-sm">
         <div className="flex items-start justify-between mb-1">
           <h2 className="font-bold text-[#601131]">Default Delivery Address</h2>
-          <MapPin size={16} className="text-[#F0A429] mt-0.5" />
+          <MapPin size={16} className="text-[#1976D2] mt-0.5" />
         </div>
         <p className="text-xs text-[#601131]/40 mb-4">
           Saved on this device. Pre-fills your delivery address at checkout.
@@ -230,7 +230,7 @@ export default function AccountPage() {
               onChange={e => setAddress(e.target.value)}
               rows={2}
               placeholder="8 Hendre Road, Pencoed"
-              className="w-full border border-[#D7CDA7] rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 resize-none bg-white text-[#601131]"
+              className="w-full border border-[#D7CDA7] rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 resize-none bg-white text-[#601131]"
             />
           </div>
 
@@ -244,7 +244,7 @@ export default function AccountPage() {
               onChange={e => setPostcode(e.target.value.toUpperCase())}
               placeholder="CF35 5NW"
               maxLength={8}
-              className="w-full border border-[#D7CDA7] rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 uppercase bg-white text-[#601131]"
+              className="w-full border border-[#D7CDA7] rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 uppercase bg-white text-[#601131]"
             />
           </div>
 

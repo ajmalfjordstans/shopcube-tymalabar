@@ -83,7 +83,7 @@ function ResetForm() {
             placeholder="Minimum 8 characters"
             autoComplete="new-password"
             autoFocus
-            className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 text-[#601131]"
+            className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 text-[#601131]"
           />
           <button
             type="button"
@@ -105,7 +105,7 @@ function ResetForm() {
             onChange={e => setConfirm(e.target.value)}
             placeholder="Repeat your new password"
             autoComplete="new-password"
-            className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A429]/40 text-[#601131]"
+            className="w-full border border-[#D7CDA7] bg-white rounded-xl px-3 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2]/40 text-[#601131]"
           />
           <button
             type="button"
@@ -124,7 +124,7 @@ function ResetForm() {
       <button
         type="submit"
         disabled={loading || (!!confirm && password !== confirm)}
-        className="w-full disabled:opacity-60 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 bg-[#F0A429] hover:bg-[#e79b26]"
+        className="w-full disabled:opacity-60 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 bg-[#1976D2] hover:bg-[#1565C0]"
       >
         {loading ? <Loader2 size={18} className="animate-spin" /> : 'Reset password'}
       </button>
@@ -145,7 +145,7 @@ export default function ResetPasswordForm() {
 
       <p className="text-center text-xs text-[#601131]/40 mt-4">
         Remember your password?{' '}
-        <Link href="/order/login" className="text-[#F0A429] hover:underline font-medium">
+        <Link href="/order/login" className="text-[#1976D2] hover:underline font-medium">
           Sign in
         </Link>
       </p>
