@@ -13,9 +13,12 @@ const Navbar = () => {
   const pathname = usePathname();
   const isOrderSection = pathname?.startsWith('/order') ?? false;
   // The ordering pages have their own sticky search bar competing for the same
-  // space, and the home-v3 scroll story wants the nav out of the way of its
-  // pinned sections — auto-hide the nav on scroll-down for both.
-  const autoHideSection = isOrderSection || (pathname?.startsWith('/home-v3') ?? false);
+  // space, and the scroll-story home page wants the nav out of the way of its
+  // pinned sections — auto-hide the nav on scroll-down for both. The story now
+  // renders at both "/" (the live home page) and "/home-v3" (kept as a direct
+  // link to the same page), so both need to match here.
+  const isHomeStory = pathname === '/' || (pathname?.startsWith('/home-v3') ?? false);
+  const autoHideSection = isOrderSection || isHomeStory;
 
   useEffect(() => {
     const handleScroll = () => {

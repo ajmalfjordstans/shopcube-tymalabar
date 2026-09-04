@@ -1,9 +1,5 @@
-import HomePage from '@/components/HomePage';
+import ScrollStoryHomePage from '@/components/home-v3/ScrollStoryHomePage';
 
 export default function Home() {
-  return (
-    <div className="min-h-screen">
-      <HomePage />
-    </div>
-  );
+  return <ScrollStoryHomePage />;
 }
