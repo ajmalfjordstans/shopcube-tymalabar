@@ -211,9 +211,12 @@ export default function ScrollStoryHomePage() {
       s.about = lerp(s.about, getSectionProgress(aboutSpacerRef.current), SMOOTHING);
       const aboutP = s.about;
       if (aboutImageWrapRef.current) {
+        // No clip-path here either — a partially-clipped photo reads the same
+        // way as the heading's mid-word cut did: like something failed to load,
+        // not an intentional effect. Opacity + scale settle instead.
         const revealP = easeOutCubic(localProgress(aboutP, 0, 0.45));
-        aboutImageWrapRef.current.style.clipPath = `inset(0 ${lerp(35, 0, revealP)}% 0 0)`;
-        aboutImageWrapRef.current.style.transform = `scale(${lerp(1.05, 1, revealP)}) translateY(${lerp(0, -8, aboutP)}%)`;
+        aboutImageWrapRef.current.style.opacity = `${lerp(0.6, 1, revealP)}`;
+        aboutImageWrapRef.current.style.transform = `scale(${lerp(0.92, 1, revealP)}) translateY(${lerp(0, -8, aboutP)}%)`;
       }
       if (aboutHeadingRef.current) {
         // A clip-path wipe on multi-line text is risky — at any partial progress
@@ -484,6 +487,7 @@ export default function ScrollStoryHomePage() {
                 <div
                   ref={aboutImageWrapRef}
                   className="relative w-full max-w-xs lg:max-w-xl aspect-[4/3] rounded-3xl overflow-hidden will-change-transform"
+                  style={{ opacity: 0.6 }}
                 >
                   <Image src="/images/home/location.png" alt="About Ty Malabar" fill className="object-cover object-center" />
                 </div>
