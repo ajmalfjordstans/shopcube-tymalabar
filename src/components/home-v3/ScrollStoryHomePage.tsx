@@ -203,15 +203,16 @@ export default function ScrollStoryHomePage() {
       });
 
       /* ---------------- About / roots ----------------
-         The circle-wipe and heading-wipe are back, just floored instead of
-         starting from fully hidden — a pause anywhere in the scroll must never
-         leave the section looking broken, but the reveal itself should still
-         be visible motion, not just a settle. */
+         The wipe reveals are back, just floored instead of starting from fully
+         hidden — a pause anywhere in the scroll must never leave the section
+         looking broken, but the reveal itself should still be visible motion,
+         not just a settle. The image now wipes in the same left-to-right
+         direction as the heading instead of a circular mask. */
       s.about = lerp(s.about, getSectionProgress(aboutSpacerRef.current), SMOOTHING);
       const aboutP = s.about;
       if (aboutImageWrapRef.current) {
         const revealP = easeOutCubic(localProgress(aboutP, 0, 0.45));
-        aboutImageWrapRef.current.style.clipPath = `circle(${lerp(40, 75, revealP)}% at 50% 50%)`;
+        aboutImageWrapRef.current.style.clipPath = `inset(0 ${lerp(35, 0, revealP)}% 0 0)`;
         aboutImageWrapRef.current.style.transform = `scale(${lerp(1.05, 1, revealP)}) translateY(${lerp(0, -8, aboutP)}%)`;
       }
       if (aboutHeadingRef.current) {
@@ -479,8 +480,7 @@ export default function ScrollStoryHomePage() {
               <div className="relative flex justify-center">
                 <div
                   ref={aboutImageWrapRef}
-                  className="relative w-48 h-48 lg:w-96 lg:h-96 rounded-full overflow-hidden will-change-transform"
-                  style={{ clipPath: 'circle(40% at 50% 50%)' }}
+                  className="relative w-full max-w-xs lg:max-w-xl aspect-[4/3] rounded-3xl overflow-hidden will-change-transform"
                 >
                   <Image src="/images/home/location.png" alt="About Ty Malabar" fill className="object-cover object-center" />
                 </div>
