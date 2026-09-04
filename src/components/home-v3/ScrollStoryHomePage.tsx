@@ -216,8 +216,11 @@ export default function ScrollStoryHomePage() {
         aboutImageWrapRef.current.style.transform = `scale(${lerp(1.05, 1, revealP)}) translateY(${lerp(0, -8, aboutP)}%)`;
       }
       if (aboutHeadingRef.current) {
+        // A clip-path wipe on multi-line text is risky — at any partial progress
+        // it can sever a word mid-letter (looks like a rendering bug, not an
+        // effect). Opacity + a small shift never looks broken, only "arriving".
         const hp = easeOutCubic(localProgress(aboutP, 0.05, 0.3));
-        aboutHeadingRef.current.style.clipPath = `inset(0 ${lerp(40, 0, hp)}% 0 0)`;
+        aboutHeadingRef.current.style.opacity = `${lerp(0.7, 1, hp)}`;
         aboutHeadingRef.current.style.transform = `translateY(${lerp(6, 0, hp)}px)`;
       }
       if (aboutParaRef.current) {
@@ -491,7 +494,7 @@ export default function ScrollStoryHomePage() {
                 <h2
                   ref={aboutHeadingRef}
                   className="text-2xl lg:text-4xl font-bold mb-3 lg:mb-6 text-gray-800 will-change-transform"
-                  style={{ clipPath: 'inset(0 40% 0 0)' }}
+                  style={{ opacity: 0.7 }}
                 >
                   A Culinary Journey Through<br />Tradition And Taste
                 </h2>
