@@ -433,7 +433,7 @@ export default function ScrollStoryHomePage() {
                       >
                         <Image src={f.icon} alt="" width={64} height={64} className="w-6 h-6 lg:w-16 lg:h-16" />
                       </div>
-                      <span className="text-xs lg:text-base font-bold tracking-widest uppercase" style={{ color: f.accent }}>
+                      <span className="text-xs lg:text-base font-bold tracking-widest uppercase text-white/70">
                         {String(i + 1).padStart(2, '0')} / {String(FEATURES.length).padStart(2, '0')}
                       </span>
                     </div>

@@ -22,12 +22,16 @@ export default function ParticleBackdrop() {
     scene.background = new THREE.Color('#601131');
     scene.fog = new THREE.FogExp2('#601131', 0.05);
 
-    const camera = new THREE.PerspectiveCamera(55, mount.clientWidth / mount.clientHeight, 0.1, 60);
+    // mount is `fixed inset-0`, so its box is always the viewport — reading
+    // window.innerWidth/Height instead of mount.clientWidth/Height sidesteps a
+    // hydration-timing race where the div hasn't been through layout yet when
+    // this effect runs, which was leaving the canvas permanently sized at 0x0.
+    const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 60);
     camera.position.set(0, 0.2, 9);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(mount.clientWidth, mount.clientHeight);
+    renderer.setSize(window.innerWidth, window.innerHeight);
     mount.appendChild(renderer.domElement);
 
     // spice: sparse, colored, slow ambient drift
@@ -130,9 +134,9 @@ export default function ParticleBackdrop() {
     animate();
 
     const handleResize = () => {
-      camera.aspect = mount.clientWidth / mount.clientHeight;
+      camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(mount.clientWidth, mount.clientHeight);
+      renderer.setSize(window.innerWidth, window.innerHeight);
     };
     window.addEventListener('resize', handleResize);
 
