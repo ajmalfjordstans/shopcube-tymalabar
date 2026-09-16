@@ -300,7 +300,7 @@ export default function MenuBrowser() {
           </p>
         )}
         {storeStatus && (
-          <span className={`inline-flex items-center gap-1 text-xs font-semibold px-1.5 py-0.5 rounded-full ${storeStatus.open ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'}`}>
+          <span className={`inline-flex items-center gap-1 text-xs font-semibold px-1.5 py-0.5 rounded-full whitespace-nowrap ${storeStatus.open ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'}`}>
             <Clock size={10} />
             {storeStatus.open
               ? `Open · ${storeStatus.openTime}–${storeStatus.closeTime}`
@@ -310,7 +310,7 @@ export default function MenuBrowser() {
           </span>
         )}
         {storeStatus && !storeStatus.open && (
-          <span className={`inline-flex items-center text-xs font-semibold px-1.5 py-0.5 rounded-full ${preOrderEnabled ? 'bg-blue-50 text-blue-700' : 'bg-[#F5F5DC] text-[#601131]/60'}`}>
+          <span className={`inline-flex items-center text-xs font-semibold px-1.5 py-0.5 rounded-full whitespace-nowrap ${preOrderEnabled ? 'bg-blue-50 text-blue-700' : 'bg-[#F5F5DC] text-[#601131]/60'}`}>
             {preOrderEnabled ? 'Pre-order available' : 'Pre-order unavailable'}
           </span>
         )}
